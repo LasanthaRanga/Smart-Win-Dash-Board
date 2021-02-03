@@ -1,0 +1,47 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+
+        <div>
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="number" [(ngModel)]="pin" placeholder="Pin Number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3" style="text-align: center;">
+                            <mat-radio-group aria-label="Select a Group" [(ngModel)]="side">
+                                <mat-radio-button value="A">A
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                                <mat-radio-button value="B">B</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="number" [(ngModel)]="point" placeholder="Point">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-3">
+                            <button (click)="save()" mat-raised-button type="submit"
+                                class="btn btn-danger pull-right">Add Current Point</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

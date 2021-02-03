@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Point Commiton</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let p of poinArray">
+                            <p>{{p.udata}} : {{p.amount | currency:'LKR'}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{pointTot | currency:'LKR'}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Intro Commition</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let i of introArray">
+                            <p>{{i.udata}} : {{i.amount | currency:'LKR'}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{inroTot | currency:'LKR'}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

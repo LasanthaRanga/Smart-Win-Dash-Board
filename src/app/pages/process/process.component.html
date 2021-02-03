@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <button mat-raised-button type="submit" class="btn btn-success pull-right" (click)="runProcess()">Run
+            Process</button>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title ">Process</h4>                   
+                </div>
+                <div class="card-body">
+
+                    <div class="col-md-12">
+                        <mat-form-field class="col-md-6">
+                            <input matInput (keyup)="applayFilter($event.target.value)" type="text"
+                                [(ngModel)]="inputval" placeholder="Search Here" />
+                        </mat-form-field>
+                    </div>
+
+                    <mat-table matSort [dataSource]="dataSource">
+
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="idProcess">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">Process ID
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let element" style="justify-content: flex-end;">
+                                <button mat-mini-fab color="accent" (click)="selectOne(element)"
+                                    aria-label="Example icon button with a plus one icon">
+                                    {{element.idProcess }}
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+
+                        <ng-container matColumnDef="dateTime">
+                            <mat-header-cell mat-sort-header *matHeaderCellDef> Date Time </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.dateTime| date: 'yyyy-MM-dd'}} </mat-cell>
+                        </ng-container>
+
+                        <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <mat-paginator [pageSizeOptions]="[7,14,30]" showFirstLastButtons></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>

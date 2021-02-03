@@ -1,0 +1,167 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="row" *ngIf="hasTree">
+
+      <div class="col-lg-4 col-md-4 col-sm-12" *ngFor="let nod of treeData">
+        <div class="card card-stats">
+
+          <div class="card-header card-header-success card-header-icon" *ngIf="nod.status==1">
+            <div class="card-icon">
+
+              <h3>PIN : {{nod?.swTreeId}}</h3>
+              <!-- <i class="material-icons">content_copy</i> -->
+            </div>
+            <p class="card-category">Current Points</p>
+            <h3 class="card-title">{{nod?.APoint}}
+              <small> A-Side</small>
+            </h3>
+            <h3 class="card-title">{{nod?.BPoint}}
+              <small> B-Side</small>
+            </h3>
+            <p class="card-category">Introducer</p>
+            <p class="card-category">SW: {{nod?.other1 }} - {{nod?.other2}}</p>
+          </div>
+
+          <div class="card-footer">
+            <div class="stats" style="color: green;" *ngIf="nod.status==1">
+              Active
+            </div>
+            <div class="stats" style="color: red;" *ngIf="nod.status==0">
+              <h4><strong>Not Active : {{nod?.swTreeId}} </strong> </h4>
+            </div>
+            <div>
+              <div class="example-button-container">
+                <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"
+                  (click)="goToTree(nod.swTreeId)">
+                  Tree
+                </button>
+
+                <button *ngIf="editable" (click)="change(nod)" mat-mini-fab type="submit"
+                  class="btn btn-danger pull-right">Intro</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+
+
+      <div class="col-md-12" *ngIf="selectedNod">
+
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Change Introducer </h4>
+            <p class="card-category">PIN: {{selectedNod.swTreeId}}</p>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <input matInput [(ngModel)]="newIntro">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <button *ngIf="editable" (click)="updateIntro()" mat-raised-button type="submit"
+                  class="btn btn-danger pull-right">Update Introducer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card card-profile">
+            <div class="card-avatar">
+              <a href="javascript:void(0)">
+                <img class="img" src="./assets/img/profile.png" />
+              </a>
+            </div>
+            <div class="card-body" *ngIf="userData">
+              <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
+              <h4 class="card-title">{{userData[0].value}}</h4>
+
+              <h5>{{userData[2].value}}</h5>
+              <h5>{{userData[3].value}}</h5>
+              <h5>{{userData[4].value}}</h5>
+              <h5>{{userData[5].value}}</h5>
+              <h5>{{userData[12].value}}</h5>
+              <h5>{{userData[13].value}}</h5>
+
+              <p class="card-description">
+
+              </p>
+              <!-- <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a> -->
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Profile Information</h4>
+              <p class="card-category">If you want you can change</p>
+            </div>
+            <div class="card-body">
+
+              <div class="row" *ngIf="userData">
+
+                <div class="col-md-6" *ngFor="let item of userData">
+                  <mat-form-field class="example-full-width" *ngIf="item.type=='text'">
+                    <input matInput [(ngModel)]="item.value" placeholder="{{item.key}}">
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width" *ngIf="item.type=='date'">
+                    <mat-label>{{item.key}}</mat-label>
+                    <input matInput [(ngModel)]="item.value" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+                  <div class="example-full-width" *ngIf="item.type=='2 radio gender'" style="text-align: center;">
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="item.value">
+                      <mat-radio-button value="male">Male</mat-radio-button>
+                      <mat-radio-button value="female">Female</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+
+                  <div class="example-full-width" *ngIf="item.type=='2 radio civil'" style="text-align: center;">
+                    <mat-radio-group aria-label="Select an option" [(ngModel)]="item.value">
+                      <mat-radio-button value="Married">Married</mat-radio-button>
+                      <mat-radio-button value="Single">Single</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+
+                </div>
+
+
+
+
+                <button *ngIf="editable" (click)="update()" mat-raised-button type="submit"
+                  class="btn btn-danger pull-right">Update Profile</button>
+                <div class="clearfix"></div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

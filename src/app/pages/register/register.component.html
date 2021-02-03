@@ -1,0 +1,229 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div *ngIf="isClicked">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title"><strong>Introducer Information</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)"
+                                    placeholder="Introducer SW No.">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iNidNo" disabled placeholder="Introducer ID No.">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iName" disabled placeholder="Name of Introducer">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    <h4 class="card-title"><strong>placement Information</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="aPlacementNo" (keydown.enter)="loadPins($event)"
+                                    placeholder="Placement SW Number">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-2">
+                            <!-- <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="aPin" (keydown.enter)="loadPlaceMent($event)"
+                                    placeholder="Placement SW Pin Number">
+                            </mat-form-field> -->
+
+                            <mat-form-field>
+                                <mat-label>Select Pin</mat-label>
+                                <mat-select [(ngModel)]="aPin" (ngModelChange)="loadPlaceMent()">
+                                    <mat-option *ngFor="let pin of freePins" [value]="pin.swTreeId">
+                                        {{pin.swTreeId}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+                        </div>
+
+                        <!-- <div class="col-md-2">
+                            <mat-form-field class="example-full-width">
+                                <input matInput disabled [(ngModel)]="aPlacementNo" placeholder="Placement SW No.">
+                            </mat-form-field>
+                        </div> -->
+
+                        <div class="col-md-2">
+                            <mat-form-field>
+                                <mat-label>Select Product</mat-label>
+                                <mat-select [(ngModel)]="product">
+                                    <mat-option *ngFor="let prod of prodList" [value]="prod.idProd">
+                                        {{prod.prodName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3" style="text-align: center;">
+                            <mat-radio-group aria-label="Select a Group" [(ngModel)]="side">
+                                <mat-radio-button *ngIf="placement?.sidA" value="A">A</mat-radio-button>
+                                <mat-radio-button *ngIf="placement?.sidB" value="B">B</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div class="col-md-3">
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="number" [(ngModel)]="firstPay" placeholder="First Payment Rs.">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput disabled [(ngModel)]="aName" placeholder="Name of Agent">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-3" style="text-align: center;">
+                            <mat-radio-group aria-label="Select Saile Type" [(ngModel)]="type">
+                                <mat-radio-button value="other">Purchaser</mat-radio-button>
+                                <mat-radio-button value="owner">Proposer</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="card" *ngIf="type=='other'">
+                <div class="card-header card-header-warning">
+                    <h4 class="card-title"><strong>Purchaser Details</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusName" placeholder="Customer Name">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusAddressl1" placeholder="Address Line 1">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusAddressl2" placeholder="Address Line 2">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusAddressl3" placeholder="Address Line 3">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusCity" placeholder="City">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusNic" placeholder="National ID No">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="cusTpno" placeholder="Telephone No">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <br *ngIf="type=='other'">
+
+            <div class="card">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title"><strong>Registration Form</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6" *ngFor="let item of keyList">
+                            <mat-form-field class="example-full-width" *ngIf="item.type=='text'">
+                                <input matInput [(ngModel)]="item.val" placeholder="{{item.key}}">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width" *ngIf="item.type=='date'">
+                                <mat-label>{{item.key}}</mat-label>
+                                <input matInput [(ngModel)]="item.val" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+                            <div class="example-full-width" *ngIf="item.type=='2 radio gender'"
+                                style="text-align: center;">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                    <mat-radio-button value="male">Male</mat-radio-button>
+                                    <mat-radio-button value="female">Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <div class="example-full-width" *ngIf="item.type=='2 radio civil'"
+                                style="text-align: center;">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                    <mat-radio-button value="Married">Married</mat-radio-button>
+                                    <mat-radio-button value="Single">Single</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <button (click)="save()" *ngIf="isClicked" mat-raised-button type="submit"
+                        class="btn btn-success pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" *ngIf="!isClicked">
+            <div class="card-header card-header-success">
+                <h4 class="card-title"><strong>New Registration Infomation</strong></h4>
+                <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+            </div>
+            <div class="card-body">
+                <h2>SW No. {{completedInfo?.extra.uid}}</h2>
+                <h3>Placement SW Pin Main : {{completedInfo?.idMain}} </h3>
+                <h4>Placement SW Pin A : {{completedInfo?.A}} </h4>
+                <h4>Placement SW Pin B : {{completedInfo?.B}} </h4>
+                <h3>Invoice Number : {{completedInfo?.extra.invoice}}</h3>
+                <button mat-raised-button type="submit" class="btn btn-success pull-right"
+                    (click)="clickOnDone()">Done</button>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>

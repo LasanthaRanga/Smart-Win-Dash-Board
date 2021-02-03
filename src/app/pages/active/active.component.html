@@ -1,0 +1,54 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Active Dummy Nodes</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <mat-form-field class="col-md-6">
+                                <input matInput type="number" [(ngModel)]="swid" id="swid" placeholder="SW NO."
+                                    (keydown.enter)="loadPlaceMent($event)">
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-6">
+                                <mat-label>Select Pin</mat-label>
+                                <mat-select [(ngModel)]="aPin">
+                                    <mat-option *ngFor="let pin of freePins" [value]="pin.swTreeId">
+                                        {{pin.swTreeId}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <mat-label>Select Product</mat-label>
+                                    <mat-select [(ngModel)]="product">
+                                        <mat-option *ngFor="let prod of prodList" [value]="prod.idProd">
+                                            {{prod.prodName}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput type="number" [(ngModel)]="firstPay"
+                                        placeholder="First Payment Rs.">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <button (click)="save()" *ngIf="isClicked" mat-raised-button type="submit"
+                            class="btn btn-success pull-right">Active</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
