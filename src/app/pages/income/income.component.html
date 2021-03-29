@@ -1,0 +1,171 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title ">Date Range Filter</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>From</mat-label>
+                                    <input matInput [(ngModel)]="from" [matDatepicker]="picker1">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>To</mat-label>
+                                    <input matInput [(ngModel)]="to" [matDatepicker]="picker2">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <button (click)="filter()" mat-raised-button type="submit"
+                                    class="btn btn-success pull-right">Filter By Date Range</button>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-credit-card"></i>
+                        </div>
+                        <p class="card-category">Income Total</p>
+                        <h4 class="card-title">{{pointTot | currency:'LKR '}}
+                            <!-- <small>LKR</small> -->
+                        </h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!-- <i class="material-icons text-danger">warning</i>
+                            <a href="javascript:void(0)">Get More Space...</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-sitemap"></i>
+                        </div>
+                        <p class="card-category">Point Total</p>
+                        <h4 class="card-title">{{pointXtot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!-- <i class="material-icons">date_range</i> Last 24 Hours -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-share-alt"></i>
+                        </div>
+                        <p class="card-category">Intro Total</p>
+                        <h4 class="card-title">{{pointItot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!-- <i class="material-icons">local_offer</i> Tracked from Github -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <p class="card-category">Revenue</p>
+                        <h4 class="card-title">{{balance| currency : 'LKR '}}</h4>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!-- <i class="material-icons">update</i> Just Updated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Income - Total : {{pointTot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let i of introArray">
+                            <p>{{i.date | date: 'yyyy-MM-dd'}} - Invoice No : {{i.idInvoice}} - {{i.totalValue |
+                                currency:'LKR '}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{pointTot | currency:'LKR '}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title ">Point - Total : {{pointXtot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let i of pointExpenses">
+                            <p>{{i.dateTime | date: 'yyyy-MM-dd'}} - {{i.amount | currency:'LKR '}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{pointXtot | currency:'LKR '}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Intro - Total : {{pointItot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let i of introExpenses">
+                            <p>{{i.dateTime | date: 'yyyy-MM-dd'}} - {{i.amount | currency:'LKR '}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{pointItot | currency:'LKR '}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

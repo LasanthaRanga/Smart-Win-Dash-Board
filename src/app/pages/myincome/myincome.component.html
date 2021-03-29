@@ -1,0 +1,80 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Date Range Filter</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>From</mat-label>
+                                    <input matInput [(ngModel)]="from" [matDatepicker]="picker1">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>To</mat-label>
+                                    <input matInput [(ngModel)]="to" [matDatepicker]="picker2">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <button (click)="filter()" mat-raised-button type="submit"
+                                    class="btn btn-success pull-right">Filter By Date Range</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Point Commiton - Total : {{pointTot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let p of poinArray">
+                            <p>{{p.dateTime | date: 'yyyy-MM-dd'}} : {{p.amount | currency:'LKR '}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{pointTot | currency:'LKR '}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title ">Introducer Commition - Total : {{inroTot | currency:'LKR '}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngFor="let i of introArray">
+                            <p>{{i.dateTime | date: 'yyyy-MM-dd'}} : {{i.amount | currency:'LKR '}}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <h4>
+                            Total : {{inroTot | currency:'LKR '}}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

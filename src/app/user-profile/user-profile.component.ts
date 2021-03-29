@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment'
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -23,6 +24,20 @@ export class UserProfileComponent implements OnInit {
 
   selectedNod;
   newIntro;
+
+  processID = 0;
+
+  poinArray;
+  introArray;
+  pointTot = 0;
+  inroTot = 0;
+
+  from;
+  to;
+
+  selectedPin;
+  pinIncome;
+
 
   constructor(private api: ApicallServiceService, private arout: ActivatedRoute) { }
 
@@ -67,7 +82,7 @@ export class UserProfileComponent implements OnInit {
     this.api.post(this.treeUrl + 'getCurrent', { uid: this.user.uid }, data => {
       this.treeData = data;
       console.log(' -------- ');
-      // console.log(this.treeData);
+      console.log(this.treeData);
       console.log('"---------------------------"');
 
 
@@ -158,6 +173,76 @@ export class UserProfileComponent implements OnInit {
     });
 
 
+  }
+
+
+  // =======================================
+
+  pointTotCal() {
+    this.pointTot = 0;
+    this.poinArray.forEach(element => {
+      this.pointTot += element.amount;
+    });
+  }
+
+  introTotCal() {
+    this.inroTot = 0;
+    this.introArray.forEach(element => {
+      this.inroTot += element.amount;
+    });
+  }
+
+  filter() {
+    this.getIntroComDates();
+    this.getPointComDates();
+  }
+
+  getPointComDates() {
+    this.poinArray = [];
+    const pipe = new DatePipe('en-US');
+    const datef = pipe.transform(this.from, 'yyyy-MM-dd');
+    const datet = pipe.transform(this.to, 'yyyy-MM-dd');
+    this.api.post(this.treeUrl + 'getPointCommitonByUserDates', { uid: this.user.uid, from: datef, to: datet }, data => {
+      this.poinArray = data;
+      console.log(data);
+      this.pointTotCal();
+    });
+  }
+
+  getIntroComDates() {
+    const pipe = new DatePipe('en-US');
+    const datef = pipe.transform(this.from, 'yyyy-MM-dd');
+    const datet = pipe.transform(this.to, 'yyyy-MM-dd');
+    this.api.post(this.treeUrl + 'getIntroCommitonByUserDates', { uid: this.user.uid, from: datef, to: datet }, data => {
+      this.introArray = data;
+      console.log(data);
+      this.introTotCal();
+    });
+  }
+
+  getIncomeByPin() {
+    console.log(this.selectedPin);
+    const pipe = new DatePipe('en-US');
+    const datef = pipe.transform(this.from, 'yyyy-MM-dd');
+    const datet = pipe.transform(this.to, 'yyyy-MM-dd');
+    if (this.selectedPin > 0) {
+      this.api.post(this.treeUrl + 'getPointCommitionById', { uid: this.user.uid, from: datef, to: datet, tid: this.selectedPin }, data => {
+        this.pinIncome = data;
+        console.log(this.pinIncome);
+        this.pinCall();
+      });
+    } else {
+      this.pinIncome = [];
+      this.pointTot = 0;
+    }
+
+  }
+
+  pinCall() {
+    this.pointTot = 0;
+    this.pinIncome.forEach(element => {
+      this.pointTot += element.val;
+    });
   }
 
 

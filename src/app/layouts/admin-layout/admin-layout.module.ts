@@ -40,7 +40,10 @@ import { NewnodComponent } from '../../pages/newnod/newnod.component';
 import { NewtreeComponent } from '../../pages/newtree/newtree.component';
 import { ProcessComponent } from '../../pages/process/process.component';
 import { PointComComponent } from '../../pages/point-com/point-com.component';
-
+import { MyincomeComponent } from '../../pages/myincome/myincome.component';
+import { MyteamComponent } from '../../pages/myteam/myteam.component';
+import { IncomeComponent } from '../../pages/income/income.component';
+import { ExpenseComponent } from '../../pages/expense/expense.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -80,7 +83,11 @@ import { PointComComponent } from '../../pages/point-com/point-com.component';
     NewnodComponent,
     NewtreeComponent,
     ProcessComponent,
-    PointComComponent
+    PointComComponent,
+    MyincomeComponent,
+    MyteamComponent,
+    IncomeComponent,
+    ExpenseComponent
   ]
 })
 

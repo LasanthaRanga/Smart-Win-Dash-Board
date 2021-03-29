@@ -19,6 +19,11 @@ import { UsersComponent } from '../../pages/users/users.component';
 import { NewnodComponent } from '../../pages/newnod/newnod.component';
 import { ProcessComponent } from '../../pages/process/process.component';
 import { PointComComponent } from '../../pages/point-com/point-com.component';
+import { MyincomeComponent } from '../../pages/myincome/myincome.component';
+import { MyteamComponent } from '../../pages/myteam/myteam.component';
+import { IncomeComponent } from '../../pages/income/income.component';
+import { ExpenseComponent } from '../../pages/expense/expense.component';
+
 export const AdminLayoutRoutes: Routes = [
     // {
     //   path: '',
@@ -82,4 +87,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'newnod', component: NewnodComponent },
     { path: 'process', component: ProcessComponent },
     { path: 'pointcom/:id', component: PointComComponent },
+    { path: 'myincome', component: MyincomeComponent },
+    { path: 'myteam', component: MyteamComponent },
+    { path: 'income', component: IncomeComponent },
+    { path: 'expenses', component: ExpenseComponent },
+
+
 ];

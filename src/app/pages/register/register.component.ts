@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   url = environment.apiUrl + 'user/'
   treeUrl = environment.apiUrl + 'tree/'
   prodUrl = environment.apiUrl + 'prod/'
+  urlInvoice = environment.apiUrl + 'invoice/'
   keyList;
   prodList;
 
@@ -215,6 +216,9 @@ export class RegisterComponent implements OnInit {
         console.log(this.completedInfo);
         this.api.showNotification('success', 'All Done');
         this.loadCompetedData();
+
+
+
       });
     }
 
@@ -243,13 +247,44 @@ export class RegisterComponent implements OnInit {
   }
 
   clickOnDone() {
-    // sendLoginInformation
     console.log(this.completedInfo.extra.uid);
-    // this.api.post(this.url + 'sendLoginInformation', { uid: this.completedInfo.extra.uid }, data => {
-    //   console.log(data);
-    // })
+    this.rePrint(this.completedInfo.extra.invoice)
+  }
+
+  rePrint(idInvoice) {
+    this.api.post(this.urlInvoice + 'getInvoiceData', { id: idInvoice }, data => {
+      let obj = {
+        id: '',
+        name: '',
+        from: '',
+        item: '',
+        amount: '',
+        date: ''
+      }
+
+      data.forEach(el => {
+        if (el.keyId == 2) {
+          obj.id = el.idInvoice;
+          obj.name = el.value;
+          obj.amount = el.totalValue;
+          obj.item = 'RO WATER FILTER';
+          obj.date = el.date;
+        }
+        if (el.keyId == 5) {
+          obj.from += el.value;
+        }
+        if (el.keyId == 6 || el.keyId == 7) {
+          obj.from += ", " + el.value;
+        }
+      });
+      console.log(obj);
+      window.location.href = 'https://sw.smartwin.lk/invoice?data=' + JSON.stringify(obj);
+    });
+
 
   }
+
+
 
 
 

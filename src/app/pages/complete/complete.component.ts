@@ -1,7 +1,10 @@
+import { getLocaleDateTimeFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment'
+import { noConflict } from 'jquery';
+import { localeData } from 'moment';
 @Component({
   selector: 'app-complete',
   templateUrl: './complete.component.html',
@@ -77,7 +80,12 @@ export class CompleteComponent implements OnInit {
 
       if (obj.amount && obj.pin && obj.prod && obj.uid) {
         this.api.post(this.urlInvoice + 'newInvoice', obj, data => {
+          console.log('-------------------');
           console.log(data);
+          console.log(data.insertId);
+          this.rePrint(data.insertId);
+          console.log('-------------------');
+
           if (data) {
             this.api.showNotification('success', 'Something Wrong');
             this.next = false;
@@ -92,5 +100,60 @@ export class CompleteComponent implements OnInit {
     }
   }
 
+
+  rePrint(idInvoice) {
+    this.api.post(this.urlInvoice + 'getInvoiceData', { id: idInvoice }, data => {
+      let obj = {
+        id: '',
+        name: '',
+        from: '',
+        item: '',
+        amount: '',
+        date: '',
+        mobile: ''
+      }
+
+
+
+      data.forEach(el => {
+        if (el.keyId == 2) {
+          obj.id = el.idInvoice;
+          obj.name = el.value;
+          obj.amount = el.totalValue;
+          obj.item = 'RO WATER FILTER';
+          obj.date = el.date;
+
+        };
+
+        if (el.keyId == 9) {
+          obj.mobile = el.value;
+        };
+
+        if (el.keyId == 5) {
+          obj.from += el.value;
+        };
+
+        if (el.keyId == 6 || el.keyId == 7) {
+          obj.from += ", " + el.value;
+        };
+
+      });
+
+      let mobile = obj.mobile;
+      let mg = 'Thank you ' + obj.name + ' for your payment of LKR ' + obj.amount + ' in respect of SMART WIN ENTREPRENEUR (ptv) Ltd. INV No. ' + obj.id;
+
+      this.api.post(this.url + 'singalMessage', { message: mg, mob: mobile }, data => {
+
+        console.log(data);
+
+      });
+
+
+      console.log(obj);
+      window.location.href = 'https://sw.smartwin.lk/invoice?data=' + JSON.stringify(obj);
+    });
+
+
+  }
 
 }

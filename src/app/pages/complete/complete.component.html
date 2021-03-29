@@ -17,11 +17,13 @@
                         <h3 style="color: red;">Deve Amount : <strong>{{dev | currency:'LKR':'Rs.'}}</strong> </h3>
 
                         <div *ngFor="let paid of list">
-                            <h4>
+                            <h5>
                                 Invoice ID : {{paid.idInvoice}} <br>
                                 Date : {{paid.date | date: 'yyyy-MM-dd'}} <br>
-                                Amount : {{paid. totalValue | currency: 'LKR: Rs.'}}<br><br>
-                            </h4>
+                                Amount : {{paid. totalValue | currency: 'LKR: Rs.'}}<br>
+                                <button  mat-button color="primary" (click)="rePrint(paid.idInvoice)">Re Print</button>
+                            </h5>    
+                            <br>
                         </div>
 
                     </div>
