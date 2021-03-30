@@ -44,6 +44,7 @@ import { MyincomeComponent } from '../../pages/myincome/myincome.component';
 import { MyteamComponent } from '../../pages/myteam/myteam.component';
 import { IncomeComponent } from '../../pages/income/income.component';
 import { ExpenseComponent } from '../../pages/expense/expense.component';
+import { HomeComponent } from '../../pages/home/home.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -87,7 +88,8 @@ import { ExpenseComponent } from '../../pages/expense/expense.component';
     MyincomeComponent,
     MyteamComponent,
     IncomeComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    HomeComponent,
   ]
 })
 

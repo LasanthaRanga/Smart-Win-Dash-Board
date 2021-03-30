@@ -1,1 +1,28 @@
-<p>products works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let p of products">
+
+                <div class="card card-stats">
+                    <div class="card-content">
+                        <img src="{{p.prodImage}}" width="100%">
+                    </div>
+                    <div class="card-header card-header-warning card-header-icon">
+
+                        <p class="card-category">{{p.prodName}}</p>
+                        <h3 class="card-title"><small>LKR.</small> {{p.prodPrice}}
+                        </h3>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

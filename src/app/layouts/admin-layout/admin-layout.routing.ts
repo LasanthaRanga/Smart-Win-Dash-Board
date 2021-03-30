@@ -23,6 +23,7 @@ import { MyincomeComponent } from '../../pages/myincome/myincome.component';
 import { MyteamComponent } from '../../pages/myteam/myteam.component';
 import { IncomeComponent } from '../../pages/income/income.component';
 import { ExpenseComponent } from '../../pages/expense/expense.component';
+import { HomeComponent } from '../../pages/home/home.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -91,6 +92,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'myteam', component: MyteamComponent },
     { path: 'income', component: IncomeComponent },
     { path: 'expenses', component: ExpenseComponent },
+    { path: 'home', component: HomeComponent },
 
 
 ];

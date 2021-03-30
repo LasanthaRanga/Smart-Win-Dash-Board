@@ -40,6 +40,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 
 
+
 export function tokenGet() {
   return localStorage.getItem('secret');
 }
@@ -80,6 +81,7 @@ export function tokenGet() {
     LoginPageComponent,
     CreatePassComponent,
     ForgotPassComponent,
+
 
 
     // CompleteComponent

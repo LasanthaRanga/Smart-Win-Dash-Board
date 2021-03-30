@@ -11,7 +11,7 @@ import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user-profile',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {

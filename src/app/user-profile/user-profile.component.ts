@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
-import { environment } from 'environments/environment'
+import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 @Component({
