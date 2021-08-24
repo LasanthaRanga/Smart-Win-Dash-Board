@@ -18,6 +18,7 @@ export class CreatePassComponent implements OnInit {
   }
 
   createMyPassword() {
+    console.log("click On create pass")
     this.api.post(this.url + 'createPassword', { uid: this.uname, pword: this.pword, code: this.vfcode }, data => {
       console.log(data);
       if (data.mg === 'password created') {

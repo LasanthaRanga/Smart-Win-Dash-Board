@@ -5,11 +5,17 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title ">Date Range Filter</h4>
+                        <h4 class="card-title ">Filter</h4>
                     </div>
                     <div class="card-body">
+
                         <div class="row">
-                            <div class="col-md-3">
+
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <div class="col-md-2">
                                 <mat-form-field>
                                     <mat-label>From</mat-label>
                                     <input matInput [(ngModel)]="from" [matDatepicker]="picker1">
@@ -17,7 +23,8 @@
                                     <mat-datepicker #picker1></mat-datepicker>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-3">
+
+                            <div class="col-md-2">
                                 <mat-form-field>
                                     <mat-label>To</mat-label>
                                     <input matInput [(ngModel)]="to" [matDatepicker]="picker2">
@@ -27,12 +34,12 @@
                             </div>
 
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <button (click)="filter()" mat-raised-button type="submit"
                                     class="btn btn-success pull-right">Filter By Date Range</button>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <mat-form-field>
                                     <mat-label>Select Pin</mat-label>
                                     <mat-select [(ngModel)]="selectedPin" (ngModelChange)="getIncomeByPin()">
@@ -45,6 +52,21 @@
                                     </mat-select>
                                 </mat-form-field>
                             </div>
+
+                            <!--
+                                 <div class="col-md-2">
+                                <mat-form-field>
+                                    <input matInput type="number" [(ngModel)]="member" placeholder="Member SW">
+                                </mat-form-field>
+                            </div> -->
+
+                            <div class="col-md-2">
+                                <button (click)="loadMember()" mat-raised-button type="submit"
+                                    class="btn btn-warning pull-right">Load Member Pins</button>
+                            </div>
+
+
+
 
                         </div>
                     </div>

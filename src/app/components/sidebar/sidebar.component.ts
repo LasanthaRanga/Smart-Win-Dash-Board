@@ -49,6 +49,9 @@ export class SidebarComponent implements OnInit {
 
   getPrivilages() {
     const user = this.api.getLogUser();
+    console.log("----------------------0");
+    console.log(user);
+    console.log("----------------------0");
 
     if (user) {
       const ar = [];

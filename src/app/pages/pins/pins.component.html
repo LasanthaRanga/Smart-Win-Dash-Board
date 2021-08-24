@@ -1,0 +1,53 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">All Members</h4>
+                        <p class="card-category">Find members for edit details</p>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="col-md-12">
+                            <mat-form-field class="col-md-6">
+                                <input matInput (keyup)="applayFilter($event.target.value)" type="text"
+                                    [(ngModel)]="inputval" placeholder="Search Here" />
+                            </mat-form-field>
+                        </div>
+
+                        <mat-table matSort [dataSource]="dataSource">
+
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="swTreeId" >
+                                <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">PIN</mat-header-cell>
+                                <mat-cell *matCellDef="let element" style="justify-content: flex-end;">
+                                    <button mat-mini-fab color="accent" (click)="selectOne(element)"
+                                        aria-label="Example icon button with a plus one icon">
+                                        {{element.swTreeId}}
+                                    </button>
+                                </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="value">
+                                <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+                            </ng-container>
+
+
+
+                            <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

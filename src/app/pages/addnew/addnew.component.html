@@ -1,0 +1,102 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <h2>{{message}}</h2>
+
+
+        <div class="row" *ngIf="!selectedProduct">
+            <div class="col-md-12" *ngFor="let p of products">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{p.prodImage}}" width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="card-category"><strong>{{p.prodName}}</strong></h3>
+                            <h3 class="card-title"><small>LKR.</small> {{p.prodPrice}}
+                            </h3>
+                            <br>
+                            <button class="btn btn-primary" (click)="selectProd(p)">Select Product</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="selectedProduct">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{selectedProduct.prodImage}}" width="100%">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 class="card-category"><strong>{{selectedProduct.prodName}}</strong></h3>
+                            <h3 class="card-title"><small>LKR.</small> {{selectedProduct.prodPrice}}
+                            </h3>
+                            <br>
+                            <button class="btn btn-worning" (click)="unSelect()">Select Other</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" *ngIf="selectedProduct">
+            <div class="card">
+                <div class="card-header card-header-success">
+                    <h4 class="card-title"><strong>Registration Form</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6" *ngFor="let item of keyList">
+                            <mat-form-field class="example-full-width" *ngIf="item.type=='text'">
+                                <input matInput [(ngModel)]="item.val" placeholder="{{item.key}}">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width" *ngIf="item.type=='date'">
+                                <mat-label>{{item.key}}</mat-label>
+                                <input matInput [(ngModel)]="item.val" [matDatepicker]="picker1">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                            </mat-form-field>
+
+                            <div class="example-full-width" *ngIf="item.type=='2 radio gender'"
+                                style="text-align: center;">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                    <mat-radio-button value="male">Male</mat-radio-button>
+                                    <mat-radio-button value="female">Female</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                            <div class="example-full-width" *ngIf="item.type=='2 radio civil'"
+                                style="text-align: center;">
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                    <mat-radio-button value="Married">Married</mat-radio-button>
+                                    <mat-radio-button value="Single">Single</mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <button (click)="save()" *ngIf="isClicked" mat-raised-button type="submit"
+                        class="btn btn-success pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>

@@ -27,19 +27,9 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatePassComponent } from './create-pass/create-pass.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
-// import { CompleteComponent } from './pages/complete/complete.component';
 import { BrowserModule } from '@angular/platform-browser';
 
-
-
-
-
-
-
-
-
-
-
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
 
 export function tokenGet() {
   return localStorage.getItem('secret');
@@ -64,6 +54,7 @@ export function tokenGet() {
     MatTableModule,
     MatPaginatorModule,
     OrgchartModule,
+    // NgbModule, 
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
@@ -75,16 +66,13 @@ export function tokenGet() {
       },
     }),
   ],
+
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginPageComponent,
     CreatePassComponent,
     ForgotPassComponent,
-
-
-
-    // CompleteComponent
 
   ],
   providers: [],

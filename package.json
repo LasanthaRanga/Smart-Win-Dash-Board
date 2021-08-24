@@ -32,6 +32,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "@balkangraph/orgchart.js": "^7.6.28",
     "@dabeng/ng-orgchart": "^1.0.2",
+    "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "ajv": "6.12.5",
     "angular-material": "^1.2.2",
     "angular-org-chart": "^1.0.3",

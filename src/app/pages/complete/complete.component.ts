@@ -27,7 +27,7 @@ export class CompleteComponent implements OnInit {
 
   next = false;
   amount;
-  constructor(private arout: ActivatedRoute, private api: ApicallServiceService) { }
+  constructor(private arout: ActivatedRoute, private api: ApicallServiceService, private router: Router) { }
 
 
 
@@ -154,6 +154,11 @@ export class CompleteComponent implements OnInit {
     });
 
 
+  }
+
+  gotoIssue() {
+    console.log(this.pin);
+    this.router.navigate(['oder', this.pin])
   }
 
 }

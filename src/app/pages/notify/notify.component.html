@@ -1,0 +1,49 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-6" *ngFor="let pin of pins">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Notification With PIN : {{pin.swTreeId}}</h3>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="alert alert-info" *ngFor="let mg of pin.layar">
+                            <h4>{{mg.comment}}</h4>
+
+                            {{mg.date | date }}
+                        </div>
+
+                        <br>
+                        <div class="row">
+                            <!-- <div class="col-md-6">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [(ngModel)]="pin.A" (keydown.enter)="loadIntroducer($event)"
+                                        placeholder="Message" required>
+                                </mat-form-field>
+                            </div> -->
+                            <div class="col-md-12">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Select Date</mat-label>
+                                    <input matInput [(ngModel)]="pin.B" [matDatepicker]="picker1" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <button (click)="send(pin)" mat-raised-button type="submit"
+                            class="btn btn-success pull-right">Send</button>
+                    </div>
+                </div>
+
+            </div>
+            <h3>
+                After reply all messages please sign out and login again for active your account
+            </h3>
+
+
+        </div>
+    </div>
+</div>

@@ -24,8 +24,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 // import { MatPaginatorModule } from '@angular/material/paginator';
-
 
 
 import { MatPaginatorModule } from '@angular/material';
@@ -45,6 +45,16 @@ import { MyteamComponent } from '../../pages/myteam/myteam.component';
 import { IncomeComponent } from '../../pages/income/income.component';
 import { ExpenseComponent } from '../../pages/expense/expense.component';
 import { HomeComponent } from '../../pages/home/home.component';
+import { PinsComponent } from '../../pages/pins/pins.component';
+import { OdersComponent } from '../../pages/oders/oders.component';
+import { NotifyComponent } from '../../pages/notify/notify.component';
+import { AddnewComponent } from '../../pages/addnew/addnew.component';
+import { OnpayComponent } from '../../pages/onpay/onpay.component';
+import { AddproductComponent } from '../../pages/addproduct/addproduct.component';
+import { YoutubePipe } from 'app/youtube.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -63,7 +73,8 @@ import { HomeComponent } from '../../pages/home/home.component';
     MatProgressSpinnerModule,
     MatTableModule,
     MatPaginatorModule,
-
+    MatSlideToggleModule,
+    NgbModule,
   ],
   declarations: [
     DashboardComponent,
@@ -90,6 +101,13 @@ import { HomeComponent } from '../../pages/home/home.component';
     IncomeComponent,
     ExpenseComponent,
     HomeComponent,
+    PinsComponent,
+    OdersComponent,
+    NotifyComponent,
+    AddnewComponent,
+    OnpayComponent,
+    YoutubePipe,
+    AddproductComponent
   ]
 })
 

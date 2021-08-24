@@ -1,0 +1,109 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="./assets/img/profile.png" />
+                        </a>
+                    </div>
+                    <div class="card-body" *ngIf="userData">
+                        <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
+                        <h4 class="card-title">{{userData[0].value}}</h4>
+                        <h5>{{userData[2].value}}</h5>
+                        <h5>{{userData[3].value}}</h5>
+                        <h5>{{userData[4].value}}</h5>
+                        <h5>{{userData[5].value}}</h5>
+                        <h5>{{userData[12].value}}</h5>
+                        <h5>{{userData[13].value}}</h5>
+
+                        <p class="card-description">
+                        </p>
+                        <!-- <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-content">
+                        <img src="{{product?.prodImage}}" width="100%">
+                    </div>
+                    <div class="card-header card-header-warning card-header-icon">
+                        <mat-slide-toggle [(ngModel)]="issued" (ngModelChange)="changeStatus()">Product Issued
+                        </mat-slide-toggle>
+                        <p class="card-category">{{product?.prodName}}</p>
+                        <h3 class="card-title"><small>LKR.</small> {{product?.prodPrice}}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+
+                        <mat-form-field>
+                            <mat-label>Select Message</mat-label>
+                            <mat-select [(ngModel)]="msg" (ngModelChange)="selectMessage()">
+                                <mat-option *ngFor="let msg of messagesForSend" [value]="msg">
+                                    {{msg.message_sinhala}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <button (click)="send()" mat-raised-button type="submit" class="btn btn-success pull-right">Send
+                            Message</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card">
+                    <div class="card-header-warning">
+                        <h2>Change Product</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <mat-form-field>
+                            <mat-label>Select Product</mat-label>
+                            <mat-select [(ngModel)]="selectedProd">
+                                <mat-option *ngFor="let prod of prodList" [value]="prod.idProd">
+                                    {{prod.prodName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width">
+                            <input matInput [(ngModel)]="comment" placeholder="Comment">
+                        </mat-form-field>
+
+                        <button (click)="changeProductOnInvoice()" mat-raised-button type="submit"
+                            class="btn btn-warning pull-right">Change Product</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card col-md-4">
+                <div>
+                    <div class="card" *ngFor="let mg of allMessages">
+                        <div class="card-body">
+                            <p>{{mg.comment}}</p>
+                            <p>{{mg.date | date }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

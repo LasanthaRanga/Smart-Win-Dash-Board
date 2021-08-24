@@ -30,6 +30,7 @@ export class MyincomeComponent implements OnInit {
   selectedPin;
   pinIncome;
   treeData;
+  member;
 
   displayedColumns: string[] = ['dateTime', 'idProcess'];
   dataSource = <any>[];
@@ -57,6 +58,14 @@ export class MyincomeComponent implements OnInit {
       console.log(this.treeData);
       console.log('"---------------------------"');
     });
+  }
+
+  loadMember() {
+    console.log(this.member);
+    this.user.uid = this.member;
+    this.loadTreeData();
+    this.getPointCom();
+    this.getIntroCom();
   }
 
   getIncomeByPin() {

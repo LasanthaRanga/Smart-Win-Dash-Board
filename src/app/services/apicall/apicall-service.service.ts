@@ -8,6 +8,7 @@ declare var $: any;
 })
 export class ApicallServiceService {
   TOKEN_KEY = 'secret';
+
   constructor(private http: HttpClient) {
 
   }
@@ -30,8 +31,9 @@ export class ApicallServiceService {
 
   getLogUser() {
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
-      return user;
+
+    if (user) {     
+      return user;   
     } else {
       return null;
     }

@@ -24,50 +24,15 @@ import { MyteamComponent } from '../../pages/myteam/myteam.component';
 import { IncomeComponent } from '../../pages/income/income.component';
 import { ExpenseComponent } from '../../pages/expense/expense.component';
 import { HomeComponent } from '../../pages/home/home.component';
+import { PinsComponent } from '../../pages/pins/pins.component';
+import { OdersComponent } from '../../pages/oders/oders.component';
+import { NotifyComponent } from '../../pages/notify/notify.component';
+import { AddnewComponent } from '../../pages/addnew/addnew.component';
+import { OnpayComponent } from '../../pages/onpay/onpay.component';
+import { AddproductComponent } from '../../pages/addproduct/addproduct.component';
 
 export const AdminLayoutRoutes: Routes = [
-    // {
-    //   path: '',
-    //   children: [ {
-    //     path: 'dashboard',
-    //     component: DashboardComponent
-    // }]}, {
-    // path: '',
-    // children: [ {
-    //   path: 'userprofile',
-    //   component: UserProfileComponent
-    // }]
-    // }, {
-    //   path: '',
-    //   children: [ {
-    //     path: 'icons',
-    //     component: IconsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'notifications',
-    //         component: NotificationsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'maps',
-    //         component: MapsComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'typography',
-    //         component: TypographyComponent
-    //     }]
-    // }, {
-    //     path: '',
-    //     children: [ {
-    //         path: 'upgrade',
-    //         component: UpgradeComponent
-    //     }]
-    // }
+
     { path: 'dashboard', component: DashboardComponent },
     { path: 'user-profile', component: UserProfileComponent },
     { path: 'user-profile/:id', component: UserProfileComponent },
@@ -93,6 +58,12 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'income', component: IncomeComponent },
     { path: 'expenses', component: ExpenseComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'pins', component: PinsComponent },
+    { path: 'oder/:id', component: OdersComponent },
+    { path: 'notify', component: NotifyComponent },
+    { path: 'addnew/:id', component: AddnewComponent },
+    { path: 'onpay', component: OnpayComponent },
+    { path: 'addproduct', component: AddproductComponent },
 
 
 ];
