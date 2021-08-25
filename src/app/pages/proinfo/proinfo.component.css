@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .vl {
+    border-left: 6px solid green;
+    height: auto;
+  }
+
+  .acv{
+    padding-left: 20px;
+  }

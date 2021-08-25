@@ -20,6 +20,11 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['value', 'idUser'];
   dataSource = <any>[];
 
+  dataSourcenic = <any>[];
+  displayedColumnsnic: string[] = ['value', 'idUser'];
+
+  niclist;
+
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
@@ -44,6 +49,16 @@ export class UsersComponent implements OnInit {
   selectOne(item) {
     console.log(item);
     this.router.navigate(['user-profile', item.idUser])
+  }
+
+  getbynic(id){
+    this.api.post(this.urlUsers + 'getUsersListBYNic', {nic:id}, data => {
+      this.dataSourcenic = new MatTableDataSource(data);
+      this.dataSourcenic.paginator = this.paginator;
+      console.log(this.niclist);
+      console.log("#######");
+      
+    })
   }
 
 }

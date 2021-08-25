@@ -28,6 +28,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatePassComponent } from './create-pass/create-pass.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+//import { ProinfoComponent } from './pages/proinfo/proinfo.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
 
@@ -52,6 +55,8 @@ export function tokenGet() {
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
+    MatExpansionModule,
+    MatCardModule,
     MatPaginatorModule,
     OrgchartModule,
     // NgbModule, 
@@ -72,7 +77,8 @@ export function tokenGet() {
     AdminLayoutComponent,
     LoginPageComponent,
     CreatePassComponent,
-    ForgotPassComponent,
+    ForgotPassComponent
+   // ProinfoComponent,
 
   ],
   providers: [],

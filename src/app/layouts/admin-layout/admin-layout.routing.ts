@@ -30,6 +30,7 @@ import { NotifyComponent } from '../../pages/notify/notify.component';
 import { AddnewComponent } from '../../pages/addnew/addnew.component';
 import { OnpayComponent } from '../../pages/onpay/onpay.component';
 import { AddproductComponent } from '../../pages/addproduct/addproduct.component';
+import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -64,6 +65,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'addnew/:id', component: AddnewComponent },
     { path: 'onpay', component: OnpayComponent },
     { path: 'addproduct', component: AddproductComponent },
-
+    { path: 'proinfo',component:ProinfoComponent},
+    { path: 'proinfo/:id',component:ProinfoComponent},
 
 ];

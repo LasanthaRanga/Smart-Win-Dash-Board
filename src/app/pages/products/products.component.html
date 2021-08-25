@@ -1,30 +1,35 @@
 <div class="main-content">
     <div class="container-fluid">
 
-        <div class="row">
-            
+        <div class="card" *ngFor="let p of products">
+            <!-- <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let p of products"> -->
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="{{p.prodImage}}">
+                </div>
+                <div class="col-md-7">
+                    <h3 class="card-category">{{p.prodName}}</h3>
+                    <h3 class="card-title"><small>LKR.</small> {{p.prodPrice}} </h3>
+                </div>
+                <div class="col-md-2 ">
+                    <div class="container">
+                    <div class="center">
+                        <button mat-raised-button (click)="more(p.idProd)" color="primary">Buy</button>
+                    </div>
+                </div>
+                </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let p of products">
-
-                <div class="card card-stats">
+                <!-- <div class="card card-stats">
                     <div class="card-content">
-                        <img src="{{p.prodImage}}" width="100%">
+                       
                     </div>
                     <div class="card-header card-header-warning card-header-icon">
 
-                        <p class="card-category">{{p.prodName}}</p>
-                        <h3 class="card-title"><small>LKR.</small> {{p.prodPrice}}
-                        </h3>
+                      
                     </div>
 
-                </div>
-
-
-
-
+                </div> -->
             </div>
+            <!-- </div> -->
         </div>
     </div>
-
-
-</div>
