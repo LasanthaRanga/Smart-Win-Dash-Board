@@ -29,22 +29,24 @@ export class ProinfoComponent implements OnInit {
         this.proid = id;
         this.moreinfoby_id(id);
       } else {
-        
+
       }
     });
   }
 
-  more(id){
+  more(id) {
 
   }
 
-  moreinfoby_id(id){
-    this.api.post(this.urlProd + 'getproductbyid', {prodid:id}, data => {
+  moreinfoby_id(id) {
+    this.api.post(this.urlProd + 'getproductbyid', { prodid: id }, data => {
       this.proname = data[0].prodName;
       this.description = data[0].description;
       this.amount = data[0].prodPrice;
-      this.url =data[0].prodImage;
+      this.url = data[0].prodImage;
     });
   }
+
+  save() { }
 
 }

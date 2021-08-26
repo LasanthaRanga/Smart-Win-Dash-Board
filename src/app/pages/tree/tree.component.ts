@@ -29,7 +29,7 @@ export class TreeComponent implements OnInit {
     this.api.post(this.url + 'getCurrent', { uid: this.user.uid }, data => {
       this.treeData = data;
       console.log(this.treeData[0].swTreeId);
-      window.location.href = 'https://sw.smartwin.lk/chart?data=' + this.treeData[0].swTreeId;
+      window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
       // window.location.href = 'http://localhost/chart?data=' + this.treeData[0].swTreeId;
     });
   }

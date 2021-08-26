@@ -24,6 +24,7 @@ export class UsersComponent implements OnInit {
   displayedColumnsnic: string[] = ['value', 'idUser'];
 
   niclist;
+  inputvals;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
