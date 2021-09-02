@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
@@ -30,6 +30,7 @@ import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 //import { ProinfoComponent } from './pages/proinfo/proinfo.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
@@ -47,6 +48,7 @@ export function tokenGet() {
     HttpClientModule,
     ComponentsModule,
     RouterModule,
+    CommonModule,
     AppRoutingModule,
     MatButtonModule,
     MatRippleModule,
@@ -70,6 +72,7 @@ export function tokenGet() {
         disallowedRoutes: ['http://example.com/examplebadroute/'],
       },
     }),
+    NgbModule,
   ],
 
   declarations: [

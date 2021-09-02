@@ -1,34 +1,38 @@
 <div class="main-content">
   <div class="container-fluid">
-    <!-- <mat-card class="example-card">
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"></div>
-              <mat-card-title></mat-card-title>
-              <mat-card-subtitle></mat-card-subtitle>
-            </mat-card-header>
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
-            </mat-card-content>
-            <mat-card-actions>
-              
-            </mat-card-actions>
-          </mat-card> -->
+
 
     <div class="card">
       <div class="card-header card-header-success">
-        <!-- <h4 class="card-title"><strong>Introducer Information</strong></h4> -->
         <p class="card-category">{{proname}}</p>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-1">
-            <!-- <img  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+
           </div>
-          <div class="col-md-6 ">
-            <img src="{{url}}" alt="Photo of a Shiba Inu">
-          </div>
+        
+          <ngb-carousel #carousel [interval]="1000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+            <ng-template ngbSlide *ngFor="let img of images; index as i">
+              <div class="carousel-caption">
+                <h3>My slide {{i + 1}} title</h3>
+              </div>
+              <a href="https://www.google.fr/?q=Number+{{i+1}}" target="_blank" rel="nofollow noopener noreferrer">
+                <div class="picsum-img-wrapper">
+                  <img [src]="img" alt="My image {{i + 1}} description">
+                </div>
+              </a>
+            </ng-template>
+          </ngb-carousel>
+
+          <!-- <ul *ngFor="let pp of moreimages">
+            <img src="{{pp.image}}" alt="Photo of a Shiba Inu">
+          </ul> -->
+            <!-- <div class="card"  *ngFor="let p of imagesUrl">
+              <img src="{{p.image}}" alt="Photo of a Shiba Inu">
+            </div> -->
           <div class="col-md-3 ">
-            <!-- <img  src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+
           </div>
         </div>
       </div>
@@ -51,17 +55,11 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-
-                  <!-- <button  color="primary"><span class="material-icons-outlined">
-                    shopping_cart
-                    </span></button> -->
-                    <button (click)="save()"  mat-raised-button type="submit"
-                        class="btn btn-success">Buy now</button>
+                  <button (click)="pay()" mat-raised-button type="submit" class="btn btn-success">Buy now</button>
                 </div>
               </div>
             </div>
           </div>
-          <!-- </div> -->
         </div>
 
       </div>
@@ -69,5 +67,10 @@
 
     </div>
 
+
+
+
   </div>
+
+
 </div>

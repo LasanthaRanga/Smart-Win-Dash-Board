@@ -54,6 +54,7 @@ import { AddproductComponent } from '../../pages/addproduct/addproduct.component
 import { YoutubePipe } from 'app/youtube.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCardModule } from '@angular/material/card';
+import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { MatCardModule } from '@angular/material/card';
     AddnewComponent,
     OnpayComponent,
     YoutubePipe,
+    ProinfoComponent,
     AddproductComponent
   ]
 })
