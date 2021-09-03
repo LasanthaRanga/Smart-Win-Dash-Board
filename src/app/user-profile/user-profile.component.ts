@@ -150,7 +150,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   goToTree(pin) {
-    window.location.href = 'https://sw.smartwin.lk/chart?data=' + pin;
+    window.location.href = 'https://sw.smartwinent.com/chart?data=' + pin;
   }
 
   change(nod) {
