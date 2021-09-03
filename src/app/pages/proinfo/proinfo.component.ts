@@ -101,12 +101,22 @@ export class ProinfoComponent implements OnInit {
   }
 
   pay(){
-        var feed = {created_at: "2017-03-14T01:00:32Z", entry_id: 33358, field1: "4", field2: "4", field3: "0"};
 
-    var data = [];
-    data.push(feed['field2']);
 
-    console.log(data);
+    let list ={
+      Version:'1.0.0',
+      MerID:'1000000000390',
+      AcqID:'512940',
+      MerRespURL:'http://localhost/peoplsbank/index.php',
+      PurchaseCurrency:'144',
+      PurchaseCurrencyExponent:'2',
+      OrderID:'smt2021831-200',
+      SignatureMethod:'SHA1',
+      PurchaseAmt:'000000000100',
+      Signature:'eNWNDCN6uHHyOyXVIw5QZy/OvuA='
+    }
+
+    window.location.href = 'http://localhost/peoplsbank/index.php?data=' + JSON.stringify(list);
   }
 
 }
