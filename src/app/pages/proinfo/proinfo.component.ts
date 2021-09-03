@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,7 +19,7 @@ export class ProinfoComponent implements OnInit {
   url;
   moreimages;
 
-   images=[]
+  images = []
 
 
   paused = false;
@@ -28,7 +28,7 @@ export class ProinfoComponent implements OnInit {
   pauseOnHover = true;
   pauseOnFocus = true;
 
-  @ViewChild('carousel', {static : true}) carousel: NgbCarousel;
+  @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
   togglePaused() {
     if (this.paused) {
@@ -84,39 +84,38 @@ export class ProinfoComponent implements OnInit {
   save() { }
 
 
-  getmoreimages(id){
+  getmoreimages(id) {
     this.api.post(this.urlProd + 'moreimgbyproid', { prodid: id }, data => {
-      this.moreimages=data;
+      this.moreimages = data;
       console.log(this.moreimages);
-      var arr=JSON.stringify( this.moreimages);
+      var arr = JSON.stringify(this.moreimages);
       console.log(arr);
       var datas = [];
-     for(let result of this.moreimages){
-      this.images.push(result['url1']);
-      console.log("dfgfgggg");
-      console.log(datas);
-      console.log("dfgfgggg");
-     }
+      for (let result of this.moreimages) {
+        this.images.push(result['url1']);
+        console.log("dfgfgggg");
+        console.log(datas);
+        console.log("dfgfgggg");
+      }
     });
   }
 
-  pay(){
+  pay() {
 
 
-    let list ={
-      Version:'1.0.0',
-      MerID:'1000000000390',
-      AcqID:'512940',
-      MerRespURL:'http://localhost/peoplsbank/index.php',
-      PurchaseCurrency:'144',
-      PurchaseCurrencyExponent:'2',
-      OrderID:'smt2021831-200',
-      SignatureMethod:'SHA1',
-      PurchaseAmt:'000000000100',
-      Signature:'eNWNDCN6uHHyOyXVIw5QZy/OvuA='
+    let list = {
+      Version: '1.0.0',
+      MerID: '1000000000390',
+      AcqID: '512940',
+      MerRespURL: 'http://localhost/peoplsbank/index.php',
+      PurchaseCurrency: '144',
+      PurchaseCurrencyExponent: '2',
+      OrderID: 'smt2021831-203',
+      SignatureMethod: 's1r2W5B.',
+      PurchaseAmt: '000000000100',
+      Signature: "s1r2W5B.1000000000390512940smt2021831-203000000000100144"
     }
-
-    window.location.href = 'http://localhost/peoplsbank/index.php?data=' + JSON.stringify(list);
+    window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt;
   }
 
 }
