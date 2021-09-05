@@ -54,6 +54,7 @@ import { AddproductComponent } from '../../pages/addproduct/addproduct.component
 import { YoutubePipe } from 'app/youtube.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCardModule } from '@angular/material/card';
+import { RegonlineComponent } from '../../pages/regonline/regonline.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 
@@ -111,6 +112,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     OnpayComponent,
     YoutubePipe,
     ProinfoComponent,
+    RegonlineComponent,
     AddproductComponent
   ]
 })

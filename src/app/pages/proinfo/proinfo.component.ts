@@ -126,9 +126,11 @@ export class ProinfoComponent implements OnInit {
           SignatureMethod: 's1r2W5B.',
           PurchaseAmt: this.final_bal,
           Signature: "s1r2W5B.1000000000390512940" + this.order_id + this.final_bal + "144",
-          Nprice: (this.amount * 0.03 + this.amount).toFixed(2)
+          Nprice: (this.amount * 0.03 + this.amount).toFixed(2),
+          Bcharges: (this.amount * 0.03).toFixed(2),
+          pprice:this.amount.toFixed(2)
         }
-        window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice;
+        window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
 
       });
 

@@ -64,6 +64,8 @@
 	$OrderID = $_GET["OrderID"];
 	$amount = $_GET["amount"];
 	$Nprice = $_GET["Nprice"];
+	$Bcharges = $_GET["Bcharges"];
+	$pprice = $_GET["pprice"];
 
 
 	$has = base64_encode(SHA1($data, TRUE));
@@ -112,13 +114,18 @@
 		<input id='OrderID' type='hidden' value='<?php echo $OrderID ?>' name='OrderID'>
 		</br>
 
+		<label>Product Price : <?php echo $pprice ?></label>
+		<br>
+
+		<label>Bank Charges : <?php echo $Bcharges ?></label>
+		<br>
 
 		<!-- <label>SignatureMethod</label> -->
 		<input id='SignatureMethod' type='hidden' value='SHA1' name='SignatureMethod'>
 		<!-- </br> -->
 
 
-		<label>Purchase Amount (LKR) : <?php echo $Nprice ?> </label>
+		<label> <b> Total Amount (LKR) : <?php echo $Nprice ?> </b> </label>
 		<input id='PurchaseAmt' type='hidden' value='<?php echo $amount ?>' name='PurchaseAmt'>
 		</br>
 

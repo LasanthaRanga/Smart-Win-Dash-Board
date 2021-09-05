@@ -31,6 +31,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { RegonlineComponent } from './pages/regonline/regonline.component';
 //import { ProinfoComponent } from './pages/proinfo/proinfo.component';
 
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';  
@@ -80,7 +81,8 @@ export function tokenGet() {
     AdminLayoutComponent,
     LoginPageComponent,
     CreatePassComponent,
-    ForgotPassComponent
+    ForgotPassComponent,
+    //RegonlineComponent
    // ProinfoComponent,
 
   ],

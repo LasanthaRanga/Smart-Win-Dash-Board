@@ -1,8 +1,29 @@
 <div class="main-content">
     <div class="container-fluid">
 
-        <div class="card" *ngFor="let p of products">
-            <!-- <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let p of products"> -->
+       
+        <div  class="col d-flex justify-content-center">
+
+            <div class="container">
+                <div class="card" style="width: 25rem;" *ngFor="let p of products">
+                    <img class="card-img-top" src="{{p.prodImage}}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title"><b>{{p.prodName}}</b></h5>
+                      <h5 class="card-title"><small>LKR.</small> {{p.prodPrice}}</h5>
+                      <!-- <p class="card-text"><small>LKR.</small> {{p.prodPrice}}</p> -->
+                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                      <hr>
+                      <button mat-raised-button (click)="more(p.idProd)" class="btn btn-primary">Buy</button>
+                    </div>
+                  </div>
+    
+            </div>
+        </div>
+     
+
+      
+
+        <!-- <div class="card" *ngFor="let p of products">
             <div class="row">
                 <div class="col-sm-3">
                     <img src="{{p.prodImage}}">
@@ -18,18 +39,7 @@
                     </div>
                 </div>
                 </div>
-
-                <!-- <div class="card card-stats">
-                    <div class="card-content">
-                       
-                    </div>
-                    <div class="card-header card-header-warning card-header-icon">
-
-                      
-                    </div>
-
-                </div> -->
             </div>
-            <!-- </div> -->
-        </div>
+            
+        </div> -->
     </div>
