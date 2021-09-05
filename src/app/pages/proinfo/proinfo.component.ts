@@ -117,15 +117,15 @@ export class ProinfoComponent implements OnInit {
         this.final_bal = ("0000000000" + (this.amount * 0.03 + this.amount)).slice(-10) + "00";
         let list = {
           Version: '1.0.0',
-          MerID: '1000000000390',
+          MerID: '1000000003127',
           AcqID: '512940',
           MerRespURL: 'http://localhost/peoplsbank/index.php',
           PurchaseCurrency: '144',
           PurchaseCurrencyExponent: '2',
           OrderID: this.order_id,
-          SignatureMethod: 's1r2W5B.',
+          SignatureMethod: 'FABuj24,',
           PurchaseAmt: this.final_bal,
-          Signature: "s1r2W5B.1000000000390512940" + this.order_id + this.final_bal + "144",
+          Signature: "FABuj24,1000000003127512940" + this.order_id + this.final_bal + "144",
           Nprice: (this.amount * 0.03 + this.amount).toFixed(2),
           Bcharges: (this.amount * 0.03).toFixed(2),
           pprice:this.amount.toFixed(2)
