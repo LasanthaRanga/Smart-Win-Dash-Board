@@ -123,9 +123,9 @@ export class ProinfoComponent implements OnInit {
           PurchaseCurrency: '144',
           PurchaseCurrencyExponent: '2',
           OrderID: this.order_id,
-          SignatureMethod: 'FABuj24,',
+          SignatureMethod: 'FA8uj24,',
           PurchaseAmt: this.final_bal,
-          Signature: "FABuj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+          Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
           Nprice: (this.amount * 0.03 + this.amount).toFixed(2),
           Bcharges: (this.amount * 0.03).toFixed(2),
           pprice:this.amount.toFixed(2)
