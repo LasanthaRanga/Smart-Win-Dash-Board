@@ -95,6 +95,7 @@ export class ProinfoComponent implements OnInit {
 
     /////////// create order number /////////
     console.log("asdf asdf asdf");
+    localStorage.setItem("pro_id",this.proid)
     this.api.post(this.urlonpay + 'getorder', {}, data => {
       var od_id = data[0].order_id;
       this.order_id = 'smt2021831-' + od_id;
@@ -125,6 +126,7 @@ export class ProinfoComponent implements OnInit {
           OrderID: this.order_id,
           SignatureMethod: 'FA8uj24,',
           PurchaseAmt: this.final_bal,
+          //Signature: "A8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
           Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
           Nprice: (this.amount * 0.03 + this.amount).toFixed(2),
           Bcharges: (this.amount * 0.03).toFixed(2),

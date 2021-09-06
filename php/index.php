@@ -1,9 +1,52 @@
 <HTML>
 	 <head>
 	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+	 <link rel="stylesheet" href="sweetalert2.min.css">
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 	 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+	 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script type='text/javascript'>
+
+
+
+function pos(order,status,description){
+			$.ajax({
+        method: "POST",
+        url: "http://localhost:3000/onpay/updateby_orderid",
+        data: { order:order, status:status},
+		success: function (data) {
+			console.log(data);
+			if(status == 1){
+				console.log('1111111');
+				window.location.href = "http://localhost:4200/#/regon";
+			}else if(status == 2){
+				console.log('2222222');
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: description+" !",
+					footer: '<a href="">Why do I have this issue?</a>'
+					})
+			}else if(status == 3){
+				console.log('xxxxxxx');
+									Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: description+" !",
+					footer: '<a href="">Why do I have this issue?</a>'
+					})
+			}
+
+		}
+})
+		}
+
+
+		</script>
+
+
 	 <style>
 		
 		.cen{
@@ -70,11 +113,35 @@
 
 	$has = base64_encode(SHA1($data, TRUE));
 
+	
+		$ROrderID = $_REQUEST["OrderID"];
+		$RResponseCode = $_REQUEST["ResponseCode"];
+		$RReasonCodeDesc =	$_REQUEST["ReasonCodeDesc"];
+
 	?>
 	<?php
-	// print_r($_REQUEST);
-	// print_r($_REQUEST["ReasonCodeDesc"]);
+	//  print_r($_REQUEST);
+	//  print_r($_REQUEST["ReasonCodeDesc"]);
 	?>
+
+<?php
+	if($_REQUEST["ResponseCode"] == 1){
+		// echo("1111111111");
+	
+	}else if($_REQUEST["ResponseCode"] == 2){
+		// echo("2222222222");
+	
+	}else if($_REQUEST["ResponseCode"] == 3){
+		// echo("3333333333");
+	
+	}
+
+echo "
+<script> 
+pos('$ROrderID','$RResponseCode','$RReasonCodeDesc'); 
+</script>
+"; 
+ ?> 
 
 	<form id='FrmHtmlCheckout' name='FrmHtmlCheckout' action='https://pg.peoplesbank.lk/OrderProcessingEngine/RedirectLink.aspx' method='post'>
 

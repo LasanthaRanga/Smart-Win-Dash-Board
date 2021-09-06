@@ -44,12 +44,16 @@ export class RegonlineComponent implements OnInit {
   isClicked = true;
   completedInfo;
   user;
+  proprice;
+  proname;
+  isClickedcheck = false;
 
 
 
   constructor(private api: ApicallServiceService) {
     this.user = this.api.getLogUser();
     console.log(this.user);
+     console.log(localStorage.getItem("pro_id")) ;
    }
 
   ngOnInit(): void {
@@ -66,11 +70,15 @@ export class RegonlineComponent implements OnInit {
 
   getProductList() {
     this.api.post(this.prodUrl + 'getprobyid', {
-      //pro_id:localStorage.getItem("pro_id")
-      prodid:1
+      prodid:localStorage.getItem("pro_id")
+      // prodid:1
     }, data => {
       console.log(data);
       this.prodList = data;
+      this.proprice=data[0].prodPrice;
+      this.proname=data[0].prodName;
+      this.product=data[0].idProd;
+      this.firstPay=data[0].prodPrice;
     });
   }
 
@@ -159,7 +167,7 @@ export class RegonlineComponent implements OnInit {
         if (this.side) {
           if (this.product) {
             if (this.firstPay > 0) {
-              if (this.type) {
+             // if (this.type) {
                 if (this.type === 'other') {
                   if (prop.cusName && prop.cusAddressl1 &&
                     prop.cusAddressl2 && prop.cusAddressl3 &&
@@ -184,9 +192,10 @@ export class RegonlineComponent implements OnInit {
                     }
                   });
                 }
-              } else {
-                this.api.showNotification('warning', 'please Check Proposer Or Purchaser');
-              }
+              //} 
+              // else {
+              //   this.api.showNotification('warning', 'please Check Proposer Or Purchaser');
+              // }
             } else {
               this.api.showNotification('warning', 'please Check the First Payment Rs');
             }
@@ -255,6 +264,14 @@ export class RegonlineComponent implements OnInit {
   clickOnDone() {
     console.log(this.completedInfo.extra.uid);
     this.rePrint(this.completedInfo.extra.invoice)
+  }
+
+  cheeck(sr)
+  {
+    //console.log(sr);
+     //console.log(this.isClickedcheck);
+    this.isClickedcheck=sr;
+    
   }
 
   rePrint(idInvoice) {

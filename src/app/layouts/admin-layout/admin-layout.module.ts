@@ -25,6 +25,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 
 
@@ -77,6 +78,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     MatTableModule,
     MatPaginatorModule,
     MatSlideToggleModule,
+    MatCheckboxModule,
     NgbModule,
     MatCardModule,
   ],

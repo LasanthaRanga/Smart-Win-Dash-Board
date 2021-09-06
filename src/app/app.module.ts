@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { MatPaginatorModule } from '@angular/material';
 import { OrgchartModule } from '@dabeng/ng-orgchart';
@@ -58,6 +59,7 @@ export function tokenGet() {
     MatSelectModule,
     MatTooltipModule,
     MatTableModule,
+    MatCheckboxModule,
     MatExpansionModule,
     MatCardModule,
     MatPaginatorModule,
