@@ -11,8 +11,9 @@
           <div class="col-md-1">
 
           </div>
-        
-          <ngb-carousel #carousel [interval]="1000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+
+          <ngb-carousel #carousel [interval]="1000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus"
+            (slide)="onSlide($event)">
             <ng-template ngbSlide *ngFor="let img of images; index as i">
               <div class="carousel-caption">
                 <h3>My slide {{i + 1}} title</h3>
@@ -28,7 +29,7 @@
           <!-- <ul *ngFor="let pp of moreimages">
             <img src="{{pp.image}}" alt="Photo of a Shiba Inu">
           </ul> -->
-            <!-- <div class="card"  *ngFor="let p of imagesUrl">
+          <!-- <div class="card"  *ngFor="let p of imagesUrl">
               <img src="{{p.image}}" alt="Photo of a Shiba Inu">
             </div> -->
           <div class="col-md-3 ">
@@ -53,6 +54,26 @@
                   <h3 class="card-title" style="align-self: center;"><small>LKR.</small> {{amount}} </h3>
                 </div>
               </div>
+
+              <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                  <mat-radio-group aria-label="Select Saile Type" [(ngModel)]="ptype" (change)="cha()">
+                    <mat-radio-button value="fullpay">Full payment</mat-radio-button>
+                    <mat-radio-button value="partpay" >Part payment</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div *ngIf="ptype=='partpay'">
+                    <mat-form-field class="example-full-width">
+                      <input matInput  [(ngModel)]="partpays" placeholder="Amount">
+                  </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col-md-12">
                   <button (click)="save()" mat-raised-button type="submit" class="btn btn-success">Buy now</button>

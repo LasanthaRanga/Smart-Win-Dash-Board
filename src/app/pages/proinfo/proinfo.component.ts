@@ -25,6 +25,10 @@ export class ProinfoComponent implements OnInit {
   images = []
 
   final_bal;
+  ptype;
+  partpays;
+
+  payamount;
 
 
   paused = false;
@@ -32,6 +36,8 @@ export class ProinfoComponent implements OnInit {
   pauseOnIndicator = false;
   pauseOnHover = true;
   pauseOnFocus = true;
+
+  isClickedcheck = false;
 
   @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
@@ -71,6 +77,7 @@ export class ProinfoComponent implements OnInit {
         this.proid = id;
         this.moreinfoby_id(id);
         this.getmoreimages(id);
+        this.ptype='fullpay';
 
       } else {
 
@@ -91,11 +98,21 @@ export class ProinfoComponent implements OnInit {
     });
   }
 
+  cha(){
+    // console.log(this.ptype);
+    // if(this.ptype == 'fullpay'){
+    //   this.isClickedcheck =false;
+    // }else if(this.ptype == 'partpay'){
+    //   this.isClickedcheck =true;
+    // }
+
+  }
+
   save() {
 
     /////////// create order number /////////
     console.log("asdf asdf asdf");
-    localStorage.setItem("pro_id",this.proid)
+    localStorage.setItem("pro_id",this.proid);
     this.api.post(this.urlonpay + 'getorder', {}, data => {
       var od_id = data[0].order_id;
       this.order_id = 'smt2021831-' + od_id;
@@ -103,24 +120,33 @@ export class ProinfoComponent implements OnInit {
 
 
       ///// sace pay details /////
+      if(this.ptype == 'fullpay'){
+
+        this.payamount=this.amount;
+
+        }else if(this.ptype == 'partpay'){
+          this.payamount=Number(this.partpays);
+          //console.log(this.partpays);
+        }
+       localStorage.setItem("p_amount",this.payamount);
 
       this.api.post(this.urlonpay + 'savepaydetails', {
         cusid: '1',
         proid: this.proid,
-        uprice: this.amount,
+        uprice: this.payamount,
         rate: 0.03,
-        tot: this.amount * 0.03,
-        bill_tot: this.amount * 0.03 + this.amount,
+        tot: this.payamount * 0.03,
+        bill_tot: this.payamount * 0.03 + this.payamount,
         bank_order_id: this.order_id
 
       }, data => {
 
-        this.final_bal = ("0000000000" + (this.amount * 0.03 + this.amount)).slice(-10) + "00";
+        this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
         let list = {
           Version: '1.0.0',
           MerID: '1000000003127',
           AcqID: '512940',
-          MerRespURL: 'http://localhost/peoplsbank/index.php',
+          MerRespURL: 'http://localhost/pe/index.php',
           PurchaseCurrency: '144',
           PurchaseCurrencyExponent: '2',
           OrderID: this.order_id,
@@ -128,9 +154,9 @@ export class ProinfoComponent implements OnInit {
           PurchaseAmt: this.final_bal,
           //Signature: "A8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
           Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-          Nprice: (this.amount * 0.03 + this.amount).toFixed(2),
-          Bcharges: (this.amount * 0.03).toFixed(2),
-          pprice:this.amount.toFixed(2)
+          Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
+          Bcharges: (this.payamount * 0.03).toFixed(2),
+          pprice:this.payamount.toFixed(2)
         }
         window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
 
@@ -168,10 +194,10 @@ export class ProinfoComponent implements OnInit {
     this.api.post(this.urlonpay + 'savepaydetails', {
       cusid: '1',
       proid: this.proid,
-      uprice: this.amount,
+      uprice: this.payamount,
       rate: 0.03,
-      tot: this.amount * 0.03,
-      bill_tot: this.amount * 0.03 + this.amount,
+      tot: this.payamount * 0.03,
+      bill_tot: this.payamount * 0.03 + this.payamount,
       bank_order_id: 'smt2021831-203'
 
     }, data => {

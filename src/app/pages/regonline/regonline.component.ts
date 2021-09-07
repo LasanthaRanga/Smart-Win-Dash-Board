@@ -78,7 +78,7 @@ export class RegonlineComponent implements OnInit {
       this.proprice=data[0].prodPrice;
       this.proname=data[0].prodName;
       this.product=data[0].idProd;
-      this.firstPay=data[0].prodPrice;
+      this.firstPay=localStorage.getItem("p_amount");
     });
   }
 
