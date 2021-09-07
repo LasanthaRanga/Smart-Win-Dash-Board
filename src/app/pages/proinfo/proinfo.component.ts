@@ -77,7 +77,7 @@ export class ProinfoComponent implements OnInit {
         this.proid = id;
         this.moreinfoby_id(id);
         this.getmoreimages(id);
-        this.ptype='fullpay';
+        this.ptype = 'fullpay';
 
       } else {
 
@@ -98,7 +98,7 @@ export class ProinfoComponent implements OnInit {
     });
   }
 
-  cha(){
+  cha() {
     // console.log(this.ptype);
     // if(this.ptype == 'fullpay'){
     //   this.isClickedcheck =false;
@@ -112,7 +112,7 @@ export class ProinfoComponent implements OnInit {
 
     /////////// create order number /////////
     console.log("asdf asdf asdf");
-    localStorage.setItem("pro_id",this.proid);
+    localStorage.setItem("pro_id", this.proid);
     this.api.post(this.urlonpay + 'getorder', {}, data => {
       var od_id = data[0].order_id;
       this.order_id = 'smt2021831-' + od_id;
@@ -120,52 +120,62 @@ export class ProinfoComponent implements OnInit {
 
 
       ///// sace pay details /////
-      if(this.ptype == 'fullpay'){
+      if (this.ptype == 'fullpay') {
 
-        this.payamount=this.amount;
+        this.payamount = this.amount;
 
-        }else if(this.ptype == 'partpay'){
-          this.payamount=Number(this.partpays);
-          //console.log(this.partpays);
-        }
-       localStorage.setItem("p_amount",this.payamount);
+      } else if (this.ptype == 'partpay') {
+        this.payamount = Number(this.partpays);
+        //console.log(this.partpays);
+      }
 
-      this.api.post(this.urlonpay + 'savepaydetails', {
-        cusid: '1',
-        proid: this.proid,
-        uprice: this.payamount,
-        rate: 0.03,
-        tot: this.payamount * 0.03,
-        bill_tot: this.payamount * 0.03 + this.payamount,
-        bank_order_id: this.order_id
+      if (this.payamount >= 7000) {
 
-      }, data => {
+        localStorage.setItem("p_amount", this.payamount);
 
-        this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
-        let list = {
-          Version: '1.0.0',
-          MerID: '1000000003127',
-          AcqID: '512940',
-          MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
-          PurchaseCurrency: '144',
-          PurchaseCurrencyExponent: '2',
-          OrderID: this.order_id,
-          SignatureMethod: 'FA8uj24,',
-          PurchaseAmt: this.final_bal,
-          //Signature: "A8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-          Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-          Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
-          Bcharges: (this.payamount * 0.03).toFixed(2),
-          pprice:this.payamount.toFixed(2)
-        }
-        window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+        this.api.post(this.urlonpay + 'savepaydetails', {
+          cusid: '1',
+          proid: this.proid,
+          uprice: this.payamount,
+          rate: 0.03,
+          tot: this.payamount * 0.03,
+          bill_tot: this.payamount * 0.03 + this.payamount,
+          bank_order_id: this.order_id
 
-      });
+        }, data => {
 
+          this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
+          let list = {
+            Version: '1.0.0',
+            MerID: '1000000003127',
+            AcqID: '512940',
+            MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
+            PurchaseCurrency: '144',
+            PurchaseCurrencyExponent: '2',
+            OrderID: this.order_id,
+            SignatureMethod: 'FA8uj24,',
+            PurchaseAmt: this.final_bal,
+            //Signature: "A8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
+            Bcharges: (this.payamount * 0.03).toFixed(2),
+            pprice: this.payamount.toFixed(2)
+          }
+          window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+
+        });
+
+      } else {
+        this.api.showNotification('warning', "Pay amount must be grater than LKR 7000.00");
+
+      }
 
     });
-
   }
+
+
+
+
 
 
   create_order() {
