@@ -146,7 +146,7 @@ export class ProinfoComponent implements OnInit {
           Version: '1.0.0',
           MerID: '1000000003127',
           AcqID: '512940',
-          MerRespURL: 'http://localhost/pe/index.php',
+          MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
           PurchaseCurrency: '144',
           PurchaseCurrencyExponent: '2',
           OrderID: this.order_id,
@@ -158,7 +158,7 @@ export class ProinfoComponent implements OnInit {
           Bcharges: (this.payamount * 0.03).toFixed(2),
           pprice:this.payamount.toFixed(2)
         }
-        window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+        window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
 
       });
 
