@@ -68,6 +68,7 @@ export class ProinfoComponent implements OnInit {
   constructor(private api: ApicallServiceService, private arout: ActivatedRoute) {
     this.user = api.getLogUser();
    // console.log(this.user);
+   this.ptype="onpay";
 
   }
 
@@ -99,6 +100,7 @@ export class ProinfoComponent implements OnInit {
        this.payamount=Number(this.obj['firstPay']);
         console.log( this.payamount);
         this.partpays= this.payamount;
+        
 
       } else {
 
@@ -172,27 +174,27 @@ export class ProinfoComponent implements OnInit {
           this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
           let list = {
             Version: '1.0.0',
-             //MerID: '1000000003127',
-            MerID: '1000000000390',
+            MerID: '1000000003127',
+            //MerID: '1000000000390',
             AcqID: '512940',
-            //MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
-            MerRespURL: 'http://localhost/bn/index.php',
+            MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
+            //MerRespURL: 'http://localhost/bn/index.php',
             PurchaseCurrency: '144',
             PurchaseCurrencyExponent: '2',
             OrderID: this.order_id,
-            //SignatureMethod: 'FA8uj24,',
-            SignatureMethod: 's1r2W5B',
+            SignatureMethod: 'FA8uj24,',
+            //SignatureMethod: 's1r2W5B',
             PurchaseAmt: this.final_bal,
-            //Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-            Signature: "s1r2W5B.1000000000390" + this.order_id + this.final_bal + "144",
+            Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            //Signature: "s1r2W5B.1000000000390" + this.order_id + this.final_bal + "144",
             Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
             Bcharges: (this.payamount * 0.03).toFixed(2),
             pprice: this.payamount.toFixed(2),
             obj:JSON.stringify(this.obj)
           }
 
-        //window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
-         window.location.href = 'http://localhost/bn/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
+        window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+        //  window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
 
         });
 
@@ -205,11 +207,16 @@ export class ProinfoComponent implements OnInit {
   }
 
 
-  save_bank(){
+  async save_bank(){
+    this.obj['product'] =this.proid;
+    localStorage.setItem('objx',JSON.stringify(this.obj));
+    console.log("xxxxxxx");
+    console.log(this.obj);
+    console.log("xxxxxxxx");
 
-    let obj =JSON.stringify(localStorage.getItem('objx'));
+    let obj = localStorage.getItem('objx');
     this.api.post(this.urlonpay + 'bank', obj, res => {
-
+      console.log(res);
     this.api.showNotification('success', 'All Done');
    });
 

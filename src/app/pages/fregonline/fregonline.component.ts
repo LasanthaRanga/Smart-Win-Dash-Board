@@ -235,7 +235,7 @@ export class FregonlineComponent implements OnInit {
       console.log('xxxxxxxxxx');
       this.api.showNotification('success', 'All Done');
       if("objx" in localStorage){
-       //this.router.navigate(['product']);
+       this.router.navigate(['product']);
      } else {
         alert('no');
      }
