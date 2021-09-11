@@ -3,6 +3,7 @@ import { ApicallServiceService } from 'app/services/apicall/apicall-service.serv
 import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-proinfo',
@@ -39,7 +40,7 @@ export class ProinfoComponent implements OnInit {
   pauseOnFocus = true;
 
   isClickedcheck = false;
-  obj=[];
+  obj = [];
 
   @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
@@ -65,10 +66,10 @@ export class ProinfoComponent implements OnInit {
 
 
 
-  constructor(private api: ApicallServiceService, private arout: ActivatedRoute) {
+  constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient) {
     this.user = api.getLogUser();
-   // console.log(this.user);
-   this.ptype="onpay";
+    // console.log(this.user);
+    this.ptype = "onpay";
 
   }
 
@@ -93,14 +94,14 @@ export class ProinfoComponent implements OnInit {
         //   firstPay: 'this.firstPay'
         // }
 
-       // console.log(obj['firstPay']);
+        // console.log(obj['firstPay']);
 
-       //const objs = JSON.parse(localStorage.getItem('objx'));
-       this.obj=JSON.parse(localStorage.getItem('objx'));
-       this.payamount=Number(this.obj['firstPay']);
-        console.log( this.payamount);
-        this.partpays= this.payamount;
-        
+        //const objs = JSON.parse(localStorage.getItem('objx'));
+        this.obj = JSON.parse(localStorage.getItem('objx'));
+        this.payamount = Number(this.obj['firstPay']);
+        console.log(this.payamount);
+        this.partpays = this.payamount;
+
 
       } else {
 
@@ -133,30 +134,30 @@ export class ProinfoComponent implements OnInit {
 
   save() {
 
-    if(this.ptype == 'onpay'){
+    if (this.ptype == 'onpay') {
       // this.obj.push({'product':this.proid})
-    // console.log( this.obj);
+      // console.log( this.obj);
 
-    /////////// create order number /////////
+      /////////// create order number /////////
 
-    this.obj['product'] =this.proid;
-    localStorage.setItem('objx',JSON.stringify(this.obj));
-    console.log("xxxxxxx");
-    console.log(this.obj);
-    console.log("xxxxxxxx");
+      this.obj['product'] = this.proid;
+      localStorage.setItem('objx', JSON.stringify(this.obj));
+      console.log("xxxxxxx");
+      console.log(this.obj);
+      console.log("xxxxxxxx");
 
-    console.log("asdf asdf asdf");
-    localStorage.setItem("pro_id", this.proid);
-    this.api.post(this.urlonpay + 'getorder', {}, data => {
-      var od_id = data[0].order_id;
-      this.order_id = 'smt2021831-' + od_id;
-      console.log(this.order_id);
+      console.log("asdf asdf asdf");
+      localStorage.setItem("pro_id", this.proid);
+      this.api.post(this.urlonpay + 'getorder', {}, data => {
+        var od_id = data[0].order_id;
+        this.order_id = 'smt2021831-' + od_id;
+        console.log(this.order_id);
 
-      ///// sace pay details /////
+        ///// sace pay details /////
 
         //this.payamount = this.amount;
 
-      
+
         localStorage.setItem("p_amount", this.payamount);
 
         this.api.post(this.urlonpay + 'savepaydetails', {
@@ -190,35 +191,58 @@ export class ProinfoComponent implements OnInit {
             Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
             Bcharges: (this.payamount * 0.03).toFixed(2),
             pprice: this.payamount.toFixed(2),
-            obj:JSON.stringify(this.obj)
+            obj: JSON.stringify(this.obj)
           }
 
-        window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
-        //  window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
+          window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+          //  window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
 
         });
 
-    });
-      
-    }else{
+      });
+
+    } else {
       console.log("bfef");
       this.save_bank();
     }
   }
 
 
-  async save_bank(){
-    this.obj['product'] =this.proid;
-    localStorage.setItem('objx',JSON.stringify(this.obj));
+  async save_bank() {
+    this.obj['product'] = this.proid;
+    localStorage.setItem('objx', JSON.stringify(this.obj));
     console.log("xxxxxxx");
     console.log(this.obj);
     console.log("xxxxxxxx");
 
-    let obj = localStorage.getItem('objx');
-    this.api.post(this.urlonpay + 'bank', obj, res => {
-      console.log(res);
-    this.api.showNotification('success', 'All Done');
-   });
+    let obj = JSON.parse(localStorage.getItem('objx'));
+
+    console.log(obj);
+
+    // this.api.post(this.urlonpay + 'bank', obj.vlaues, res => {
+    //   console.log(res);
+    //   this.api.showNotification('success', 'All Done');
+    // });
+
+    let savedID;
+
+
+    let headers = new HttpHeaders().set('content-typecontent-type', 'application/json').set('X-Master-Key', '$2b$10$TGHRHtoAyicR0JES3sAV.eHNrbcGO.34wWRbHuhvJoOK/yN63kkNC');
+
+    this.http.post('https://api.jsonbin.io/v3/b ', obj, { 'headers': headers }).subscribe(data => { // json data save
+      console.log(data);
+      console.log(data['metadata'].id);
+      savedID = data['metadata'].id;
+    })
+
+
+    this.http.get('https://api.jsonbin.io/v3/b' + savedID, { 'headers': headers }).subscribe(data => {// json data get
+      console.log(data)
+      console.log(data['metadata'].id);
+    })
+
+
+
 
   }
 
@@ -234,7 +258,7 @@ export class ProinfoComponent implements OnInit {
       this.moreimages = data;
       // console.log(this.moreimages);
       var arr = JSON.stringify(this.moreimages);
-     // console.log(arr);
+      // console.log(arr);
       var datas = [];
       for (let result of this.moreimages) {
         this.images.push(result['url1']);
