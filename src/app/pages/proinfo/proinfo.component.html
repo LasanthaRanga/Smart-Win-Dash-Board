@@ -55,22 +55,31 @@
                 </div>
               </div>
 
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-12" style="text-align: center;">
                   <mat-radio-group aria-label="Select Saile Type" [(ngModel)]="ptype" (change)="cha()">
                     <mat-radio-button value="fullpay">Full payment</mat-radio-button>
                     <mat-radio-button value="partpay" >Part payment</mat-radio-button>
                   </mat-radio-group>
                 </div>
-              </div>
+              </div> -->
+
+
 
               <div class="row">
                 <div class="col-md-12">
-                  <div *ngIf="ptype=='partpay'">
                     <mat-form-field class="example-full-width">
-                      <input matInput  [(ngModel)]="partpays" placeholder="Amount">
+                      <input matInput  [(ngModel)]="partpays" placeholder="Amount" readonly>
                   </mat-form-field>
-                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                  <mat-radio-group aria-label="Select Saile Type" [(ngModel)]="ptype" >
+                    <mat-radio-button value="onpay">Online Pay</mat-radio-button>
+                    <mat-radio-button value="bpay" >Bank Deposit</mat-radio-button>
+                  </mat-radio-group>
                 </div>
               </div>
 

@@ -32,6 +32,8 @@ import { OnpayComponent } from '../../pages/onpay/onpay.component';
 import { AddproductComponent } from '../../pages/addproduct/addproduct.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 import { RegonlineComponent } from '../../pages/regonline/regonline.component';
+import { ConpayComponent } from '../../pages/conpay/conpay.component';
+import { FregonlineComponent } from '../../pages/fregonline/fregonline.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -68,6 +70,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'addproduct', component: AddproductComponent },
     { path: 'proinfo',component:ProinfoComponent},
     { path: 'proinfo/:id',component:ProinfoComponent},
-    { path: 'regon',component:RegonlineComponent}
+    { path: 'regon',component:RegonlineComponent},
+    { path: 'conpay',component:ConpayComponent},
+    { path: 'fregon',component:FregonlineComponent}
 
 ];

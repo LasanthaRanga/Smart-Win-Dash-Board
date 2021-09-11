@@ -12,6 +12,7 @@ import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/n
 export class ProinfoComponent implements OnInit {
   urlProd = environment.apiUrl + 'prod/'
   urlonpay = environment.apiUrl + 'onpay/'
+  treeUrl = environment.apiUrl + 'tree/'
   proid;
 
   proname;
@@ -38,6 +39,7 @@ export class ProinfoComponent implements OnInit {
   pauseOnFocus = true;
 
   isClickedcheck = false;
+  obj=[];
 
   @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
@@ -65,7 +67,7 @@ export class ProinfoComponent implements OnInit {
 
   constructor(private api: ApicallServiceService, private arout: ActivatedRoute) {
     this.user = api.getLogUser();
-    console.log(this.user);
+   // console.log(this.user);
 
   }
 
@@ -77,7 +79,26 @@ export class ProinfoComponent implements OnInit {
         this.proid = id;
         this.moreinfoby_id(id);
         this.getmoreimages(id);
-        this.ptype = 'fullpay';
+
+        // let obj = {
+        //   vlaues: 'this.keyList',
+        //   purchaser: 'prop',
+        //   introUid: 'this.iSWno',
+        //   aPin: 'this.aPin',
+        //   aPinUid: 'this.aPlacementNo',
+        //   side: 'this.side',
+        //   type: 'this.type',
+        //   product: 'this.product',
+        //   firstPay: 'this.firstPay'
+        // }
+
+       // console.log(obj['firstPay']);
+
+       //const objs = JSON.parse(localStorage.getItem('objx'));
+       this.obj=JSON.parse(localStorage.getItem('objx'));
+       this.payamount=Number(this.obj['firstPay']);
+        console.log( this.payamount);
+        this.partpays= this.payamount;
 
       } else {
 
@@ -110,7 +131,18 @@ export class ProinfoComponent implements OnInit {
 
   save() {
 
+    if(this.ptype == 'onpay'){
+      // this.obj.push({'product':this.proid})
+    // console.log( this.obj);
+
     /////////// create order number /////////
+
+    this.obj['product'] =this.proid;
+    localStorage.setItem('objx',JSON.stringify(this.obj));
+    console.log("xxxxxxx");
+    console.log(this.obj);
+    console.log("xxxxxxxx");
+
     console.log("asdf asdf asdf");
     localStorage.setItem("pro_id", this.proid);
     this.api.post(this.urlonpay + 'getorder', {}, data => {
@@ -118,19 +150,11 @@ export class ProinfoComponent implements OnInit {
       this.order_id = 'smt2021831-' + od_id;
       console.log(this.order_id);
 
-
       ///// sace pay details /////
-      if (this.ptype == 'fullpay') {
 
-        this.payamount = this.amount;
+        //this.payamount = this.amount;
 
-      } else if (this.ptype == 'partpay') {
-        this.payamount = Number(this.partpays);
-        //console.log(this.partpays);
-      }
-
-      if (this.payamount >= 7000) {
-
+      
         localStorage.setItem("p_amount", this.payamount);
 
         this.api.post(this.urlonpay + 'savepaydetails', {
@@ -140,43 +164,56 @@ export class ProinfoComponent implements OnInit {
           rate: 0.03,
           tot: this.payamount * 0.03,
           bill_tot: this.payamount * 0.03 + this.payamount,
-          bank_order_id: this.order_id
+          bank_order_id: this.order_id,
+          //obj:this.obj
 
         }, data => {
 
           this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
           let list = {
             Version: '1.0.0',
-            MerID: '1000000003127',
+             //MerID: '1000000003127',
+            MerID: '1000000000390',
             AcqID: '512940',
-            MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
+            //MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
+            MerRespURL: 'http://localhost/bn/index.php',
             PurchaseCurrency: '144',
             PurchaseCurrencyExponent: '2',
             OrderID: this.order_id,
-            SignatureMethod: 'FA8uj24,',
+            //SignatureMethod: 'FA8uj24,',
+            SignatureMethod: 's1r2W5B',
             PurchaseAmt: this.final_bal,
-            //Signature: "A8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-            Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            //Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            Signature: "s1r2W5B.1000000000390" + this.order_id + this.final_bal + "144",
             Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
             Bcharges: (this.payamount * 0.03).toFixed(2),
-            pprice: this.payamount.toFixed(2)
+            pprice: this.payamount.toFixed(2),
+            obj:JSON.stringify(this.obj)
           }
-          window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+
+        //window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+         window.location.href = 'http://localhost/bn/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
 
         });
 
-      } else {
-        this.api.showNotification('warning', "Pay amount must be grater than LKR 7000.00");
-
-      }
-
     });
+      
+    }else{
+      console.log("bfef");
+      this.save_bank();
+    }
   }
 
 
+  save_bank(){
 
+    let obj =JSON.stringify(localStorage.getItem('objx'));
+    this.api.post(this.urlonpay + 'bank', obj, res => {
 
+    this.api.showNotification('success', 'All Done');
+   });
 
+  }
 
   create_order() {
 
@@ -184,18 +221,19 @@ export class ProinfoComponent implements OnInit {
 
 
 
+
   getmoreimages(id) {
     this.api.post(this.urlProd + 'moreimgbyproid', { prodid: id }, data => {
       this.moreimages = data;
-      console.log(this.moreimages);
+      // console.log(this.moreimages);
       var arr = JSON.stringify(this.moreimages);
-      console.log(arr);
+     // console.log(arr);
       var datas = [];
       for (let result of this.moreimages) {
         this.images.push(result['url1']);
-        console.log("dfgfgggg");
-        console.log(datas);
-        console.log("dfgfgggg");
+        // console.log("dfgfgggg");
+        // console.log(datas);
+        // console.log("dfgfgggg");
       }
     });
   }

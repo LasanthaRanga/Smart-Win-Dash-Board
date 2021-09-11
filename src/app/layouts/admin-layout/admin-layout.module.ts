@@ -25,7 +25,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 
 
@@ -55,7 +56,9 @@ import { AddproductComponent } from '../../pages/addproduct/addproduct.component
 import { YoutubePipe } from 'app/youtube.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCardModule } from '@angular/material/card';
+import { FregonlineComponent } from '../../pages/fregonline/fregonline.component';
 import { RegonlineComponent } from '../../pages/regonline/regonline.component';
+import { ConpayComponent } from '../../pages/conpay/conpay.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 
@@ -79,6 +82,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     MatPaginatorModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    MatDialogModule,
     NgbModule,
     MatCardModule,
   ],
@@ -114,6 +118,8 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     OnpayComponent,
     YoutubePipe,
     ProinfoComponent,
+    ConpayComponent,
+    FregonlineComponent,
     RegonlineComponent,
     AddproductComponent
   ]

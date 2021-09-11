@@ -19,7 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MatPaginatorModule } from '@angular/material';
 import { OrgchartModule } from '@dabeng/ng-orgchart';
@@ -32,6 +33,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { ConpayComponent } from './pages/conpay/conpay.component';
+//import { FregonlineComponent } from './pages/fregonline/fregonline.component';
 //import { RegonlineComponent } from './pages/regonline/regonline.component';
 //import { ProinfoComponent } from './pages/proinfo/proinfo.component';
 
@@ -60,6 +63,7 @@ export function tokenGet() {
     MatTooltipModule,
     MatTableModule,
     MatCheckboxModule,
+    MatDialogModule,
     MatExpansionModule,
     MatCardModule,
     MatPaginatorModule,
@@ -84,6 +88,8 @@ export function tokenGet() {
     LoginPageComponent,
     CreatePassComponent,
     ForgotPassComponent,
+    //ConpayComponent,
+    //FregonlineComponent,
     //RegonlineComponent
    // ProinfoComponent,
 
