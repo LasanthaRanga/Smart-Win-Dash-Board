@@ -1,0 +1,46 @@
+
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-7">
+
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title"><strong>Bank Referance</strong></h4>
+                        <p class="card-category">Enter Your Bank Referance</p>
+                    </div>
+                    <div class="card-body">
+                      
+        
+                        <mat-form-field>
+                            <mat-label>Select product</mat-label>
+                            <mat-select [(ngModel)]="ref" (ngModelChange)="loaddetails()">
+                                <mat-option *ngFor="let pin of reflist" [value]="pin.id">
+                                    {{pin.prodName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+        
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Amount" [(ngModel)]="Amount" readonly>
+                        </mat-form-field>
+        
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Bank ref no" [(ngModel)]="refno">
+                        </mat-form-field>
+        
+                        
+        
+                        <div class="row">
+                            <div class="col-md-12">
+                              <button (click)="save()" mat-raised-button type="submit" class="btn btn-success">submit</button>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

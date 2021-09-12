@@ -1,0 +1,120 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+
+
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title"><strong>Bank Referance Process</strong></h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+
+                            <mat-table matSort [dataSource]="dataSource">
+                                <!-- Position Column -->
+                                <!-- <ng-container matColumnDef="idInvoice">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef> No. </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.idInvoice}} </mat-cell>
+                                </ng-container> -->
+    
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="value">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>Name</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+                                </ng-container>
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="prodName">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef> Product </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.prodName}} </mat-cell>
+                                </ng-container>
+    
+                                <ng-container matColumnDef="amount">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef> Pay amount </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+                                </ng-container>
+    
+    
+    
+                                <ng-container matColumnDef="id">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef> More Info </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"><button mat-button (click)="get(element.id)" >More</button>
+                                    </mat-cell>
+                                </ng-container>
+    
+                                <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+    
+                            <mat-paginator [pageSizeOptions]="[10,50,100]" showFirstLastButtons></mat-paginator>
+
+                        
+
+
+
+
+                        
+                            
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6" *ngIf="isselect">
+
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title"><strong>Bank Referance Process</strong></h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-label>Name</mat-label>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-label>{{name}}</mat-label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-label>Product</mat-label>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-label>{{product}}</mat-label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-label><b>Referance No</b></mat-label>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-label><b>{{ref}}</b></mat-label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-label>Pay amount</mat-label>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-label>{{payamount}}</mat-label>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <button (click)="process()" mat-raised-button type="submit" class="btn btn-success"> Process</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

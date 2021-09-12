@@ -68,7 +68,7 @@ export class ProinfoComponent implements OnInit {
 
   constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient) {
     this.user = api.getLogUser();
-    // console.log(this.user);
+    console.log(this.user);
     this.ptype = "onpay";
 
   }
@@ -233,6 +233,20 @@ export class ProinfoComponent implements OnInit {
       console.log(data);
       console.log(data['metadata'].id);
       savedID = data['metadata'].id;
+
+
+     
+          this.api.post(this.urlonpay + 'bankref', { 
+            mid:savedID,
+            refno:'',
+            amount:this.partpays,
+            uid:this.user['uid'],
+            proid:this.proid
+           }, data => {
+            this.api.showNotification('success', 'All Done');
+        });
+      
+
     })
 
 
