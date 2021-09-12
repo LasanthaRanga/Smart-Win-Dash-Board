@@ -66,7 +66,7 @@ export class ProinfoComponent implements OnInit {
 
 
 
-  constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient) {
+  constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient ,private router: Router) {
     this.user = api.getLogUser();
     console.log(this.user);
     this.ptype = "onpay";
@@ -244,6 +244,7 @@ export class ProinfoComponent implements OnInit {
             proid:this.proid
            }, data => {
             this.api.showNotification('success', 'All Done');
+            this.router.navigate(['bankref']);
         });
       
 
