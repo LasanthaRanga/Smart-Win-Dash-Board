@@ -61,6 +61,7 @@ import { RegonlineComponent } from '../../pages/regonline/regonline.component';
 import { ConpayComponent } from '../../pages/conpay/conpay.component';
 import { BankrefComponent } from '../../pages/bankref/bankref.component';
 import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprosess.component';
+import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 
@@ -120,6 +121,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     OnpayComponent,
     YoutubePipe,
     ProinfoComponent,
+    ActivenodeComponent,
     BankrefprosessComponent,
     BankrefComponent,
     ConpayComponent,

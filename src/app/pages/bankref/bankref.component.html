@@ -3,7 +3,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
 
                 <div class="card">
                     <div class="card-header card-header-success">
@@ -41,6 +41,54 @@
                 </div>
 
             </div>
+
+
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title"><strong>Upload recipt</strong></h4>
+                        <!-- <p class="card-category">Enter Your Bank Referance</p> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="row" *ngIf="ref">
+                            <div class="col-md-12">
+                                <input style="display: none;" type="file" (change)="onFileSelected($event)" #fileInput />
+                                <button mat-raised-button (click)="fileInput.click()">Pick Image</button>
+                                <br>
+                                <br>
+                                <img [src]="url" height="200" *ngIf="url">
+                                <h4 *ngIf="url">File Type is: {{fileType}}</h4>
+                                <br>
+                                <br>
+                                <button *ngIf="url" mat-raised-button color="primary" (click)="onUpload()"> Upload Image
+                                </button>
+                            </div>
+    
+                            <div class="col-md-4 offset-md-4" *ngIf="isLoading">
+                                <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                            </div>
+    
+    
+                            <!-- <div class="row">
+                                <div class="col-md-3" *ngFor="let item of attachment">
+                                    <div class="card">
+                                        <img src="{{imagePath}}{{item.path}}" />
+                                        <p *ngIf="item.page_number">Page : {{item.page_number}}</p>
+                                        <p *ngIf="item.comment">Comment : {{item.comment}}</p>
+                                    </div>
+                                </div>
+                            </div> -->
+    
+    
+    
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>

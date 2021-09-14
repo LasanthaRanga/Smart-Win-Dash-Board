@@ -223,18 +223,20 @@ export class FregonlineComponent implements OnInit {
         side: this.side,
         type: this.type,
         product: this.product,
-        firstPay: this.firstPay
+        firstPay: this.firstPay,
+        ptype:1
       }
 
      
       localStorage.setItem('objx',JSON.stringify(this.obj));
       sessionStorage.setItem('objx',JSON.stringify(this.obj));
+      localStorage.setItem('type',"1");
       
       console.log('xxxxxxxxxx');
       console.log(this.obj);
       console.log('xxxxxxxxxx');
       this.api.showNotification('success', 'All Done');
-      if("objx" in localStorage){
+      if("objx" in localStorage && "type" in localStorage){
        this.router.navigate(['product']);
      } else {
         alert('no');

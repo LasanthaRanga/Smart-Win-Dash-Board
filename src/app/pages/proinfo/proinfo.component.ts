@@ -32,6 +32,8 @@ export class ProinfoComponent implements OnInit {
 
   payamount;
 
+  paytype;
+
 
   paused = false;
   unpauseOnArrow = false;
@@ -82,23 +84,20 @@ export class ProinfoComponent implements OnInit {
         this.moreinfoby_id(id);
         this.getmoreimages(id);
 
-        // let obj = {
-        //   vlaues: 'this.keyList',
-        //   purchaser: 'prop',
-        //   introUid: 'this.iSWno',
-        //   aPin: 'this.aPin',
-        //   aPinUid: 'this.aPlacementNo',
-        //   side: 'this.side',
-        //   type: 'this.type',
-        //   product: 'this.product',
-        //   firstPay: 'this.firstPay'
-        // }
 
-        // console.log(obj['firstPay']);
+        var type =localStorage.getItem('type');
 
-        //const objs = JSON.parse(localStorage.getItem('objx'));
-        this.obj = JSON.parse(localStorage.getItem('objx'));
-        this.payamount = Number(this.obj['firstPay']);
+        if(type == '1'){
+          this.obj = JSON.parse(localStorage.getItem('objx'));
+          this.payamount = Number(this.obj['firstPay']);
+          this.paytype = 1;
+
+        }else if(type == '2'){
+          this.paytype = 2;
+          this.obj=JSON.parse(localStorage.getItem('objx2'));
+          this.payamount = Number(this.obj['firstPay']);
+        }
+      
         console.log(this.payamount);
         this.partpays = this.payamount;
 
@@ -142,6 +141,9 @@ export class ProinfoComponent implements OnInit {
 
       this.obj['product'] = this.proid;
       localStorage.setItem('objx', JSON.stringify(this.obj));
+      localStorage.setItem('objx2', JSON.stringify(this.obj));
+
+
       console.log("xxxxxxx");
       console.log(this.obj);
       console.log("xxxxxxxx");
@@ -168,6 +170,7 @@ export class ProinfoComponent implements OnInit {
           tot: this.payamount * 0.03,
           bill_tot: this.payamount * 0.03 + this.payamount,
           bank_order_id: this.order_id,
+          paytype:this.paytype
           //obj:this.obj
 
         }, data => {
@@ -175,27 +178,27 @@ export class ProinfoComponent implements OnInit {
           this.final_bal = ("0000000000" + (this.payamount * 0.03 + this.payamount)).slice(-10) + "00";
           let list = {
             Version: '1.0.0',
-            MerID: '1000000003127',
-            //MerID: '1000000000390',
+            //MerID: '1000000003127',
+            MerID: '1000000000390',
             AcqID: '512940',
-            MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
-            //MerRespURL: 'http://localhost/bn/index.php',
+            //MerRespURL: 'https://sw.smartwinent.com/peoplsbank/index.php',
+            MerRespURL: 'http://localhost/bn/index.php',
             PurchaseCurrency: '144',
             PurchaseCurrencyExponent: '2',
             OrderID: this.order_id,
-            SignatureMethod: 'FA8uj24,',
-            //SignatureMethod: 's1r2W5B',
+            //SignatureMethod: 'FA8uj24,',
+            SignatureMethod: 's1r2W5B',
             PurchaseAmt: this.final_bal,
-            Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
-            //Signature: "s1r2W5B.1000000000390" + this.order_id + this.final_bal + "144",
+            //Signature: "FA8uj24,1000000003127512940" + this.order_id + this.final_bal + "144",
+            Signature: "s1r2W5B.1000000000390" + this.order_id + this.final_bal + "144",
             Nprice: (this.payamount * 0.03 + this.payamount).toFixed(2),
             Bcharges: (this.payamount * 0.03).toFixed(2),
             pprice: this.payamount.toFixed(2),
             obj: JSON.stringify(this.obj)
           }
 
-          window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
-          //  window.location.href = 'http://localhost/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
+          //window.location.href = 'https://sw.smartwinent.com/peoplsbank/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice;
+          window.location.href = 'http://localhost/bn/index.php?data=' + list.Signature + "&OrderID=" + list.OrderID + "&amount=" + list.PurchaseAmt + "&Nprice=" + list.Nprice + "&Bcharges=" + list.Bcharges + "&pprice=" + list.pprice + "&obj=" + list.obj;
 
         });
 
@@ -209,44 +212,49 @@ export class ProinfoComponent implements OnInit {
 
 
   async save_bank() {
+
     this.obj['product'] = this.proid;
     localStorage.setItem('objx', JSON.stringify(this.obj));
+    localStorage.setItem('objx2', JSON.stringify(this.obj));
     console.log("xxxxxxx");
     console.log(this.obj);
     console.log("xxxxxxxx");
 
-    let obj = JSON.parse(localStorage.getItem('objx'));
+    let obj;
+
+    if(this.paytype == 1){
+
+    obj = JSON.parse(localStorage.getItem('objx'));
+    obj['product'] = this.proid;
+
+    }else if(this.paytype == 2){
+
+    obj = JSON.parse(localStorage.getItem('objx2'));
+    obj['product'] = this.proid;
+
+    }
 
     console.log(obj);
 
-    // this.api.post(this.urlonpay + 'bank', obj.vlaues, res => {
-    //   console.log(res);
-    //   this.api.showNotification('success', 'All Done');
-    // });
-
     let savedID;
-
-
     let headers = new HttpHeaders().set('content-typecontent-type', 'application/json').set('X-Master-Key', '$2b$10$TGHRHtoAyicR0JES3sAV.eHNrbcGO.34wWRbHuhvJoOK/yN63kkNC');
 
-    this.http.post('https://api.jsonbin.io/v3/b ', obj, { 'headers': headers }).subscribe(data => { // json data save
+      this.http.post('https://api.jsonbin.io/v3/b ', obj, { 'headers': headers }).subscribe(data => { // json data save
       console.log(data);
       console.log(data['metadata'].id);
       savedID = data['metadata'].id;
 
-
-     
-          this.api.post(this.urlonpay + 'bankref', { 
+            this.api.post(this.urlonpay + 'bankref', { 
             mid:savedID,
             refno:'',
             amount:this.partpays,
             uid:this.user['uid'],
-            proid:this.proid
+            proid:this.proid,
+            typeid:this.paytype
            }, data => {
             this.api.showNotification('success', 'All Done');
             this.router.navigate(['bankref']);
         });
-      
 
     })
 

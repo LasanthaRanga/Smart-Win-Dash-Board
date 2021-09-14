@@ -29,6 +29,8 @@ export class BankrefprosessComponent implements OnInit {
   obj;
   metaid;
   id;
+  img;
+  paytype;
  
 isselect=false;
   constructor(private api: ApicallServiceService,private http: HttpClient) { 
@@ -52,13 +54,17 @@ isselect=false;
     this.api.post(this.urlonpay + 'pendinglistall', {
       id:id
     }, data => {
-     this.name=data[0].VALUE;
+     this.name=data[0].valu;
      this.product=data[0].prodName;
      this.ref=data[0].refno;
      this.payamount=data[0].amount;
      this.metaid=data[0].metaid;
      this.id=id;
+     let name=data[0].img_path;
+     this.img='https://smartwinent.com/recipt/'+name;
+     this.paytype=data[0].typeid;
      console.log(this.metaid);
+     console.log(data);
      this.isselect=true;
     });
   }
@@ -70,18 +76,49 @@ isselect=false;
     console.log(data)
     console.log(data['metadata'].id);
     this.obj=data['record'];
+    console.log(this.paytype);
 
-    this.api.post(this.treeUrl + 'newNode', this.obj, res => {
-  
 
-    this.api.post(this.urlonpay + 'updatestatus', {
-      id:this.id
-    }, data => {
-      this.api.showNotification('success', 'Process complete');
-      this.loadlist();
-      this.isselect=false;
-    });
-   });
+    if(this.paytype == 1){
+
+      this.api.post(this.treeUrl + 'newNode', this.obj, res => {
+        this.api.post(this.urlonpay + 'updatestatus', {
+          id:this.id
+        }, data => {
+          this.api.showNotification('success', 'Process complete');
+          this.loadlist();
+          this.isselect=false;
+        });
+       });
+    
+
+    }else if(this.paytype == 2){
+
+      // let obj = {
+      //   swid:,
+      //   aPin: ,
+      //   product: ,
+      //   firstPay: this.firstPay
+      // }
+
+      this.api.post(this.treeUrl + 'activeNode', this.obj,
+       data => {
+        this.api.post(this.urlonpay + 'updatestatus', {
+          id:this.id
+        }, data => {
+          this.api.showNotification('success', 'Process complete');
+          this.loadlist();
+          this.isselect=false;
+          console.log("22222222");
+        });
+      });
+      console.log("Okkkkkk");
+
+    }
+
+   
+
+
 
   })
 
