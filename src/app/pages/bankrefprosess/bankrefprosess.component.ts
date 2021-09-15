@@ -129,7 +129,7 @@ export class BankrefprosessComponent implements OnInit {
       this.metaid = data[0].metaid;
       //this.id = id;
       let name = data[0].img_path;
-      this.cimg = 'https://smartwinent.com/recipt/' + name;
+      this.cimg = 'https://smartwinent.com/recipt/'+ name;
       this.paytype = data[0].typeid;
       this.csysref= data[0].sys_ref_no;
       this.ccusdydref= data[0].cus_sys_ref_no;
@@ -158,6 +158,7 @@ export class BankrefprosessComponent implements OnInit {
           }, data => {
             this.api.showNotification('success', 'Process complete');
             this.loadlist();
+            this.loadcomlist();
             this.isselect = false;
           });
         });
@@ -173,6 +174,7 @@ export class BankrefprosessComponent implements OnInit {
             }, data => {
               this.api.showNotification('success', 'Process complete');
               this.loadlist();
+              this.loadcomlist();
               this.isselect = false;
             });
           });

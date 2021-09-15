@@ -39,7 +39,7 @@ export class BankrefComponent implements OnInit {
   }
 
   save(){
-    if(this.refno && this.ref && this.sysrefno){
+    if(this.refno && this.ref && this.sysrefno &&  this.sysrefno){
       this.api.post(this.urlonpay + 'updateref', {
         refno:this.refno,
         id:this.ref,
