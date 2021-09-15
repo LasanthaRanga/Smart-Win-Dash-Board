@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bankref',
@@ -17,6 +18,7 @@ export class BankrefComponent implements OnInit {
   reflist;
   Amount;
   refno;
+  sysrefno;
 
   user;
 
@@ -28,7 +30,7 @@ export class BankrefComponent implements OnInit {
 
 
 
-  constructor(private api: ApicallServiceService ,private http: HttpClient) {
+  constructor(private api: ApicallServiceService ,private http: HttpClient ,private router: Router) {
     this.user = api.getLogUser();
     this.loadlist();
    }
@@ -37,17 +39,20 @@ export class BankrefComponent implements OnInit {
   }
 
   save(){
-
-    this.api.post(this.urlonpay + 'updateref', {
-      refno:this.refno,
-      id:this.ref
-       }, data => {
-        this.refno="";
-        this.Amount="";
-        this.api.showNotification('success', 'Uploded');
-        this.loadlist();
-    });
-
+    if(this.refno && this.ref && this.sysrefno){
+      this.api.post(this.urlonpay + 'updateref', {
+        refno:this.refno,
+        id:this.ref,
+        sys_ref_no:this.sysrefno
+         }, data => {
+          this.refno="";
+          this.Amount="";
+          this.sysrefno="";
+          this.api.showNotification('success', 'Uploded');
+          this.loadlist();
+      });
+    }
+    this.api.showNotification('warning', 'Please Check Values');
   }
 
 
@@ -88,20 +93,8 @@ export class BankrefComponent implements OnInit {
         this.upProgrus = Math.round(events.loaded / events.total * 100);
         if (this.upProgrus === 100) {
 
-          setTimeout(() => {
-            // this.isLoading = false;
-            //  // this.loadAttach();
-            // this.selectedFile = null;
-            // this.url = null;
-            // this.prodId = null;
-            // this.prod_cat = null;
-            // this.prod_name = null;
-            // this.prod_price = null;
-            // this.prod_description = null;
-            this.api.showNotification('success', 'Image Uploaded');
-          }, 2000)
-
-
+          this.api.showNotification('success', 'Image Uploaded');
+          this.router.navigate(['home']);
         }
       } else if (events.type === HttpEventType.Response) {
         console.log(events);

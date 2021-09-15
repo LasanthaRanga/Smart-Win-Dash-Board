@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment';
 import { off } from 'process';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ConpayComponent implements OnInit {
 
   treeUrl = environment.apiUrl + 'tree/'
 
-  constructor(private api: ApicallServiceService) {
+  constructor(private api: ApicallServiceService ,private router: Router) {
 
    }
 
@@ -33,6 +34,7 @@ export class ConpayComponent implements OnInit {
     let obj =JSON.parse(localStorage.getItem('objx'));
     this.api.post(this.treeUrl + 'newNode', obj, res => {
     this.api.showNotification('success', 'All Done');
+    this.router.navigate(['home']);
    });
  }
 
@@ -41,8 +43,8 @@ export class ConpayComponent implements OnInit {
   let obj =JSON.parse(localStorage.getItem('objx2'));
   this.api.post(this.treeUrl + 'activeNode',obj,
        data => {
-          this.api.showNotification('success', 'Process complete'); 
-          console.log("22222222");
+          this.api.showNotification('success', 'All Done'); 
+          this.router.navigate(['home']);
       });
  }
 

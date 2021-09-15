@@ -4,6 +4,8 @@ import { environment } from 'environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-proinfo',
@@ -43,6 +45,10 @@ export class ProinfoComponent implements OnInit {
 
   isClickedcheck = false;
   obj = [];
+  sysrefno;
+
+  pipe = new DatePipe('en-US'); // Use your own locale
+  myFormattedDate;
 
   @ViewChild('carousel', { static: true }) carousel: NgbCarousel;
 
@@ -252,7 +258,8 @@ export class ProinfoComponent implements OnInit {
             proid:this.proid,
             typeid:this.paytype
            }, data => {
-            this.api.showNotification('success', 'All Done');
+            this.create_ref(savedID)
+            // this.api.showNotification('success', 'All Done');
             this.router.navigate(['bankref']);
         });
 
@@ -271,6 +278,24 @@ export class ProinfoComponent implements OnInit {
 
   create_order() {
 
+  }
+
+  create_ref(metid){
+    this.api.post(this.urlonpay + 'getid', { 
+      metid:metid
+     }, data => {
+    const now = Date.now();
+    this.myFormattedDate = this.pipe.transform(now, 'yyMMdd');
+       var id=data[0].id;
+       this.sysrefno=this.myFormattedDate+id;
+
+       this.api.post(this.urlonpay + 'addsysref', { 
+        metid:metid,
+        refno:this.sysrefno
+       }, data => { 
+        Swal.fire('system ref  '+ this.sysrefno);
+       });
+  });
   }
 
 

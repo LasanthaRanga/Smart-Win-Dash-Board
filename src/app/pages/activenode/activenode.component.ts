@@ -28,8 +28,8 @@ export class ActivenodeComponent implements OnInit {
 
   constructor(private api: ApicallServiceService, private router: Router) { 
     this.user = api.getLogUser();
-    //this.swid=this.user['uid'];
-    this.swid=1133;
+    this.swid=this.user['uid'];
+    //this.swid=1133;
     this.loadPlaceMent();
   }
 
