@@ -32,6 +32,9 @@ export class AddproductComponent implements OnInit {
   upProgrus;
 
   prodId;
+  imgupload=false;
+  pron;
+  imgname=false;
 
 
 
@@ -100,13 +103,16 @@ export class AddproductComponent implements OnInit {
         this.prodId = data.insertId;
         console.log(data);
         this.api.showNotification('success', 'Product Added');
+        this.pron=this.prod_name;
+        this.imgupload=true;
       }
 
     })
   }
 
+  uploadslide() {
 
-  onUpload() {
+
     this.isLoading = true;
     const fd = new FormData();
 
@@ -116,7 +122,7 @@ export class AddproductComponent implements OnInit {
       fd.append('attach', this.selectedFile, this.selectedFile.name);
     }
 
-    this.http.post(this.urlUpload + 'upload', fd, {
+    this.http.post(this.urlUpload + 'uploadslise', fd, {
       reportProgress: true,
       observe: 'events'
     }).subscribe(events => {
@@ -129,21 +135,79 @@ export class AddproductComponent implements OnInit {
             //   this.loadAttach();
             this.selectedFile = null;
             this.url = null;
-            this.prodId = null;
+            //this.prodId = null;
             this.prod_cat = null;
             this.prod_name = null;
             this.prod_price = null;
             this.prod_description = null;
             this.api.showNotification('success', 'Image Uploaded');
+            this.imgname=false;
           }, 2000)
-
-
         }
       } else if (events.type === HttpEventType.Response) {
         console.log(events);
       }
     });
 
+  }
+
+
+
+
+  onUpload() {
+    this.api.post(this.urlProd + 'imgcount', {
+      prodid: this.prodId
+    }, data => {
+      if (data) {
+        let count = data[0].count;
+        if (count == 0) {
+
+
+          this.isLoading = true;
+          const fd = new FormData();
+
+          fd.append('pid', this.prodId);
+
+          if (this.selectedFile != null) {
+            fd.append('attach', this.selectedFile, this.selectedFile.name);
+          }
+
+          this.http.post(this.urlUpload + 'upload', fd, {
+            reportProgress: true,
+            observe: 'events'
+          }).subscribe(events => {
+            if (events.type === HttpEventType.UploadProgress) {
+              this.upProgrus = Math.round(events.loaded / events.total * 100);
+              if (this.upProgrus === 100) {
+
+                setTimeout(() => {
+
+                  this.isLoading = false;
+                  //   this.loadAttach();
+                  this.selectedFile = null;
+                  this.url = null;
+                  // this.prodId = null;
+                  this.prod_cat = null;
+                  this.prod_name = null;
+                  this.prod_price = null;
+                  this.prod_description = null;
+
+                  this.api.showNotification('success', 'Image Uploaded');
+                  this.imgname=false;
+                }, 2000)
+              }
+            } else if (events.type === HttpEventType.Response) {
+              console.log(events);
+            }
+          });
+
+
+        } else {
+          this.uploadslide();
+        }
+
+      }
+    })
 
   }
 
@@ -159,6 +223,7 @@ export class AddproductComponent implements OnInit {
       this.fileType = this.selectedFile.type;
       if (this.selectedFile.type == 'image/jpeg' || this.selectedFile.type == 'image/png') {
         this.url = imgsrc.target.result;
+        this.imgname=true;
       } else {
         this.url = '../assets/img/noimage.jpg';
       }

@@ -90,37 +90,27 @@
 
                     </div>
 
-                    <div class="row" *ngIf="prodId">
+                    <div class="row" *ngIf="imgupload">
+                        <br>
+                        <h3>Upload image for {{pron}}</h3>
+                        <hr>
+                        <br>
                         <div class="col-md-12">
                             <input style="display: none;" type="file" (change)="onFileSelected($event)" #fileInput />
                             <button mat-raised-button (click)="fileInput.click()">Pick Image</button>
                             <br>
                             <br>
-                            <img [src]="url" height="200" *ngIf="url">
-                            <h4 *ngIf="url">File Type is: {{fileType}}</h4>
+                            <img [src]="url" height="200" >
+                            <h4 *ngIf="imgname">File Type is: {{fileType}}</h4>
                             <br>
                             <br>
-                            <button *ngIf="url" mat-raised-button color="primary" (click)="onUpload()"> Upload Image
+                            <button *ngIf="prodId"  mat-raised-button color="primary" (click)="onUpload()"> Upload Image
                             </button>
                         </div>
 
                         <div class="col-md-4 offset-md-4" *ngIf="isLoading">
                             <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
                         </div>
-
-
-                        <!-- <div class="row">
-                            <div class="col-md-3" *ngFor="let item of attachment">
-                                <div class="card">
-                                    <img src="{{imagePath}}{{item.path}}" />
-                                    <p *ngIf="item.page_number">Page : {{item.page_number}}</p>
-                                    <p *ngIf="item.comment">Comment : {{item.comment}}</p>
-                                </div>
-                            </div>
-                        </div> -->
-
-
-
                     </div>
 
 

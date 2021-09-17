@@ -141,6 +141,7 @@ export class BankrefprosessComponent implements OnInit {
   }
 
   process() {
+    this.isselect = false;
     let headers = new HttpHeaders().set('content-typecontent-type', 'application/json').set('X-Master-Key', '$2b$10$TGHRHtoAyicR0JES3sAV.eHNrbcGO.34wWRbHuhvJoOK/yN63kkNC');
 
     this.http.get('https://api.jsonbin.io/v3/b/' + this.metaid, { 'headers': headers }).subscribe(data => {// json data get
@@ -159,7 +160,6 @@ export class BankrefprosessComponent implements OnInit {
             this.api.showNotification('success', 'Process complete');
             this.loadlist();
             this.loadcomlist();
-            this.isselect = false;
           });
         });
 

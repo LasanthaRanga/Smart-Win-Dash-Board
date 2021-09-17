@@ -165,7 +165,7 @@ export class FregonlineComponent implements OnInit {
     if (this.intoDuser) {
       if (this.placement) {
         if (this.side) {
-          if (this.product) {
+         // if (this.product) {
             if (this.firstPay > 0) {
               if (this.type) {
                 if (this.type === 'other') {
@@ -198,9 +198,9 @@ export class FregonlineComponent implements OnInit {
             } else {
               this.api.showNotification('warning', 'please Check the First Payment Rs');
             }
-          } else {
-            this.api.showNotification('warning', 'please Check the Product');
-          }
+          // } else {
+          //   this.api.showNotification('warning', 'please Check the Product');
+          // }
         } else {
           this.api.showNotification('warning', 'please Check the Side');
         }
@@ -222,7 +222,7 @@ export class FregonlineComponent implements OnInit {
         aPinUid: this.aPlacementNo,
         side: this.side,
         type: this.type,
-        product: this.product,
+        product: '',
         firstPay: this.firstPay,
         ptype:1
       }
@@ -243,9 +243,6 @@ export class FregonlineComponent implements OnInit {
      }
       
     }
-
-   
-
   }
 
 

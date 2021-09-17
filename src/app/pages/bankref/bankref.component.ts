@@ -27,8 +27,9 @@ export class BankrefComponent implements OnInit {
   upProgrus;
   fileType;
   url;
+  urlbtn=false;
 
-
+  isafterupload=false;
 
   constructor(private api: ApicallServiceService ,private http: HttpClient ,private router: Router) {
     this.user = api.getLogUser();
@@ -48,11 +49,13 @@ export class BankrefComponent implements OnInit {
           this.refno="";
           this.Amount="";
           this.sysrefno="";
-          this.api.showNotification('success', 'Uploded');
+          this.api.showNotification('success', 'All done!!!');
+          this.router.navigate(['home']);
           this.loadlist();
       });
+    }else{
+      this.api.showNotification('warning', 'Please Check Values');
     }
-    this.api.showNotification('warning', 'Please Check Values');
   }
 
 
@@ -94,7 +97,10 @@ export class BankrefComponent implements OnInit {
         if (this.upProgrus === 100) {
 
           this.api.showNotification('success', 'Image Uploaded');
-          this.router.navigate(['home']);
+          this.urlbtn=false;
+          //this.router.navigate(['home']);
+          this.isLoading=false;
+          this.isafterupload=true;
         }
       } else if (events.type === HttpEventType.Response) {
         console.log(events);
@@ -107,6 +113,7 @@ export class BankrefComponent implements OnInit {
 
 
   onFileSelected(event) {
+    this.urlbtn=true;
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
     const reader = new FileReader();
