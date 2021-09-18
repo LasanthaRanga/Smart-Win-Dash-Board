@@ -1,9 +1,8 @@
-
 <div class="main-content">
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
 
                 <div class="card">
                     <div class="card-header card-header-success">
@@ -11,8 +10,8 @@
                         <p class="card-category">Enter Your Bank Referance</p>
                     </div>
                     <div class="card-body">
-                      
-        
+
+
                         <mat-form-field>
                             <mat-label>Select product</mat-label>
                             <mat-select [(ngModel)]="ref" (ngModelChange)="loaddetails()">
@@ -21,26 +20,91 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-        
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Amount" [(ngModel)]="Amount" readonly>
-                        </mat-form-field>
-        
-                        <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Bank ref no" [(ngModel)]="refno">
-                        </mat-form-field>
-        
-                        
-        
-                        <div class="row">
+
+                        <div class="row" *ngIf="ref">
                             <div class="col-md-12">
-                              <button (click)="save()" mat-raised-button type="submit" class="btn btn-success">submit</button>
+                                <input style="display: none;" type="file" (change)="onFileSelected($event)"
+                                    #fileInput />
+                                <button mat-raised-button (click)="fileInput.click()">Pick Image</button>
+                                <br>
+                                <br>
+                                <img [src]="url" height="200" *ngIf="url">
+                                <h4 *ngIf="url">File Type is: {{fileType}}</h4>
+                                <br>
+                                <br>
+                                <button *ngIf="urlbtn" mat-raised-button color="primary" (click)="onUpload()"> Upload Image
+                                </button>
                             </div>
-                          </div>
+
+                            <div class="col-md-4 offset-md-4" *ngIf="isLoading">
+                                <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                            </div>
+                        </div>
+
+                        <div *ngIf="isafterupload">
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Amount" [(ngModel)]="Amount" readonly>
+                            </mat-form-field>
+    
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="Bank ref no" [(ngModel)]="refno">
+                            </mat-form-field>
+    
+                            <mat-form-field class="example-full-width">
+                                <input matInput placeholder="System ref no" [(ngModel)]="sysrefno">
+                            </mat-form-field>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button (click)="save()" mat-raised-button type="submit"
+                                        class="btn btn-success">submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
 
             </div>
+
+
+
+            <div class="col-md-6">
+
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title"><strong>Upload recipt</strong></h4>
+                        <!-- <p class="card-category">Enter Your Bank Referance</p> -->
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="row" *ngIf="ref">
+                            <div class="col-md-12">
+                                <input style="display: none;" type="file" (change)="onFileSelected($event)" #fileInput />
+                                <button mat-raised-button (click)="fileInput.click()">Pick Image</button>
+                                <br>
+                                <br>
+                                <img [src]="url" height="200" *ngIf="url">
+                                <h4 *ngIf="url">File Type is: {{fileType}}</h4>
+                                <br>
+                                <br>
+                                <button *ngIf="url" mat-raised-button color="primary" (click)="onUpload()"> Upload Image
+                                </button>
+                            </div>
+    
+                            <div class="col-md-4 offset-md-4" *ngIf="isLoading">
+                                <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                            </div>
+    
+    
+                     
+
+                        </div> -->
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 </div>

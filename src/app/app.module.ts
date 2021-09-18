@@ -33,6 +33,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+//import { ActivenodeComponent } from './pages/activenode/activenode.component';
 //import { BankrefprosessComponent } from './pages/bankrefprosess/bankrefprosess.component';
 //import { BankrefComponent } from './pages/bankref/bankref.component';
 //import { ConpayComponent } from './pages/conpay/conpay.component';
@@ -90,6 +91,7 @@ export function tokenGet() {
     LoginPageComponent,
     CreatePassComponent,
     ForgotPassComponent,
+    //ActivenodeComponent,
     //BankrefprosessComponent,
     //BankrefComponent,
     //ConpayComponent,

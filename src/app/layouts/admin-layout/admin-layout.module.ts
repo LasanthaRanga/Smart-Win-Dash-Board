@@ -24,6 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -61,6 +62,7 @@ import { RegonlineComponent } from '../../pages/regonline/regonline.component';
 import { ConpayComponent } from '../../pages/conpay/conpay.component';
 import { BankrefComponent } from '../../pages/bankref/bankref.component';
 import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprosess.component';
+import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 
 
@@ -81,6 +83,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     MatRadioModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatTabsModule,
     MatPaginatorModule,
     MatSlideToggleModule,
     MatCheckboxModule,
@@ -120,6 +123,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     OnpayComponent,
     YoutubePipe,
     ProinfoComponent,
+    ActivenodeComponent,
     BankrefprosessComponent,
     BankrefComponent,
     ConpayComponent,

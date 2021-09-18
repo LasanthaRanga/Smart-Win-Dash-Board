@@ -165,7 +165,7 @@ export class FregonlineComponent implements OnInit {
     if (this.intoDuser) {
       if (this.placement) {
         if (this.side) {
-          if (this.product) {
+         // if (this.product) {
             if (this.firstPay > 0) {
               if (this.type) {
                 if (this.type === 'other') {
@@ -198,9 +198,9 @@ export class FregonlineComponent implements OnInit {
             } else {
               this.api.showNotification('warning', 'please Check the First Payment Rs');
             }
-          } else {
-            this.api.showNotification('warning', 'please Check the Product');
-          }
+          // } else {
+          //   this.api.showNotification('warning', 'please Check the Product');
+          // }
         } else {
           this.api.showNotification('warning', 'please Check the Side');
         }
@@ -222,28 +222,27 @@ export class FregonlineComponent implements OnInit {
         aPinUid: this.aPlacementNo,
         side: this.side,
         type: this.type,
-        product: this.product,
-        firstPay: this.firstPay
+        product: '',
+        firstPay: this.firstPay,
+        ptype:1
       }
 
      
       localStorage.setItem('objx',JSON.stringify(this.obj));
       sessionStorage.setItem('objx',JSON.stringify(this.obj));
+      localStorage.setItem('type',"1");
       
       console.log('xxxxxxxxxx');
       console.log(this.obj);
       console.log('xxxxxxxxxx');
       this.api.showNotification('success', 'All Done');
-      if("objx" in localStorage){
+      if("objx" in localStorage && "type" in localStorage){
        this.router.navigate(['product']);
      } else {
         alert('no');
      }
       
     }
-
-   
-
   }
 
 

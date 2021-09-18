@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { environment } from 'environments/environment';
+import { HttpClient, HttpEventType } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bankref',
@@ -10,15 +12,26 @@ import { environment } from 'environments/environment';
 export class BankrefComponent implements OnInit {
 
   urlonpay = environment.apiUrl + 'onpay/'
+  urlUpload = environment.apiUrl + 'up/'
 
   ref;
   reflist;
   Amount;
   refno;
+  sysrefno;
 
   user;
 
-  constructor(private api: ApicallServiceService) {
+  isLoading;
+  selectedFile;
+  upProgrus;
+  fileType;
+  url;
+  urlbtn=false;
+
+  isafterupload=false;
+
+  constructor(private api: ApicallServiceService ,private http: HttpClient ,private router: Router) {
     this.user = api.getLogUser();
     this.loadlist();
    }
@@ -27,17 +40,22 @@ export class BankrefComponent implements OnInit {
   }
 
   save(){
-
-    this.api.post(this.urlonpay + 'updateref', {
-      refno:this.refno,
-      id:this.ref
-       }, data => {
-        this.refno="";
-        this.Amount="";
-        this.api.showNotification('success', 'Uploded');
-        this.loadlist();
-    });
-
+    if(this.refno && this.ref && this.sysrefno &&  this.sysrefno){
+      this.api.post(this.urlonpay + 'updateref', {
+        refno:this.refno,
+        id:this.ref,
+        sys_ref_no:this.sysrefno
+         }, data => {
+          this.refno="";
+          this.Amount="";
+          this.sysrefno="";
+          this.api.showNotification('success', 'All done!!!');
+          this.router.navigate(['home']);
+          this.loadlist();
+      });
+    }else{
+      this.api.showNotification('warning', 'Please Check Values');
+    }
   }
 
 
@@ -58,6 +76,60 @@ export class BankrefComponent implements OnInit {
          this.reflist=data;
     });
 
+  }
+
+  onUpload() {
+    this.isLoading = true;
+    const fd = new FormData();
+
+    fd.append('pid', this.ref);
+
+    if (this.selectedFile != null) {
+      fd.append('attach', this.selectedFile, this.selectedFile.name);
+    }
+
+    this.http.post(this.urlUpload + 'uploadres', fd, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(events => {
+      if (events.type === HttpEventType.UploadProgress) {
+        this.upProgrus = Math.round(events.loaded / events.total * 100);
+        if (this.upProgrus === 100) {
+
+          this.api.showNotification('success', 'Image Uploaded');
+          this.urlbtn=false;
+          //this.router.navigate(['home']);
+          this.isLoading=false;
+          this.isafterupload=true;
+        }
+      } else if (events.type === HttpEventType.Response) {
+        console.log(events);
+      }
+    });
+
+
+  }
+
+
+
+  onFileSelected(event) {
+    this.urlbtn=true;
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
+    const reader = new FileReader();
+
+    reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+    reader.onload = (imgsrc: any) => { // called once readAsDataURL is completed
+      this.fileType = this.selectedFile.type;
+      if (this.selectedFile.type == 'image/jpeg' || this.selectedFile.type == 'image/png') {
+        this.url = imgsrc.target.result;
+      } else {
+        this.url = '../assets/img/noimage.jpg';
+      }
+    };
+
+    // console.log(event);
   }
 
 }

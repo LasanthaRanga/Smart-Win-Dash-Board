@@ -35,6 +35,7 @@ import { RegonlineComponent } from '../../pages/regonline/regonline.component';
 import { ConpayComponent } from '../../pages/conpay/conpay.component';
 import { BankrefComponent } from '../../pages/bankref/bankref.component';
 import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprosess.component';
+import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { FregonlineComponent } from '../../pages/fregonline/fregonline.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -75,6 +76,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'regon',component:RegonlineComponent},
     { path: 'conpay',component:ConpayComponent},
     { path: 'fregon',component:FregonlineComponent},
+    { path: 'activenode',component:ActivenodeComponent},
     { path: 'bankref',component:BankrefComponent},
     { path: 'bankrefpro',component:BankrefprosessComponent}
 
