@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild ,QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -24,8 +24,15 @@ export class BankrefprosessComponent implements OnInit {
   displayedColumnscom: string[] = ['value', 'prodName', 'amount', 'id'];
   dataSourcecom = <any>[];
 
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  //@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
+
+ // @ViewChild(MatPaginator, { static: false }) paginatorpen: MatPaginator;
+  @ViewChild(MatSort, { static: false }) sortpen: MatSort;
+
+@ViewChild('paginator', {static: true}) paginator: MatPaginator;
+@ViewChild('paginatorpen', {static: true}) paginatorpen: MatPaginator;
+
 
   name;
   product;
@@ -50,6 +57,7 @@ export class BankrefprosessComponent implements OnInit {
   cimg;
   csysref;
   ccusdydref;
+  datacount=false;
 
 
   // todayNumber: number = Date.now();
@@ -61,6 +69,8 @@ export class BankrefprosessComponent implements OnInit {
   myFormattedDate;
 
   refnumber;
+
+  inputval;
 
 
   constructor(private api: ApicallServiceService, private http: HttpClient) {
@@ -77,9 +87,17 @@ export class BankrefprosessComponent implements OnInit {
 
   loadlist() {
     this.api.post(this.urlonpay + 'pendinglist', {}, data => {
+      let count = data.length;
+      //this.datacount=data.length;
       this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginatorpen;
+      this.dataSource.sort = this.sortpen;
+
+      if(count >0){
+        this.datacount =true;
+      }else{
+        this.datacount =false;
+      }
     });
   }
 
@@ -182,6 +200,10 @@ export class BankrefprosessComponent implements OnInit {
       }
 
     })
+  }
+
+  applayFilter(text) {
+    this.dataSourcecom.filter = text.trim().toLocaleLowerCase();
   }
 
 

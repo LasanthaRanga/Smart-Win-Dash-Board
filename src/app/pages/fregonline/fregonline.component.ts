@@ -52,6 +52,7 @@ export class FregonlineComponent implements OnInit {
   completedInfo;
 
   obj;
+  isClickedcheck=false;
   constructor(private api: ApicallServiceService, private router: Router) { }
 
     onNoClick(): void {
@@ -72,6 +73,11 @@ export class FregonlineComponent implements OnInit {
       this.keyList = data;
       console.log(this.keyList);
     });
+  }
+
+  cheeck(sr)
+  {
+    this.isClickedcheck=sr;
   }
 
   getProductList() {
