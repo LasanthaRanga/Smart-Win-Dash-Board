@@ -30,9 +30,10 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatePassComponent } from './create-pass/create-pass.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatExpansionModule} from '@angular/material/expansion';
+// import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 //import { ActivenodeComponent } from './pages/activenode/activenode.component';
 //import { BankrefprosessComponent } from './pages/bankrefprosess/bankrefprosess.component';
 //import { BankrefComponent } from './pages/bankref/bankref.component';
@@ -67,7 +68,7 @@ export function tokenGet() {
     MatTableModule,
     MatCheckboxModule,
     MatDialogModule,
-    MatExpansionModule,
+    // MatExpansionModule,
     MatCardModule,
     MatPaginatorModule,
     OrgchartModule,
@@ -97,7 +98,7 @@ export function tokenGet() {
     //ConpayComponent,
     //FregonlineComponent,
     //RegonlineComponent
-   // ProinfoComponent,
+    // ProinfoComponent,
 
   ],
   providers: [],

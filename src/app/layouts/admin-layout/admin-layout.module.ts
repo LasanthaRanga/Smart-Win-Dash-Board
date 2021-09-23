@@ -24,12 +24,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 // import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MatPaginatorModule } from '@angular/material';
 import { RegisterComponent } from '../../pages/register/register.component';
@@ -90,6 +90,7 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     MatDialogModule,
     NgbModule,
     MatCardModule,
+    MatExpansionModule
   ],
   declarations: [
     DashboardComponent,

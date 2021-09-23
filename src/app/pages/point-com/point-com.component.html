@@ -12,13 +12,80 @@
                         <div *ngFor="let p of poinArray">
                             <p>{{p.udata}} : {{p.amount | currency:'LKR'}}</p>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <h4>
-                            Total : {{pointTot | currency:'LKR'}}
-                        </h4>
+
+                        <div class="card-footer">
+                            <h4>
+                                Total : {{pointTot | currency:'LKR'}}
+                            </h4>
+
+                            <button *ngIf="pointComRady" mat-raised-button color="primary" (click)="ExportTOExcel('Point Commition')">Point Commition Export as Excel</button>
+
+                        </div>
+
+                        <!-- <div #TABLE>
+
+                            <mat-table matSort [dataSource]="dataSource" #table id="ExampleMaterialTable">                           
+                                <ng-container matColumnDef="A">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>A
+                                    </mat-header-cell>
+                                    <mat-cell *matCellDef="let element">
+                                        {{element.A }}
+                                    </mat-cell>
+                                </ng-container>  
+                                <ng-container matColumnDef="B">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>B</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.B}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="C">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>C</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.C}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="D">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>D</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.D}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="E">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>E</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.E}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="F">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>F</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.F}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="G">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>G</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.G}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="H">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>H</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.H}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="I">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>I</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.I}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="J">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>J</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.J}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="K">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>K</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.K}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="L">
+                                    <mat-header-cell mat-sort-header *matHeaderCellDef>L</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.L}} </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                        </div> -->
+
+
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -39,6 +106,9 @@
                         <h4>
                             Total : {{inroTot | currency:'LKR'}}
                         </h4>
+
+                        <button *ngIf="introComRady" mat-raised-button color="primary" (click)="ExportTOExcelIntro('Intro Commition')">Intro Export as Excel</button>
+
                     </div>
                 </div>
             </div>
