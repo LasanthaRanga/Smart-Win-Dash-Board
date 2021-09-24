@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild ,QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild, QueryList } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,7 +6,7 @@ import { environment } from 'environments/environment'
 import { ApicallServiceService } from 'app/services/apicall/apicall-service.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-bankrefprosess',
@@ -27,11 +27,11 @@ export class BankrefprosessComponent implements OnInit {
   //@ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
- // @ViewChild(MatPaginator, { static: false }) paginatorpen: MatPaginator;
+  // @ViewChild(MatPaginator, { static: false }) paginatorpen: MatPaginator;
   @ViewChild(MatSort, { static: false }) sortpen: MatSort;
 
-@ViewChild('paginator', {static: true}) paginator: MatPaginator;
-@ViewChild('paginatorpen', {static: true}) paginatorpen: MatPaginator;
+  @ViewChild('paginator', { static: true }) paginator: MatPaginator;
+  @ViewChild('paginatorpen', { static: true }) paginatorpen: MatPaginator;
 
 
   name;
@@ -57,7 +57,7 @@ export class BankrefprosessComponent implements OnInit {
   cimg;
   csysref;
   ccusdydref;
-  datacount=false;
+  datacount = false;
 
 
   // todayNumber: number = Date.now();
@@ -79,7 +79,7 @@ export class BankrefprosessComponent implements OnInit {
     // const now = Date.now();
     // this.myFormattedDate = this.pipe.transform(now, 'yy-MM-dd');
 
-    
+
   }
 
   ngOnInit(): void {
@@ -93,10 +93,10 @@ export class BankrefprosessComponent implements OnInit {
       this.dataSource.paginator = this.paginatorpen;
       this.dataSource.sort = this.sortpen;
 
-      if(count >0){
-        this.datacount =true;
-      }else{
-        this.datacount =false;
+      if (count > 0) {
+        this.datacount = true;
+      } else {
+        this.datacount = false;
       }
     });
   }
@@ -124,12 +124,12 @@ export class BankrefprosessComponent implements OnInit {
       let name = data[0].img_path;
       this.img = 'https://smartwinent.com/recipt/' + name;
       this.paytype = data[0].typeid;
-      this.sysref= data[0].sys_ref_no;
-      this.cusdydref= data[0].cus_sys_ref_no;
+      this.sysref = data[0].sys_ref_no;
+      this.cusdydref = data[0].cus_sys_ref_no;
       console.log(this.metaid);
       console.log(data);
-      this.myFormattedDate=
-      this.isselect = true;
+      this.myFormattedDate =
+        this.isselect = true;
     });
   }
 
@@ -147,14 +147,14 @@ export class BankrefprosessComponent implements OnInit {
       this.metaid = data[0].metaid;
       //this.id = id;
       let name = data[0].img_path;
-      this.cimg = 'https://smartwinent.com/recipt/'+ name;
+      this.cimg = 'https://smartwinent.com/recipt/' + name;
       this.paytype = data[0].typeid;
-      this.csysref= data[0].sys_ref_no;
-      this.ccusdydref= data[0].cus_sys_ref_no;
+      this.csysref = data[0].sys_ref_no;
+      this.ccusdydref = data[0].cus_sys_ref_no;
       console.log(this.metaid);
       console.log(data);
       this.isselectcom = true;
-      this.refnumber=this
+      this.refnumber = this
     });
   }
 
@@ -207,8 +207,41 @@ export class BankrefprosessComponent implements OnInit {
   }
 
 
-  create_ref_no(id){
+  create_ref_no(id) {
 
+  }
+
+
+  deletes() {
+    this.isselect = false;
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+
+        //delite
+        this.api.post(this.urlonpay + 'del', {
+          id: this.id
+        }, res => {
+          this.loadlist();
+          this.loadcomlist();
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+
+        });
+      }
+    })
   }
 
 }

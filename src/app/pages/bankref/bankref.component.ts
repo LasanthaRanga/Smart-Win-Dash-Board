@@ -40,22 +40,36 @@ export class BankrefComponent implements OnInit {
   }
 
   save(){
-    if(this.refno && this.ref && this.sysrefno &&  this.sysrefno){
-      this.api.post(this.urlonpay + 'updateref', {
-        refno:this.refno,
-        id:this.ref,
-        sys_ref_no:this.sysrefno
-         }, data => {
-          this.refno="";
-          this.Amount="";
-          this.sysrefno="";
-          this.api.showNotification('success', 'All done!!!');
-          this.router.navigate(['home']);
-          this.loadlist();
-      });
-    }else{
-      this.api.showNotification('warning', 'Please Check Values');
-    }
+
+    this.api.post(this.urlonpay + 'refcount', {
+      refno:this.refno
+       }, data => {
+
+        var count = data[0].count; 
+        console.log(count);
+        if(count == 0){
+
+          if(this.refno && this.ref && this.sysrefno &&  this.sysrefno){
+            this.api.post(this.urlonpay + 'updateref', {
+              refno:this.refno,
+              id:this.ref,
+              sys_ref_no:this.sysrefno
+               }, data => {
+                this.refno="";
+                this.Amount="";
+                this.sysrefno="";
+                this.api.showNotification('success', 'All done!!!');
+                this.router.navigate(['home']);
+                this.loadlist();
+            });
+          }else{
+            this.api.showNotification('warning', 'Please Check Values');
+          }
+         
+        }else{
+          this.api.showNotification('warning', 'Duplicate bank referance');
+        } 
+    });
   }
 
 

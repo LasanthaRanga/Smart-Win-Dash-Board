@@ -1,295 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
-        <!-- <div class="row">
-            <mat-tab-group mat-align-tabs="center">
-                <mat-tab label="Pending">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <div class="card-header card-header-success">
-                                    <h4 class="card-title"><strong>Pending Bank Referance Process</strong></h4>
-                                    <p class="card-category"></p>
-                                </div>
-                                <div class="card-body">
-
-                                    <mat-table matSort [dataSource]="dataSource">
-                                       
-                                        <ng-container matColumnDef="value">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef>Name</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
-                                        </ng-container>
-                                        
-                                        <ng-container matColumnDef="prodName">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> Product
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.prodName}} </mat-cell>
-                                        </ng-container>
-
-                                        <ng-container matColumnDef="amount">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> Pay amount
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-                                        </ng-container>
-
-
-
-                                        <ng-container matColumnDef="id">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> More Info
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"><button mat-button
-                                                    (click)="get(element.id)">More</button>
-                                            </mat-cell>
-                                        </ng-container>
-
-                                        <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
-                                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                                    </mat-table>
-
-                                 
-
-
-
-
-
-
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6" *ngIf="isselect">
-
-                            <div class="card">
-                                <div class="card-header card-header-success">
-                                    <h4 class="card-title"><strong>Bank Referance Process</strong></h4>
-                                    <p class="card-category"></p>
-                                </div>
-                                <div class="card-body">
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Name</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{name}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Product</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{product}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Bank Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{ref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Sys Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{sysref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Customer sys Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{cusdydref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Pay amount</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{payamount}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <img src="{{img}}" style="width: 25rem;">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <button (click)="process()" mat-raised-button type="submit"
-                                            class="btn btn-success"> Process</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </mat-tab>
-
-
-
-                <mat-tab label="Complete">
-
-                    <div class="row">
-                        <div class="col-md-6">
-
-
-                            <div class="card">
-                                <div class="card-header card-header-warning">
-                                    <h4 class="card-title"><strong>Complate Bank Referance Process</strong></h4>
-                                    <p class="card-category"></p>
-                                </div>
-                                <div class="card-body">
-
-                                    <mat-table matSort [dataSource]="dataSourcecom">
-                                      
-                                        <ng-container matColumnDef="value">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef>Name</mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
-                                        </ng-container>
-                                       
-                                        <ng-container matColumnDef="prodName">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> Product
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.prodName}} </mat-cell>
-                                        </ng-container>
-
-                                        <ng-container matColumnDef="amount">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> Pay amount
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-                                        </ng-container>
-
-
-
-                                        <ng-container matColumnDef="id">
-                                            <mat-header-cell mat-sort-header *matHeaderCellDef> More Info
-                                            </mat-header-cell>
-                                            <mat-cell *matCellDef="let element"><button mat-button
-                                                    (click)="getcom(element.id)">More</button>
-                                            </mat-cell>
-                                        </ng-container>
-
-                                        <mat-header-row *matHeaderRowDef="displayedColumnscom"></mat-header-row>
-                                        <mat-row *matRowDef="let row; columns: displayedColumnscom;"></mat-row>
-                                    </mat-table>
-
-                                  
-
-
-
-
-
-
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6" *ngIf="isselectcom">
-
-                            <div class="card">
-                                <div class="card-header card-header-warning">
-                                    <h4 class="card-title"><strong>Bank Referance Process</strong></h4>
-                                    <p class="card-category"></p>
-                                </div>
-                                <div class="card-body">
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Name</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{cname}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Product</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{cproduct}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Bank Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{cref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Sys Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{csysref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label><b>Customer sys Referance No</b></mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label><b>{{ccusdydref}}</b></mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label>Pay amount</mat-label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label>{{cpayamount}}</mat-label>
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <img src="{{cimg}}" style="width: 25rem;">
-                                        </div>
-                                    </div>
-
-                                 
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </mat-tab>
-            </mat-tab-group>
-
-        </div> -->
 
         <mat-tab-group mat-align-tabs="end">
-            <!-- <mat-tab label="First">Content 1</mat-tab> -->
             <mat-tab label="Pending">
                 <div class="row">
                     <div class="col-md-6">
@@ -300,16 +12,7 @@
                                     <p class="card-category"></p>
                                 </div>
                                 <div class="card-body">
-
-                                   
-    
                                     <mat-table sortpen [dataSource]="dataSource">
-                                        <!-- Position Column -->
-                                        <!-- <ng-container matColumnDef="idInvoice">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef> No. </mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.idInvoice}} </mat-cell>
-                                </ng-container> -->
-    
                                         <!-- Name Column -->
                                         <ng-container matColumnDef="value">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef>Name</mat-header-cell>
@@ -321,15 +24,15 @@
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let element"> {{element.prodName}} </mat-cell>
                                         </ng-container>
-    
+
                                         <ng-container matColumnDef="amount">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef> Pay amount
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
                                         </ng-container>
-    
-    
-    
+
+
+
                                         <ng-container matColumnDef="id">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef> More Info
                                             </mat-header-cell>
@@ -337,13 +40,14 @@
                                                     (click)="get(element.id)">More</button>
                                             </mat-cell>
                                         </ng-container>
-    
+
                                         <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
                                         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                                     </mat-table>
-    
-                                    <mat-paginator #paginatorpen [pageSizeOptions]="[3,10,50,100]" showFirstLastButtons></mat-paginator>
-    
+
+                                    <mat-paginator #paginatorpen [pageSizeOptions]="[3,10,50,100]" showFirstLastButtons>
+                                    </mat-paginator>
+
                                 </div>
                             </div>
 
@@ -422,8 +126,16 @@
                                 </div>
 
                                 <div class="row">
-                                    <button (click)="process()" mat-raised-button type="submit" class="btn btn-success">
-                                        Process</button>
+                                    <div class="col-md-6">
+                                        <button (click)="deletes()" mat-raised-button type="submit"
+                                            class="btn btn-warning">
+                                            Delete</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button (click)="process()" mat-raised-button type="submit"
+                                            class="btn btn-success">
+                                            Process</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -450,14 +162,10 @@
                                                 [(ngModel)]="inputval" placeholder="Search Here" />
                                         </mat-form-field>
                                     </div>
-    
-                                    <mat-table matSort="sortpen"  [dataSource]="dataSourcecom">
-                                        <!-- Position Column -->
-                                        <!-- <ng-container matColumnDef="idInvoice">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef> No. </mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.idInvoice}} </mat-cell>
-                                </ng-container> -->
-    
+
+                                    <mat-table matSort="sortpen" [dataSource]="dataSourcecom">
+
+
                                         <!-- Name Column -->
                                         <ng-container matColumnDef="value">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef>Name</mat-header-cell>
@@ -469,15 +177,13 @@
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let element"> {{element.prodName}} </mat-cell>
                                         </ng-container>
-    
+
                                         <ng-container matColumnDef="amount">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef> Pay amount
                                             </mat-header-cell>
                                             <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
                                         </ng-container>
-    
-    
-    
+
                                         <ng-container matColumnDef="id">
                                             <mat-header-cell mat-sort-header *matHeaderCellDef> More Info
                                             </mat-header-cell>
@@ -485,21 +191,13 @@
                                                     (click)="getcom(element.id)">More</button>
                                             </mat-cell>
                                         </ng-container>
-    
+
                                         <mat-header-row *matHeaderRowDef="displayedColumnscom"></mat-header-row>
                                         <mat-row *matRowDef="let row; columns: displayedColumnscom;"></mat-row>
                                     </mat-table>
-    
-                                    <mat-paginator #paginator  [pageSizeOptions]="[3,10,50,100]" showFirstLastButtons></mat-paginator>
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+                                    <mat-paginator #paginator [pageSizeOptions]="[3,10,50,100]" showFirstLastButtons>
+                                    </mat-paginator>
                                 </div>
                             </div>
 
@@ -577,10 +275,7 @@
                                     </div>
                                 </div>
 
-                                <!-- <div class="row">
-                                    <button (click)="process()" mat-raised-button type="submit"
-                                        class="btn btn-success"> Process</button>
-                                </div> -->
+
                             </div>
                         </div>
 
