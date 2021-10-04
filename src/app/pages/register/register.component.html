@@ -11,8 +11,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <mat-form-field class="example-full-width">
-                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)"
-                                    placeholder="Introducer SW No.">
+                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)" placeholder="Introducer SW No.">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
@@ -40,8 +39,7 @@
 
                         <div class="col-md-2">
                             <mat-form-field class="example-full-width">
-                                <input matInput [(ngModel)]="aPlacementNo" (keydown.enter)="loadPins($event)"
-                                    placeholder="Placement SW Number">
+                                <input matInput [(ngModel)]="aPlacementNo" (keydown.enter)="loadPins($event)" placeholder="Placement SW Number">
                             </mat-form-field>
                         </div>
 
@@ -180,16 +178,14 @@
                                 <mat-datepicker #picker1></mat-datepicker>
                             </mat-form-field>
 
-                            <div class="example-full-width" *ngIf="item.type=='2 radio gender'"
-                                style="text-align: center;">
+                            <div class="example-full-width" *ngIf="item.type=='2 radio gender'" style="text-align: center;">
                                 <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
                                     <mat-radio-button value="male">Male</mat-radio-button>
                                     <mat-radio-button value="female">Female</mat-radio-button>
                                 </mat-radio-group>
                             </div>
 
-                            <div class="example-full-width" *ngIf="item.type=='2 radio civil'"
-                                style="text-align: center;">
+                            <div class="example-full-width" *ngIf="item.type=='2 radio civil'" style="text-align: center;">
                                 <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
                                     <mat-radio-button value="Married">Married</mat-radio-button>
                                     <mat-radio-button value="Single">Single</mat-radio-button>
@@ -200,8 +196,7 @@
 
 
                     </div>
-                    <button (click)="save()" *ngIf="isClicked" mat-raised-button type="submit"
-                        class="btn btn-success pull-right">Submit</button>
+                    <button (click)="save()" *ngIf="isClicked" mat-raised-button type="submit" class="btn btn-success pull-right">Submit</button>
                 </div>
             </div>
         </div>
@@ -217,8 +212,7 @@
                 <h4>Placement SW Pin A : {{completedInfo?.A}} </h4>
                 <h4>Placement SW Pin B : {{completedInfo?.B}} </h4>
                 <h3>Invoice Number : {{completedInfo?.extra.invoice}}</h3>
-                <button mat-raised-button type="submit" class="btn btn-success pull-right"
-                    (click)="clickOnDone()">Done</button>
+                <button mat-raised-button type="submit" class="btn btn-success pull-right" (click)="clickOnDone()">Done</button>
             </div>
         </div>
     </div>
