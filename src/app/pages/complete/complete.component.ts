@@ -150,7 +150,7 @@ export class CompleteComponent implements OnInit {
 
 
       console.log(obj);
-      window.location.href = 'https://sw.smartwin.lk/invoice?data=' + JSON.stringify(obj);
+      window.location.href = 'https://sw.smartwinent.com/invoice?data=' + JSON.stringify(obj);
     });
 
 

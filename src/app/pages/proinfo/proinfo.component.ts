@@ -74,7 +74,7 @@ export class ProinfoComponent implements OnInit {
 
 
 
-  constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient ,private router: Router) {
+  constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private http: HttpClient, private router: Router) {
     this.user = api.getLogUser();
     console.log(this.user);
     this.ptype = "onpay";
@@ -91,19 +91,19 @@ export class ProinfoComponent implements OnInit {
         this.getmoreimages(id);
 
 
-        var type =localStorage.getItem('type');
+        var type = localStorage.getItem('type');
 
-        if(type == '1'){
+        if (type == '1') {
           this.obj = JSON.parse(localStorage.getItem('objx'));
           this.payamount = Number(this.obj['firstPay']);
           this.paytype = 1;
 
-        }else if(type == '2'){
+        } else if (type == '2') {
           this.paytype = 2;
-          this.obj=JSON.parse(localStorage.getItem('objx2'));
+          this.obj = JSON.parse(localStorage.getItem('objx2'));
           this.payamount = Number(this.obj['firstPay']);
         }
-      
+
         console.log(this.payamount);
         this.partpays = this.payamount;
 
@@ -176,7 +176,7 @@ export class ProinfoComponent implements OnInit {
           tot: this.payamount * 0.03,
           bill_tot: this.payamount * 0.03 + this.payamount,
           bank_order_id: this.order_id,
-          paytype:this.paytype
+          paytype: this.paytype
           //obj:this.obj
 
         }, data => {
@@ -228,15 +228,15 @@ export class ProinfoComponent implements OnInit {
 
     let obj;
 
-    if(this.paytype == 1){
+    if (this.paytype == 1) {
 
-    obj = JSON.parse(localStorage.getItem('objx'));
-    obj['product'] = this.proid;
+      obj = JSON.parse(localStorage.getItem('objx'));
+      obj['product'] = this.proid;
 
-    }else if(this.paytype == 2){
+    } else if (this.paytype == 2) {
 
-    obj = JSON.parse(localStorage.getItem('objx2'));
-    obj['product'] = this.proid;
+      obj = JSON.parse(localStorage.getItem('objx2'));
+      obj['product'] = this.proid;
 
     }
 
@@ -245,23 +245,24 @@ export class ProinfoComponent implements OnInit {
     let savedID;
     let headers = new HttpHeaders().set('content-typecontent-type', 'application/json').set('X-Master-Key', '$2b$10$TGHRHtoAyicR0JES3sAV.eHNrbcGO.34wWRbHuhvJoOK/yN63kkNC');
 
-      this.http.post('https://api.jsonbin.io/v3/b ', obj, { 'headers': headers }).subscribe(data => { // json data save
+    this.http.post('https://api.jsonbin.io/v3/b ', obj, { 'headers': headers }).subscribe(data => { // json data save
       console.log(data);
       console.log(data['metadata'].id);
       savedID = data['metadata'].id;
 
-            this.api.post(this.urlonpay + 'bankref', { 
-            mid:savedID,
-            refno:'',
-            amount:this.partpays,
-            uid:this.user['uid'],
-            proid:this.proid,
-            typeid:this.paytype
-           }, data => {
-            this.create_ref(savedID)
-            // this.api.showNotification('success', 'All Done');
-            this.router.navigate(['bankref']);
-        });
+      this.api.post(this.urlonpay + 'bankref', {
+        mid: savedID,
+        refno: '',
+        amount: this.partpays,
+        uid: this.user['uid'],
+        proid: this.proid,
+        typeid: this.paytype,
+        mobile: obj
+      }, data => {
+        this.create_ref(savedID, obj)
+        // this.api.showNotification('success', 'All Done');
+        this.router.navigate(['bankref']);
+      });
 
     })
 
@@ -280,22 +281,23 @@ export class ProinfoComponent implements OnInit {
 
   }
 
-  create_ref(metid){
-    this.api.post(this.urlonpay + 'getid', { 
-      metid:metid
-     }, data => {
-    const now = Date.now();
-    this.myFormattedDate = this.pipe.transform(now, 'yyMMdd');
-       var id=data[0].id;
-       this.sysrefno=this.myFormattedDate+id;
+  create_ref(metid, obj) {
+    this.api.post(this.urlonpay + 'getid', {
+      metid: metid     
+    }, data => {
+      const now = Date.now();
+      this.myFormattedDate = this.pipe.transform(now, 'yyMMdd');
+      var id = data[0].id;
+      this.sysrefno = this.myFormattedDate + id;
 
-       this.api.post(this.urlonpay + 'addsysref', { 
-        metid:metid,
-        refno:this.sysrefno
-       }, data => { 
-        Swal.fire('system ref  '+ this.sysrefno);
-       });
-  });
+      this.api.post(this.urlonpay + 'addsysref', {
+        metid: metid,
+        refno: this.sysrefno,
+        obj: obj
+      }, data => {
+        Swal.fire('system ref  ' + this.sysrefno);
+      });
+    });
   }
 
 

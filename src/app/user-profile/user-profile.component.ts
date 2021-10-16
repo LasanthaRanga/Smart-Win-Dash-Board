@@ -146,6 +146,7 @@ export class UserProfileComponent implements OnInit {
     console.log(this.userData);
     this.api.post(this.url + 'update', { udata: this.userData }, data => {
       console.log(data);
+      this.api.showNotification("success", "Updated");
     });
   }
 

@@ -27,67 +27,70 @@ export class BankrefComponent implements OnInit {
   upProgrus;
   fileType;
   url;
-  urlbtn=false;
+  urlbtn = false;
 
-  isafterupload=false;
+  isafterupload = false;
 
-  constructor(private api: ApicallServiceService ,private http: HttpClient ,private router: Router) {
+  constructor(private api: ApicallServiceService, private http: HttpClient, private router: Router) {
     this.user = api.getLogUser();
     this.loadlist();
-   }
+  }
 
   ngOnInit(): void {
   }
 
-  save(){
+  save() {
 
     this.api.post(this.urlonpay + 'refcount', {
-      refno:this.refno
-       }, data => {
+      refno: this.refno
+    }, data => {
 
-        var count = data[0].count; 
-        console.log(count);
-        if(count == 0){
+      var count = data[0].count;
+      console.log(count);
+      if (count == 0) {
 
-          if(this.refno && this.ref && this.sysrefno &&  this.sysrefno){
-            this.api.post(this.urlonpay + 'updateref', {
-              refno:this.refno,
-              id:this.ref,
-              sys_ref_no:this.sysrefno
-               }, data => {
-                this.refno="";
-                this.Amount="";
-                this.sysrefno="";
-                this.api.showNotification('success', 'All done!!!');
-                this.router.navigate(['home']);
-                this.loadlist();
-            });
-          }else{
-            this.api.showNotification('warning', 'Please Check Values');
-          }
-         
-        }else{
-          this.api.showNotification('warning', 'Duplicate bank referance');
-        } 
+        if (this.refno && this.ref && this.sysrefno && this.sysrefno) {
+          this.api.post(this.urlonpay + 'updateref', {
+            refno: this.refno,
+            id: this.ref,
+            sys_ref_no: this.sysrefno
+          }, data => {
+            this.refno = "";
+            this.Amount = "";
+            this.sysrefno = "";
+            this.api.showNotification('success', 'All done!!!');
+            this.router.navigate(['home']);
+            this.loadlist();
+          });
+        } else {
+          this.api.showNotification('warning', 'Please Check Values');
+        }
+
+      } else {
+        this.api.showNotification('warning', 'Duplicate bank referance');
+      }
     });
   }
 
 
-  loaddetails(){
+  loaddetails() {
     this.api.post(this.urlonpay + 'bankreflistmore', {
-      uid:this.user['uid'],
-      refid:this.ref
-       }, data => {
-        this.Amount=data[0].amount;
+      uid: this.user['uid'],
+      refid: this.ref
+    }, data => {
+      this.Amount = data[0].amount;
     });
 
   }
 
-  loadlist(){
+  loadlist() {
     this.api.post(this.urlonpay + 'bankreflist', {
-      uid:this.user['uid']
-       }, data => {
-         this.reflist=data;
+      uid: this.user['uid']
+    }, data => {
+      this.reflist = data;
+      console.log("-------------------------------------");
+      console.log(this.reflist);
+      console.log("-------------------------------------");
     });
 
   }
@@ -111,10 +114,10 @@ export class BankrefComponent implements OnInit {
         if (this.upProgrus === 100) {
 
           this.api.showNotification('success', 'Image Uploaded');
-          this.urlbtn=false;
+          this.urlbtn = false;
           //this.router.navigate(['home']);
-          this.isLoading=false;
-          this.isafterupload=true;
+          this.isLoading = false;
+          this.isafterupload = true;
         }
       } else if (events.type === HttpEventType.Response) {
         console.log(events);
@@ -127,7 +130,7 @@ export class BankrefComponent implements OnInit {
 
 
   onFileSelected(event) {
-    this.urlbtn=true;
+    this.urlbtn = true;
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
     const reader = new FileReader();

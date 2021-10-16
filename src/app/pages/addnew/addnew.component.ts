@@ -44,6 +44,7 @@ export class AddnewComponent implements OnInit {
   cusTpno;
   cusProdName;
 
+  isClickedcheck = false;
 
   constructor(private api: ApicallServiceService, private arout: ActivatedRoute, private router: Router) { }
 
@@ -95,6 +96,10 @@ export class AddnewComponent implements OnInit {
 
   unSelect() {
     this.selectedProduct = null;
+  }
+
+  cheeck(sr) {
+    this.isClickedcheck = sr;
   }
 
   loadPlaceMent() {

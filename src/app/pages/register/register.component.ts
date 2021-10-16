@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   isClicked = true;
   completedInfo;
-
+  isClickedcheck = false;
 
   constructor(private api: ApicallServiceService) { }
 
