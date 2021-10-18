@@ -51,6 +51,10 @@ export class UserProfileComponent implements OnInit {
         this.user = { id: this.selectedUser };
         this.loadSelectedUser(id);
         this.editable = true;
+        if (this.api.getLogUser().uType != 1) {
+          this.editable = false;
+        }
+
       } else {
         this.user = this.api.getLogUser()
         console.log(this.user);
