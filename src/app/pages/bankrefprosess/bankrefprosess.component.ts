@@ -166,6 +166,9 @@ export class BankrefprosessComponent implements OnInit {
       console.log(data)
       console.log(data['metadata'].id);
       this.obj = data['record'];
+      console.log("$$$$$$$$");
+      console.log( this.obj);
+      console.log("$$$$$$$$");
       console.log(this.paytype);
 
 
