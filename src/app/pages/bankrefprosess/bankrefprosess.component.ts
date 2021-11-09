@@ -58,6 +58,8 @@ export class BankrefprosessComponent implements OnInit {
   csysref;
   ccusdydref;
   datacount = false;
+  uid;
+  cuid;
 
 
   // todayNumber: number = Date.now();
@@ -115,6 +117,7 @@ export class BankrefprosessComponent implements OnInit {
     this.api.post(this.urlonpay + 'pendinglistall', {
       id: id
     }, data => {
+      this.uid= data[0].uid;
       this.name = data[0].valu;
       this.product = data[0].prodName;
       this.ref = data[0].refno;
@@ -140,6 +143,7 @@ export class BankrefprosessComponent implements OnInit {
     this.api.post(this.urlonpay + 'com_all', {
       id: id
     }, data => {
+      this.cuid= data[0].uid;
       this.cname = data[0].valu;
       this.cproduct = data[0].prodName;
       this.cref = data[0].refno;

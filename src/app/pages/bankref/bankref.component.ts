@@ -13,6 +13,7 @@ export class BankrefComponent implements OnInit {
 
   urlonpay = environment.apiUrl + 'onpay/'
   urlUpload = environment.apiUrl + 'up/'
+  urlinvoice = environment.apiUrl + 'invoice/'
 
   ref;
   reflist;
@@ -31,9 +32,13 @@ export class BankrefComponent implements OnInit {
 
   isafterupload = false;
 
+  reflists;
+  favoriteSeason;
+
   constructor(private api: ApicallServiceService, private http: HttpClient, private router: Router) {
     this.user = api.getLogUser();
     this.loadlist();
+    this.getreflist();
   }
 
   ngOnInit(): void {
@@ -83,6 +88,9 @@ export class BankrefComponent implements OnInit {
 
   }
 
+  
+
+
   loadlist() {
     this.api.post(this.urlonpay + 'bankreflist', {
       uid: this.user['uid']
@@ -128,6 +136,13 @@ export class BankrefComponent implements OnInit {
   }
 
 
+  setno(id){
+    console.log("xxxxxx");
+    console.log(id);
+    console.log("xxxxxx");
+  }
+
+
 
   onFileSelected(event) {
     this.urlbtn = true;
@@ -147,6 +162,18 @@ export class BankrefComponent implements OnInit {
     };
 
     // console.log(event);
+  }
+
+
+  getreflist(){
+    this.api.post(this.urlinvoice + 'getreflist', {
+      uid: this.user['uid']
+    }, data => {
+      this.reflists = data;
+      console.log("----xxxx------");
+      console.log(data);
+      console.log("----xxxx------");
+    });
   }
 
 }
