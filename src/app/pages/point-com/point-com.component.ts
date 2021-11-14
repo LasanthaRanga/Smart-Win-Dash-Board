@@ -17,6 +17,8 @@ export class PointComComponent implements OnInit {
   url = environment.apiUrl + 'user/'
   treeUrl = environment.apiUrl + 'tree/'
   processID = 0;
+  date;
+  cdate;
 
   poinArray;
   introArray;
@@ -40,12 +42,28 @@ export class PointComComponent implements OnInit {
     this.arout.params.subscribe(params => {
       const id = params['id'];
       this.processID = id;
+      this.getProcessData();
       this.getPointCom();
       this.getIntroCom();
 
       console.log(id);
     });
 
+  }
+
+  changeDate() {
+    console.log(this.cdate);
+    this.api.post(this.treeUrl + 'updateProcessDate', { id: this.processID, day: this.cdate }, data => {
+      this.date = this.cdate;
+    });
+
+  }
+
+  getProcessData() {
+    this.api.post(this.treeUrl + 'getProcessDate', { id: this.processID }, data => {
+      console.log(data);
+      this.date = data.dateTime;
+    });
   }
 
   getPointCom() {

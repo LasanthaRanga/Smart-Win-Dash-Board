@@ -1,6 +1,25 @@
 <div class="main-content">
     <div class="container-fluid">
 
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Date : {{date | date }}</h3>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Change Date</mat-label>
+                    <input matInput [(ngModel)]="cdate" [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <button mat-raised-button color="primary" (click)="changeDate()">Change</button>
+
+
+
+        </div>
+
 
         <div class="row">
             <div class="col-md-12">
@@ -21,67 +40,6 @@
                             <button *ngIf="pointComRady" mat-raised-button color="primary" (click)="ExportTOExcel('Point Commition')">Point Commition Export as Excel</button>
 
                         </div>
-
-                        <!-- <div #TABLE>
-
-                            <mat-table matSort [dataSource]="dataSource" #table id="ExampleMaterialTable">                           
-                                <ng-container matColumnDef="A">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>A
-                                    </mat-header-cell>
-                                    <mat-cell *matCellDef="let element">
-                                        {{element.A }}
-                                    </mat-cell>
-                                </ng-container>  
-                                <ng-container matColumnDef="B">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>B</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.B}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="C">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>C</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.C}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="D">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>D</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.D}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="E">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>E</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.E}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="F">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>F</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.F}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="G">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>G</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.G}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="H">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>H</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.H}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="I">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>I</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.I}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="J">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>J</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.J}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="K">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>K</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.K}} </mat-cell>
-                                </ng-container>
-                                <ng-container matColumnDef="L">
-                                    <mat-header-cell mat-sort-header *matHeaderCellDef>L</mat-header-cell>
-                                    <mat-cell *matCellDef="let element"> {{element.L}} </mat-cell>
-                                </ng-container>
-
-                                <mat-header-row *matHeaderRowDef=" displayedColumns"></mat-header-row>
-                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                            </mat-table>
-                        </div> -->
-
 
                     </div>
                 </div>

@@ -117,7 +117,7 @@ export class BankrefprosessComponent implements OnInit {
     this.api.post(this.urlonpay + 'pendinglistall', {
       id: id
     }, data => {
-      this.uid= data[0].uid;
+      this.uid = data[0].uid;
       this.name = data[0].valu;
       this.product = data[0].prodName;
       this.ref = data[0].refno;
@@ -143,7 +143,7 @@ export class BankrefprosessComponent implements OnInit {
     this.api.post(this.urlonpay + 'com_all', {
       id: id
     }, data => {
-      this.cuid= data[0].uid;
+      this.cuid = data[0].uid;
       this.cname = data[0].valu;
       this.cproduct = data[0].prodName;
       this.cref = data[0].refno;
@@ -171,7 +171,7 @@ export class BankrefprosessComponent implements OnInit {
       console.log(data['metadata'].id);
       this.obj = data['record'];
       console.log("$$$$$$$$");
-      console.log( this.obj);
+      console.log(this.obj);
       console.log("$$$$$$$$");
       console.log(this.paytype);
 
