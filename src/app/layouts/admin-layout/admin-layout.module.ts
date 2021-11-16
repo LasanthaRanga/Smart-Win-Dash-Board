@@ -64,7 +64,7 @@ import { BankrefComponent } from '../../pages/bankref/bankref.component';
 import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprosess.component';
 import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
-
+import { ProdIissueComponent } from '../../pages/prod-iissue/prod-iissue.component';
 
 @NgModule({
   imports: [
@@ -130,7 +130,8 @@ import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
     ConpayComponent,
     FregonlineComponent,
     RegonlineComponent,
-    AddproductComponent
+    AddproductComponent,
+    ProdIissueComponent
   ]
 })
 

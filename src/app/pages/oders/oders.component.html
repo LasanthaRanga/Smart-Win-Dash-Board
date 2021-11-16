@@ -44,14 +44,16 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <mat-form-field>
-                            <mat-label>Select Message</mat-label>
-                            <mat-select [(ngModel)]="msg" (ngModelChange)="selectMessage()">
+
+                        <mat-form-field class="example-full-width">
+                            <input matInput [(ngModel)]="msg" placeholder="Massage">
+                        </mat-form-field>
+                        <!-- <mat-select [(ngModel)]="msg" (ngModelChange)="selectMessage()">
                                 <mat-option *ngFor="let msg of messagesForSend" [value]="msg">
                                     {{msg.message_sinhala}}
                                 </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+                            </mat-select> -->
+
 
                         <button (click)="send()" mat-raised-button type="submit" class="btn btn-success pull-right">Send
                             Message</button>
@@ -84,8 +86,7 @@
                             <input matInput [(ngModel)]="comment" placeholder="Comment">
                         </mat-form-field>
 
-                        <button (click)="changeProductOnInvoice()" mat-raised-button type="submit"
-                            class="btn btn-warning pull-right">Change Product</button>
+                        <button (click)="changeProductOnInvoice()" mat-raised-button type="submit" class="btn btn-warning pull-right">Change Product</button>
 
                     </div>
 
@@ -93,7 +94,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="card col-md-4">
                 <div>
                     <div class="card" *ngFor="let mg of allMessages">
@@ -104,6 +105,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>

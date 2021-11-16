@@ -11,8 +11,7 @@
 
                         <div class="col-md-12">
                             <mat-form-field class="col-md-6">
-                                <input matInput (keyup)="applayFilter($event.target.value)" type="text"
-                                    [(ngModel)]="inputval" placeholder="Search Here" />
+                                <input matInput (keyup)="applayFilter($event.target.value)" type="text" [(ngModel)]="inputval" placeholder="Search Here" />
                             </mat-form-field>
                         </div>
 
@@ -20,11 +19,10 @@
 
 
                             <!-- Name Column -->
-                            <ng-container matColumnDef="idUser" >
+                            <ng-container matColumnDef="idUser">
                                 <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">SW No.</mat-header-cell>
                                 <mat-cell *matCellDef="let element" style="justify-content: flex-end;">
-                                    <button mat-mini-fab color="accent" (click)="selectOne(element)"
-                                        aria-label="Example icon button with a plus one icon">
+                                    <button mat-mini-fab color="accent" (click)="selectOne(element)" aria-label="Example icon button with a plus one icon">
                                         {{element.idUser}}
                                     </button>
                                 </mat-cell>
@@ -33,6 +31,11 @@
                             <ng-container matColumnDef="value">
                                 <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
                                 <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="DAY">
+                                <mat-header-cell mat-sort-header *matHeaderCellDef> Date </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.DAY | date :'yyyy-MM-dd'}} </mat-cell>
                             </ng-container>
 
 
@@ -60,8 +63,7 @@
 
                         <div class="col-md-12">
                             <mat-form-field class="col-md-6">
-                                <input matInput (keyup.enter)="getbynic(inputvals)" type="text"
-                                    [(ngModel)]="inputvals" placeholder="Search by NIC" />
+                                <input matInput (keyup.enter)="getbynic(inputvals)" type="text" [(ngModel)]="inputvals" placeholder="Search by NIC" />
                             </mat-form-field>
                         </div>
 
@@ -69,11 +71,10 @@
 
 
                             <!-- Name Column -->
-                            <ng-container matColumnDef="idUser" >
+                            <ng-container matColumnDef="idUser">
                                 <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">SW No.</mat-header-cell>
                                 <mat-cell *matCellDef="let element" style="justify-content: flex-end;">
-                                    <button mat-mini-fab color="accent" (click)="selectOne(element)"
-                                        aria-label="Example icon button with a plus one icon">
+                                    <button mat-mini-fab color="accent" (click)="selectOne(element)" aria-label="Example icon button with a plus one icon">
                                         {{element.idUser}}
                                     </button>
                                 </mat-cell>

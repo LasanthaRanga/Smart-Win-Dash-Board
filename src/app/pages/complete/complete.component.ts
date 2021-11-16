@@ -116,11 +116,12 @@ export class CompleteComponent implements OnInit {
 
 
       data.forEach(el => {
+        console.log(el);
         if (el.keyId == 2) {
           obj.id = el.idInvoice;
           obj.name = el.value;
           obj.amount = el.totalValue;
-          obj.item = 'RO WATER FILTER';
+          obj.item = el.prodName;
           obj.date = el.date;
 
         };

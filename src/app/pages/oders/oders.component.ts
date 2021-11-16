@@ -44,8 +44,8 @@ export class OdersComponent implements OnInit {
       console.log(id);
       this.getUserData();
       this.getProductData();
-      this.loadMassagesToSend();
-      this.getAllMessages();
+      // this.loadMassagesToSend();
+      // this.getAllMessages();
       this.getAllProduct();
     });
 
@@ -111,7 +111,7 @@ export class OdersComponent implements OnInit {
       tid: this.tid,
       prodid: this.product.idProd,
       date: '',
-      msg: this.msg.message_sinhala,
+      msg: this.msg,
       status: this.msg.status,
       sttext: this.msg.status_text,
     }
@@ -120,19 +120,19 @@ export class OdersComponent implements OnInit {
     this.api.post(this.prodUrl + 'sendMassage', obj, data => {
       console.log(data);
       this.api.showNotification('success', 'Message Sent');
-      this.getAllMessages();
+      // this.getAllMessages();
     });
 
   }
 
 
 
-  getAllMessages() {
-    this.api.post(this.prodUrl + 'getAllSent', { tid: this.tid }, data => {
-      this.allMessages = data;
-      console.log(this.allMessages);
-    });
-  }
+  // getAllMessages() {
+  //   this.api.post(this.prodUrl + 'getAllSent', { tid: this.tid }, data => {
+  //     this.allMessages = data;
+  //     console.log(this.allMessages);
+  //   });
+  // }
 
 
   getAllProduct() {

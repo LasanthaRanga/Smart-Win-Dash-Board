@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
   urlUsers = environment.apiUrl + 'user/'
   inputval
 
-  displayedColumns: string[] = ['value', 'idUser'];
+  displayedColumns: string[] = ['value', 'DAY', 'idUser',];
   dataSource = <any>[];
 
   dataSourcenic = <any>[];
@@ -37,6 +37,7 @@ export class UsersComponent implements OnInit {
 
   getUserList() {
     this.api.post(this.urlUsers + 'getUsersList', {}, data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -52,13 +53,13 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['user-profile', item.idUser])
   }
 
-  getbynic(id){
-    this.api.post(this.urlUsers + 'getUsersListBYNic', {nic:id}, data => {
+  getbynic(id) {
+    this.api.post(this.urlUsers + 'getUsersListBYNic', { nic: id }, data => {
       this.dataSourcenic = new MatTableDataSource(data);
       this.dataSourcenic.paginator = this.paginator;
       console.log(this.niclist);
       console.log("#######");
-      
+
     })
   }
 
