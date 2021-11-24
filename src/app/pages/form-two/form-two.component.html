@@ -1,0 +1,204 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-header card-header-info">
+                <h4 class="card-title"><strong>System Reference No</strong></h4>
+                <p class="card-category">Please Complete One By One</p>
+            </div>
+            <div class="card-body">
+                <div *ngIf="refData">
+                    <h4>SR : {{refData.ref}} </h4>
+                    <h4>NAME : {{refData.namewith}} </h4>
+                    <h4>Introducer : {{refData.iSWno}} </h4>
+                    <h4>User SW : {{refData.userId}} </h4>
+                    <h4>Mobile : {{refData.mobile}} </h4>
+                    <h4>Price : {{refData.price}} </h4>
+                </div>
+                <button *ngIf="!plasemantId" mat-raised-button (click)="goToTree()" class="btn btn-success">Get Plasement information From Tree</button>
+
+            </div>
+        </div>
+
+        <br>
+
+        <div class="card" *ngIf="plasemantId && complete">
+            <div class="card-header card-header-danger">
+                <h4 class="card-title"><strong>placement Information</strong></h4>
+                <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <mat-form-field class="example-full-width">
+                            <input matInput [(ngModel)]="aPlacementNo" [disabled]="true" placeholder="Placement SW Number">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Select Pin</mat-label>
+
+                            <input matInput [(ngModel)]="aPin" [disabled]="true" placeholder="Placement SW Number">
+
+                        </mat-form-field>
+
+
+                    </div>
+
+
+                    <div class="col-md-3" style="text-align: center;">
+                        <mat-radio-group aria-label="Select a Group" [(ngModel)]="side" [disabled]="true">
+                            <mat-radio-button value="A">A</mat-radio-button>
+                            <mat-radio-button value="B">B</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+
+
+                    <button *ngIf="plasemantId" mat-raised-button (click)="goToTree()" class="btn btn-success">Change information From Tree</button>
+                </div>
+            </div>
+        </div>
+        <br>
+
+
+        <div class="card" *ngIf="plasemantId && complete">
+            <div class="card-header card-header-success">
+                <h4 class="card-title"><strong>Registration Form</strong></h4>
+                <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <mat-label>Select Main Core Leader</mat-label>
+                            <mat-select [(ngModel)]="smuid" (ngModelChange)="getKeyLeaders()">
+                                <mat-option *ngFor="let main of mainList" [value]="main">
+                                    {{main.name}} - SW : {{main.main}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <mat-label>Select Key Leader</mat-label>
+                            <mat-select [(ngModel)]="skey">
+                                <mat-option *ngFor="let key of keyLeaders" [value]="key">
+                                    {{key.name}} - SW : {{key.key}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="col-md-6" *ngFor="let item of keyList">
+                        <mat-form-field class="example-full-width" *ngIf="item.type=='text'">
+                            <input matInput [(ngModel)]="item.val" placeholder="{{item.key}}">
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width" *ngIf="item.type=='date'">
+                            <mat-label>{{item.key}}</mat-label>
+                            <input matInput [(ngModel)]="item.val" [matDatepicker]="picker1">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                        </mat-form-field>
+
+                        <div class="example-full-width" *ngIf="item.type=='2 radio gender'" style="text-align: center;">
+                            <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                <mat-radio-button value="male">Male&nbsp;&nbsp;</mat-radio-button>
+                                <mat-radio-button value="female">Female&nbsp;&nbsp;</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div class="example-full-width" *ngIf="item.type=='2 radio civil'" style="text-align: center;">
+                            <mat-radio-group aria-label="Select an option" [(ngModel)]="item.val">
+                                <mat-radio-button value="Married">Married&nbsp;&nbsp;</mat-radio-button>
+                                <mat-radio-button value="Single">Single&nbsp;&nbsp;</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <mat-form-field class="example-full-width" *ngIf="item.type=='combo1'">
+                            <mat-label>{{item.key}}</mat-label>
+                            <mat-select [(ngModel)]="item.val" (selectionChange)="bankChange(item.val)">
+                                <mat-option *ngFor="let bank of bankList " [value]="bank">
+                                    {{bank.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width " *ngIf="item.type=='combo2'">
+                            <mat-label>{{item.key}}</mat-label>
+                            <mat-select [(ngModel)]="item.val" (selectionChange)="branchChange(item.val)">
+                                <mat-option *ngFor="let branch of branchList " [value]="branch">
+                                    {{branch.br_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <mat-checkbox class="example-margin " [(ngModel)]="isClickedcheck " (change)="cheeck($event.checked) ">Agreed Terms and Conditions</mat-checkbox>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <a href="https://smartwinent.com/agrement/1.pdf " target="_blank ">Click here for agreement</a>
+                    </div>
+                </div>
+
+                <button (click)="save() " *ngIf="isClickedcheck " mat-raised-button type="submit " class="btn btn-success pull-right ">Submit</button>
+
+                <!-- <button (click)="save() " *ngIf="isClicked " mat-raised-button type="submit " class="btn btn-success pull-right ">Submit</button> -->
+            </div>
+        </div>
+
+        <br>
+        <div class="card" *ngIf="!complete && !isOffice">
+            <div class="card-header card-header-success">
+                <h4 class="card-title"><strong>Upload Receipt</strong></h4>
+                <p class="card-category">Upload Bank Diposit Receipt</p>
+            </div>
+            <div class="card-body">
+
+                <div class="col-md-2">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="SRNumber" placeholder="Bank Referance">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-12">
+                    <input style="display: none;" type="file" (change)="onFileSelected($event)" #fileInput />
+                    <button mat-raised-button (click)="fileInput.click()">Pick Image</button>
+                    <br>
+                    <br>
+                    <img [src]="url" height="200" *ngIf="url">
+                    <h4 *ngIf="url">File Type is: {{fileType}}</h4>
+                    <br>
+                    <br>
+                    <button *ngIf="urlbtn" mat-raised-button color="primary" (click)="onUpload()"> Upload Image
+                            </button>
+                </div>
+
+                <div class="col-md-4 offset-md-4" *ngIf="isLoading">
+                    <mat-progress-spinner ng-show="isLoading" value='{{upProgrus}}'></mat-progress-spinner>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

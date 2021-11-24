@@ -1,0 +1,82 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+
+
+        <div>
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title"><strong>Add Main Core Leaders</strong></h4>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="muid" (keydown.enter)="loadMain($event)" placeholder="SW No.">
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="name" disabled placeholder="Name">
+                            </mat-form-field>
+                            <button (click)="addCoreLeader()" mat-raised-button type="submit" class="btn btn-success pull-right">Add Main Core Leader</button>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <div *ngFor="let item of mainList">
+                                <p>SR : {{item.main}} - {{item.name}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div>
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title"><strong>Add Key Leaders</strong></h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field>
+                                    <mat-label>Select Main Core Leader</mat-label>
+                                    <mat-select [(ngModel)]="smuid" (ngModelChange)="setMain(smuid)" (ngModelChange)="getKeyLeaders()">
+                                        <mat-option *ngFor="let main of mainList" [value]="main.id">
+                                            {{main.name}} - SW : {{main.main}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [(ngModel)]="kuid" (keydown.enter)="loadKey($event)" placeholder="SW No.">
+                                </mat-form-field>
+
+                                <mat-form-field class="example-full-width">
+                                    <input matInput [(ngModel)]="kname" disabled placeholder="Name">
+                                </mat-form-field>
+                                <button (click)="addKeyLeader()" mat-raised-button type="submit" class="btn btn-success pull-right">Add Key Leader</button>
+                            </div>
+                            <div class="col-md-6">
+                                <div *ngFor="let item of keyList">
+                                    <p>SR : {{item.key}} - {{item.name}}</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>

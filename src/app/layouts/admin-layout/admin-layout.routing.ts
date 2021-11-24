@@ -37,6 +37,11 @@ import { BankrefComponent } from '../../pages/bankref/bankref.component';
 import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprosess.component';
 import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { FregonlineComponent } from '../../pages/fregonline/fregonline.component';
+import { FormOneComponent } from 'app/pages/form-one/form-one.component';
+import { SysrefComponent } from 'app/pages/sysref/sysref.component';
+import { FormTwoComponent } from 'app/pages/form-two/form-two.component';
+import { LeadersComponent } from 'app/pages/leaders/leaders.component';
+import { BankprocessComponent } from 'app/pages/bankprocess/bankprocess.component';
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -71,13 +76,18 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'addnew/:id', component: AddnewComponent },
     { path: 'onpay', component: OnpayComponent },
     { path: 'addproduct', component: AddproductComponent },
-    { path: 'proinfo',component:ProinfoComponent},
-    { path: 'proinfo/:id',component:ProinfoComponent},
-    { path: 'regon',component:RegonlineComponent},
-    { path: 'conpay',component:ConpayComponent},
-    { path: 'fregon',component:FregonlineComponent},
-    { path: 'activenode',component:ActivenodeComponent},
-    { path: 'bankref',component:BankrefComponent},
-    { path: 'bankrefpro',component:BankrefprosessComponent}
+    { path: 'proinfo', component: ProinfoComponent },
+    { path: 'proinfo/:id', component: ProinfoComponent },
+    { path: 'regon', component: RegonlineComponent },
+    { path: 'conpay', component: ConpayComponent },
+    { path: 'fregon', component: FregonlineComponent },
+    { path: 'activenode', component: ActivenodeComponent },
+    { path: 'bankref', component: BankrefComponent },
+    { path: 'bankrefpro', component: BankrefprosessComponent },
+    { path: 'formone/:id/:price/:type', component: FormOneComponent },
+    { path: 'sysref', component: SysrefComponent },
+    { path: 'formTwo/:id/:type', component: FormTwoComponent },
+    { path: 'leaders', component: LeadersComponent },
+    { path: 'bankprocess', component: BankprocessComponent },
 
 ];

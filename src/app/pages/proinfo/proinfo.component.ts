@@ -16,6 +16,9 @@ export class ProinfoComponent implements OnInit {
   urlProd = environment.apiUrl + 'prod/'
   urlonpay = environment.apiUrl + 'onpay/'
   treeUrl = environment.apiUrl + 'tree/'
+
+  minValue = 8500;
+
   proid;
 
   proname;
@@ -32,7 +35,7 @@ export class ProinfoComponent implements OnInit {
   ptype;
   partpays;
 
-  payamount:number;
+  payamount: number;
 
   paytype;
 
@@ -212,15 +215,44 @@ export class ProinfoComponent implements OnInit {
 
         });
 
+
+        this.router.navigate(["formone/10/7000/o"])
+
       } else {
         console.log("bfef");
-        this.save_bank();
+        //this.save_bank();
+
+
+
       }
 
     } else {
 
       this.api.showNotification('warning', 'check pay amount');
 
+    }
+  }
+
+
+  direct() {
+    if (this.payamount && this.payamount >= this.minValue) {
+      this.router.navigate(["formone/" + this.proid + "/" + this.payamount + "/d"])
+    } else {
+      this.api.showNotification('warning', 'check pay amount');
+    }
+  }
+  bank() {
+    if (this.payamount && this.payamount >= this.minValue) {
+      this.router.navigate(["formone/" + this.proid + "/" + this.payamount + "/b"])
+    } else {
+      this.api.showNotification('warning', 'check pay amount');
+    }
+  }
+  online() {
+    if (this.payamount && this.payamount >= this.minValue) {
+      this.router.navigate(["formone/" + this.proid + "/" + this.payamount + "/o"])
+    } else {
+      this.api.showNotification('warning', 'check pay amount');
     }
   }
 

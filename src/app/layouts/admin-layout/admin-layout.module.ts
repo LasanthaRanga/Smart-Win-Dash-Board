@@ -30,6 +30,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 import { MatPaginatorModule } from '@angular/material';
 import { RegisterComponent } from '../../pages/register/register.component';
@@ -65,6 +67,11 @@ import { BankrefprosessComponent } from '../../pages/bankrefprosess/bankrefprose
 import { ActivenodeComponent } from '../../pages/activenode/activenode.component';
 import { ProinfoComponent } from '../../pages/proinfo/proinfo.component';
 import { ProdIissueComponent } from '../../pages/prod-iissue/prod-iissue.component';
+import { FormOneComponent } from '../../pages/form-one/form-one.component';
+import { SysrefComponent } from '../../pages/sysref/sysref.component';
+import { FormTwoComponent } from '../../pages/form-two/form-two.component';
+import { LeadersComponent } from '../../pages/leaders/leaders.component';
+import { BankprocessComponent } from '../../pages/bankprocess/bankprocess.component';
 
 @NgModule({
   imports: [
@@ -90,7 +97,8 @@ import { ProdIissueComponent } from '../../pages/prod-iissue/prod-iissue.compone
     MatDialogModule,
     NgbModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatAutocompleteModule
   ],
   declarations: [
     DashboardComponent,
@@ -131,7 +139,13 @@ import { ProdIissueComponent } from '../../pages/prod-iissue/prod-iissue.compone
     FregonlineComponent,
     RegonlineComponent,
     AddproductComponent,
-    ProdIissueComponent
+    ProdIissueComponent,
+    FormOneComponent,
+    SysrefComponent,
+    FormTwoComponent,
+    LeadersComponent,
+    BankprocessComponent
+
   ]
 })
 

@@ -36,6 +36,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+
+
+
+
+
 //import { ActivenodeComponent } from './pages/activenode/activenode.component';
 //import { BankrefprosessComponent } from './pages/bankrefprosess/bankrefprosess.component';
 //import { BankrefComponent } from './pages/bankref/bankref.component';
@@ -94,6 +99,10 @@ export function tokenGet() {
     LoginPageComponent,
     CreatePassComponent,
     ForgotPassComponent,
+   
+ 
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

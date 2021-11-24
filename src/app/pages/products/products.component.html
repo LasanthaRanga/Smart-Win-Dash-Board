@@ -1,45 +1,21 @@
 <div class="main-content">
     <div class="container-fluid">
 
-       
-        <div  class="col d-flex justify-content-center">
-
-            <div class="container">
-                <div class="card" style="width: 25rem;" *ngFor="let p of products">
+        <div class="row">
+            <div *ngFor="let p of products" class="col-md-4 col-sm-6">
+                <div class="card">
                     <img class="card-img-top" src="{{p.prodImage}}" alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title"><b>{{p.prodName}}</b></h5>
-                      <h5 class="card-title"><small>LKR.</small> {{p.prodPrice}}</h5>
-                      <!-- <p class="card-text"><small>LKR.</small> {{p.prodPrice}}</p> -->
-                      <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                      <hr>
-                      <button mat-raised-button (click)="more(p.idProd)" class="btn btn-primary">More Info</button>
+                        <h5 class="card-title"><b>{{p.prodName}}</b></h5>
+                        <h5 class="card-title"><small>LKR.</small> {{p.prodPrice}}.00</h5>
+                        <!-- <p class="card-text"><small>LKR.</small> {{p.prodPrice}}</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                        <hr>
+                        <button mat-raised-button (click)="more(p.idProd)" class="btn btn-primary">More Info</button>
                     </div>
-                  </div>
-    
+                </div>
             </div>
         </div>
-     
 
-      
-
-        <!-- <div class="card" *ngFor="let p of products">
-            <div class="row">
-                <div class="col-sm-3">
-                    <img src="{{p.prodImage}}">
-                </div>
-                <div class="col-md-7">
-                    <h3 class="card-category">{{p.prodName}}</h3>
-                    <h3 class="card-title"><small>LKR.</small> {{p.prodPrice}} </h3>
-                </div>
-                <div class="col-md-2 ">
-                    <div class="container">
-                    <div class="center">
-                        <button mat-raised-button (click)="more(p.idProd)" color="primary">Buy</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            
-        </div> -->
     </div>
+</div>

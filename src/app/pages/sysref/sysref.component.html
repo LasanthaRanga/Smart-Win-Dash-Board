@@ -1,0 +1,40 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div>
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title"><strong>System Referals</strong></h4>
+                    <p class="card-category">Please Complete One By One</p>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12" style="text-align: center;">
+                        <mat-radio-group aria-label="" [(ngModel)]="ptype" (change)="statusChange()">
+                            <mat-radio-button value="0" [checked]="true">Pending &nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                            <mat-radio-button value="1">Approval pending&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                            <mat-radio-button value="2">Completed&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                            <mat-radio-button value="3">Rejected&nbsp;&nbsp;&nbsp;&nbsp;</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+                    <div class="card" *ngFor="let ref of refList">
+                        <div class="card-body">
+                            <h4>SR : {{ref.ref}} </h4>
+                            <h4>NAME : {{ref.namewith}} </h4>
+                            <h4>Introducer : {{ref.iSWno}} </h4>
+                            <h4>Mobile : {{ref.mobile}} </h4>
+                            <h4>Price : {{ref.price}} </h4>
+                            <button *ngIf="ptype==0" mat-raised-button (click)="goToFormTwo(ref.id)" class="btn btn-success pull-right">Upload Recipt</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

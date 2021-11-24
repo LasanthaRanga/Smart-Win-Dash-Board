@@ -1,0 +1,66 @@
+<div class="main-content">
+    <div class="container-fluid">
+
+        <div>
+            <div class="card" *ngIf="!SR">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title"><strong>Please fill the all information</strong></h4>
+                    <p class="card-category">Smart Win Entrepreneur Regsitration</p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)" placeholder="Introducer SW No.">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iNidNo" disabled placeholder="Introducer ID No.">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="iName" disabled placeholder="Name of Introducer">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="name" placeholder="Name With Initials">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="nic" placeholder="NIC Number">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="address" placeholder="Address">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <input matInput [(ngModel)]="mobile" placeholder="Mobile Number">
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success pull-right">Next</button>
+                </div>
+            </div>
+
+            <div class="card" *ngIf="SR">
+                <div class="card-body">
+                    <h4>When you deposit the money for buy a product you should note this System Reference no. (SR {{SR}}) in the purpose of the cash deposit bank slip.</h4>
+                    <h2>SR : {{SR}}</h2>
+                    <a *ngIf="user.uType!=1" routerLink="/sysref" mat-raised-button type="submit" class="btn btn-success pull-right">Next</a>
+                    <button *ngIf="user.uType==1" mat-raised-button type="submit" class="btn btn-success pull-right" (click)="go()">GO</button>
+                </div>
+            </div>
+
+            <br>
+        </div>
+    </div>
+</div>
