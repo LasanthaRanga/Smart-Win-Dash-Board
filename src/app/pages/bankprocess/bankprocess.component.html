@@ -26,8 +26,8 @@
                             <h4>Mobile : {{ref.mobile}} </h4>
                             <h4>Price : {{ref.price}} </h4>
 
-                            <div class="col-md-12" *ngIf="ptype==1">
-                                <img src="{{ref.imagePath}}" style="width: 25rem;">
+                            <div class="col-md-12" *ngIf="ptype==1">                              
+                                <img src="https://smartwinent.com/recipt/{{ref.imagePath}}">
                             </div>
                             <button *ngIf="ptype==1" mat-raised-button (click)="runProcess(ref.id)" class="btn btn-success pull-right">Run Process</button>
                             <button *ngIf="ptype==1" mat-raised-button (click)="reject(ref.id)" class="btn btn-warning pull-right">Reject</button>

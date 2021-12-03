@@ -138,6 +138,16 @@
                                         </mat-radio-group>
                                     </div>
 
+
+                                    <mat-form-field class="example-full-width" *ngIf="item.type=='combo1'">
+                                        <input matInput [(ngModel)]="item.value" placeholder="{{item.key}}">
+                                    </mat-form-field>
+
+                                    <mat-form-field class="example-full-width" *ngIf="item.type=='combo2'">
+                                        <input matInput [(ngModel)]="item.value" placeholder="{{item.key}}">
+                                    </mat-form-field>
+
+
                                 </div>
 
 

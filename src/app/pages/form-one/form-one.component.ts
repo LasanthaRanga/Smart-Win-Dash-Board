@@ -23,6 +23,7 @@ export class FormOneComponent implements OnInit {
   SR;
   refId;
   user;
+  submited =false;
 
   constructor(private arout: ActivatedRoute, private api: ApicallServiceService, private router: Router) {
     this.user = api.getLogUser();
@@ -83,6 +84,10 @@ export class FormOneComponent implements OnInit {
         } else {
           console.log(this.mobile.length);
           if (this.mobile.length == 10) {
+
+            this.submited = true;
+
+
             console.log("OK")
             let obj = {
               iSWno: this.iSWno,

@@ -16,7 +16,7 @@ export class InvoiceComponent implements OnInit {
 
   urlInvoice = environment.apiUrl + 'invoice/'
 
-  displayedColumns: string[] = ['idUser', 'value', 'pin', 'idInvoice'];
+  displayedColumns: string[] = ['idUser', 'value', 'pin','totalValue', 'idInvoice'];
   dataSource = <any>[];
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
@@ -38,6 +38,7 @@ export class InvoiceComponent implements OnInit {
   loadAllInvoice() {
 
     this.http.post<any>(this.urlInvoice + 'getAllInvoice', {}).subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;

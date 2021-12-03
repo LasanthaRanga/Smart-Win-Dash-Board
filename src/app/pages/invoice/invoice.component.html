@@ -39,6 +39,11 @@
                                 <mat-cell *matCellDef="let element"> {{element.pin}} </mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="totalValue">
+                                <mat-header-cell mat-sort-header *matHeaderCellDef>Value</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.totalValue}}.00 </mat-cell>
+                            </ng-container>
+
 
 
                             <ng-container matColumnDef="idInvoice">

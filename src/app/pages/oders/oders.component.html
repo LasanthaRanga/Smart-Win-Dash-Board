@@ -86,7 +86,8 @@
                             <input matInput [(ngModel)]="comment" placeholder="Comment">
                         </mat-form-field>
 
-                        <button (click)="changeProductOnInvoice()" mat-raised-button type="submit" class="btn btn-warning pull-right">Change Product</button>
+                        <button (click)="changeProductOnInvoice()" mat-raised-button type="submit"
+                            class="btn btn-warning pull-right">Change Product</button>
 
                     </div>
 
@@ -94,17 +95,17 @@
             </div>
         </div>
 
-        <!-- <div class="row">
+        <div class="row">
             <div class="card col-md-4">
                 <div>
                     <div class="card" *ngFor="let mg of allMessages">
                         <div class="card-body">
-                            <p>{{mg.comment}}</p>
+                            <p>{{mg.sms}}</p>
                             <p>{{mg.date | date }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 </div>

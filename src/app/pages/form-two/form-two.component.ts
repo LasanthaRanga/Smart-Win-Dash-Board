@@ -101,7 +101,7 @@ export class FormTwoComponent implements OnInit {
       this.treeData = data;
       console.log(this.treeData[0].swTreeId);
       // window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
-      window.location.href = 'http://localhost/chart?data=' + this.treeData[0].swTreeId;
+      window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
     });
   }
 
@@ -135,20 +135,20 @@ export class FormTwoComponent implements OnInit {
             this.side = null;
             this.can = false;
             this.message = 'Cannot Add Pins Are Full'
-            window.location.href = 'http://localhost/chart?data=' + this.treeData[0].swTreeId;
+            window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
           }
 
         } else {
           this.api.showNotification('warning', 'Both Sides Are Full');
           this.can = false;
           this.message = 'Cannot Add Pins Are Full'
-          window.location.href = 'http://localhost/chart?data=' + this.treeData[0].swTreeId;
+          window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
         }
       } else {
         this.api.showNotification('danger', 'Please Check Pin ID');
         this.message = 'Cannot Add Pins Are Full'
         this.can = false;
-        window.location.href = 'http://localhost/chart?data=' + this.treeData[0].swTreeId;
+        window.location.href = 'https://sw.smartwinent.com/chart?data=' + this.treeData[0].swTreeId;
       }
       console.log(data);
     });

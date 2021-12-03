@@ -11,7 +11,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <mat-form-field class="example-full-width">
-                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)" placeholder="Introducer SW No.">
+                                <input matInput [(ngModel)]="iSWno" (keydown.enter)="loadIntroducer($event)"
+                                    placeholder="Introducer SW No.">
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
@@ -47,16 +48,19 @@
                         </div>
 
                     </div>
-                    <button (click)="submit()" mat-raised-button type="submit" class="btn btn-success pull-right">Next</button>
+                    <button *ngIf="!submited" (click)="submit()" mat-raised-button type="submit"
+                        class="btn btn-success pull-right">Next</button>
                 </div>
             </div>
 
             <div class="card" *ngIf="SR">
                 <div class="card-body">
-                    <h4>When you deposit the money for buy a product you should note this System Reference no. (SR {{SR}}) in the purpose of the cash deposit bank slip.</h4>
+                    <h4>When you deposit the money for buy a product you should note this System Reference no. (SR
+                        {{SR}}) in the purpose of the cash deposit bank slip.</h4>
                     <h2>SR : {{SR}}</h2>
-                    <a *ngIf="user.uType!=1" routerLink="/sysref" mat-raised-button type="submit" class="btn btn-success pull-right">Next</a>
-                    <button *ngIf="user.uType==1" mat-raised-button type="submit" class="btn btn-success pull-right" (click)="go()">GO</button>
+                    <!-- <a *ngIf="user.uType!=1" routerLink="/sysref" mat-raised-button type="submit" class="btn btn-success pull-right">Next</a> -->
+                    <button *ngIf="user.uType==1" mat-raised-button type="submit" class="btn btn-success pull-right"
+                        (click)="go()">GO</button>
                 </div>
             </div>
 
