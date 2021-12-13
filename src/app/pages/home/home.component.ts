@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.api.post(this.url + 'getValue', { key: 'homevideo' }, data => {
-      this.video = data[0].value + "&output=embed"
+      this.video = data[0].value;
       console.log(this.video);
     });
 

@@ -47,7 +47,7 @@
 
 
                             <ng-container matColumnDef="idInvoice">
-                                <mat-header-cell mat-sort-header *matHeaderCellDef> More Info </mat-header-cell>
+                                <mat-header-cell mat-sort-header *matHeaderCellDef>invoice Number</mat-header-cell>
                                 <mat-cell *matCellDef="let element"><button mat-button
                                         [routerLink]="['/complete/',element.pin]">{{element.idInvoice}}</button>
                                 </mat-cell>
