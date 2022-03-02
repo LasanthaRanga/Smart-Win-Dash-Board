@@ -5,27 +5,29 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
   panelOpenState = false;
-  urlProd = environment.apiUrl + 'prod/'
+  urlProd = environment.apiUrl + 'prod/';
   products;
-  constructor(private api: ApicallServiceService,private router: Router) { }
+  user;
+  constructor(private api: ApicallServiceService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
+    this.user = this.api.getLogUser();
+    console.log(this.user);
   }
 
   loadProducts() {
-    this.api.post(this.urlProd + 'getAllProduct', {}, data => {
+    this.api.post(this.urlProd + 'getAllProduct', {}, (data) => {
       this.products = data;
       console.log(this.products);
     });
   }
 
-  more(id){
-    this.router.navigate(['proinfo',id]);
+  more(id) {
+    this.router.navigate(['proinfo', id]);
   }
-
 }
