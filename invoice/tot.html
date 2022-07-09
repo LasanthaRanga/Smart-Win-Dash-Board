@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assessment Tax Recipt</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .left {
+            text-align: left;
+            font-size: xx-small;
+        }
+
+        .right {
+            text-align: right;
+            font-size: xx-small;
+        }
+
+        @media print {
+
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+        }
+
+        @media print {
+            #printPageButton {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="text-align: center;">
+        <p>ආරච්චිකට්ටුව ප්‍රාදේශීය සභාව</p>
+        <div>
+            <table class="center">
+                <tr>
+                    <td class="left" style="font-size: small;">
+                        Barcord ID:
+                    </td>
+                    <td id="idMobTot" class="right" style="font-size: small;">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="left" style="font-size: small;">
+                        No:
+                    </td>
+                    <td id="no" class="right" style="font-size: small;">
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="left" style="font-size: small;">
+                        Rs.
+                    </td>
+                    <td id="amount" class="right" style="font-size: small;">
+                    </td>
+                </tr>
+
+
+
+            </table>
+        </div>
+
+
+        <!-- <br> -->
+        <!-- <button class="no-print" onclick="window.print();">Print via Browser</button> -->
+        <!-- <br><br> -->
+        <hr class="no-print">
+        <button class="no-print" id="printPageButton" onclick="btPrintBillInline();">PRINT</button>
+        <br>
+        <!-- <button class="no-print" onclick="usbPrintBillInline();">App Link Print Inline - USB</button> -->
+        <!-- <br><br><br> -->
+        <!-- <button class="no-print" onclick="netPrintBillInline();">App Link Print Inline - Net / WiFi</button> -->
+        <!-- <br><br> -->
+        <!-- <hr class="no-print"><br> -->
+        <!-- <button class="no-print" onclick="btPrintBillUrl();">App Link Print URL - Bluetooth</button> -->
+        <!-- <br><br><br> -->
+        <!-- <button class="no-print" onclick="usbPrintBillUrl();">App Link Print URL - USB</button> -->
+        <!-- <br><br><br> -->
+        <!-- <button class="no-print" onclick="netPrintBillUrl();">App Link Print URL - Net / WiFi</button> -->
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('data') // true
+        let param = JSON.parse(searchParams.get('data'));
+        console.log(param);
+        $("#idMobTot").html(param.idMobTot+'_M');
+        $("#no").html(param.no);
+        $("#amount").html(param.total.toFixed(2));
+
+
+
+
+        const totalBill = this.sabaName + '\n' +
+            '  Assessment Tax Collection\n' +
+            '------------------------------ \n' +
+            '  Barcord ID: ' + tb.idMobTot + '_' + 'M\n' +
+            '  Receipt No: ' + tb.no + '\n' +
+            '  Amount: Rs.' + tb.total.toFixed(2) + '\n' +
+            '------------------------------ \n \n \n \n  ';
+        //  this.print.sendToBluetoothPrinter(this.macAddress, totalBill);
+
+
+
+
+
+
+
+        function netPrintBillInline() {
+            let dynHtml = "print://escpos.org/escpos/net/print?srcTp=uri&srcObj=html&src='data:text/html,";
+            dynHtml += document.body.innerHTML
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+        function btPrintBillInline() {
+            let dynHtml = "print://escpos.org/escpos/bt/print?srcTp=uri&srcObj=html&numCopies=1&src='data:text/html,";
+            dynHtml += document.body.innerHTML
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+        function usbPrintBillInline() {
+            let dynHtml = "print://escpos.org/escpos/usb/print?srcTp=uri&srcObj=html&src='data:text/html,";
+            dynHtml += document.body.innerHTML
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+        function netPrintBillUrl() {
+            let dynHtml = "print://escpos.org/escpos/net/print?srcTp=uri&srcObj=html&src='";
+            dynHtml += "https://loopedlabs.com/web-print/bill.html";
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+        function btPrintBillUrl() {
+            let dynHtml = "print://escpos.org/escpos/bt/print?srcTp=uri&srcObj=html&src='";
+            dynHtml += "https://loopedlabs.com/web-print/bill.html";
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+        function usbPrintBillUrl() {
+            let dynHtml = "print://escpos.org/escpos/usb/print?srcTp=uri&srcObj=html&src='";
+            dynHtml += "https://loopedlabs.com/web-print/bill.html";
+            dynHtml += "'";
+            window.location.href = dynHtml;
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

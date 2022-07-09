@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Win Tree</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link
+      href="https://www.jqueryscript.net/css/jquerysctipttop.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="jquery.orgchart.css"
+      media="all"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <style type="text/css">
+      #orgChart {
+        width: auto;
+        height: auto;
+      }
+
+      #orgChartContainer {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: #ffffff;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
+  <body>
+    <div class="container">
+      <br />
+      <div class="row">
+        <div class="col-2">
+          <a
+            href="https://sw.smartwinent.com/#/user-profile"
+            type="button"
+            class="btn btn btn-secondary"
+            >Back</a
+          >
+        </div>
+        <div id="admin"></div>
+        <br />
+        <h4 id="access" style="color: red"></h4>
+      </div>
+    </div>
+    <div id="orgChartContainer">
+      <div id="orgChart"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jquery.orgchart.js"></script>
+    <script type="text/javascript">
+      let usr = localStorage.getItem('user');
+      usr = JSON.parse(usr);
+      console.log(usr);
+      let adminPrev = false;
+
+      if (usr) {
+        if (
+          usr.uType == 1 ||
+          usr.uType == 2 ||
+          usr.uType == 6 ||
+          usr.uType == 3 ||
+          usr.uType == 4
+        ) {
+          adminPrev = true;
+          $('#admin').html(
+            `<div class="col-2"> <input type="number" class="form-control" id="swno" placeholder="SW" /></input></div><div class="col-2"><button type="button" onclick="test()" class="btn btn-primary">Get</button></div><div class="col-5" id="pins"></div>`
+          );
+        }
+      }
+      console.log(usr);
+
+      let pp = true;
+      let first = 1;
+
+      load = function (nodId) {
+        console.log(pp + '  xxxxx  ' + nodId);
+
+        $.post(
+          'https://api.smartwinent.com/tree/getDownTreeLimited',
+          {
+            // $.post("http://localhost:3000/tree/getDownTreeLimited", {
+            id: nodId,
+            type: pp,
+          },
+          function (data, status) {
+            if (status === 'success') {
+              //   console.log("Data: " + data + "\nStatus: " + status);
+              pp = true;
+              testData = data;
+
+              console.log(JSON.parse(JSON.stringify(testData)));
+
+              $(function () {
+                org_chart = $('#orgChart').orgChart({
+                  data: testData,
+                  showControls: true,
+                  allowEdit: true,
+
+                  onAddNode: function (node) {
+                    console.log('Created new node on node ' + node.data.id);
+                    console.log('NEW NODE');
+                    //  org_chart.newNode(node.data.id);
+                    load(node.data.id);
+                  },
+
+                  onDeleteNode: function (node) {
+                    console.log('Deleted node ' + node.data.id);
+
+                    console.log('First ' + first);
+                    console.log('ID ' + node.data.id);
+                    console.log('parent ' + node.data.parent);
+
+                    // org_chart.deleteNode(node.data.id);
+                    console.log(node.data);
+
+                    if (node.data.parent === 0) {
+                      pp = false;
+                      console.log('call 4');
+                      if (node.data.id > first) {
+                        console.log('TRUE wela');
+                        load(node.data.id);
+                      } else {
+                        console.log('AUL');
+                        pp = true;
+                      }
+                    } else {
+                      console.log('Call 1');
+                      load(node.data.parent);
+                    }
+                  },
+
+                  onClickNode: function (node) {
+                    console.log('CLICK ON NODE');
+
+                    console.log('Clicked node ' + node.data.id);
+
+                    Swal.fire({
+                      title: 'Do You Want To Add New Seller',
+                      showDenyButton: true,
+                      showCancelButton: true,
+                      confirmButtonText: `Add New`,
+                      denyButtonText: `Profile`,
+                    }).then((result) => {
+                      console.log(result);
+                      /* Read more about isConfirmed, isDenied below */
+                      if (result.isConfirmed) {
+                        // Swal.fire('Saved!', '', 'success')
+                        // window.location.href = "https://sw.smartwinent.com/#/addnew/" + node.data.id;
+                        window.location.href =
+                          'https://sw.smartwinent.com/#//formTwo/' +
+                          node.data.id +
+                          '/tree';
+                        console.log(node.data);
+                      } else if (result.isDenied) {
+                        window.location.href =
+                          'https://sw.smartwinent.com/#/user-profile/' +
+                          node.data.uid;
+                      }
+                    });
+                  },
+                });
+              });
+            } else {
+              console.log('else');
+            }
+          }
+        );
+      };
+
+      let searchParams = new URLSearchParams(window.location.search);
+      searchParams.has('data'); // true
+
+      let param = JSON.parse(searchParams.get('data'));
+      first = param;
+      console.log(param);
+      load(param);
+      var testData = param;
+
+      function log(text) {
+        $('#consoleOutput').append('<p>' + text + '</p>');
+      }
+
+      search = function (val) {
+        console.log("------------------------------------------------");
+        console.log(val);
+        var sd = val;
+        if (sd > first) {
+          load(sd);
+          $('#access').html('');
+        } else {
+          console.log('small');
+          $('#access').html(`You don't have permission`);
+        }
+      };
+
+      function test() {
+        var sd = $('#swno').val();
+        // $.post("http://localhost:3000/user/getPinsById",
+        $.post(
+          'https://api.smartwinent.com/user/getPinsById',
+          {
+            uid: sd,
+          },
+          (data, status) => {
+            if (status == 'success') {
+              let output = [];
+              $('#pins').empty();
+              $.each(data, function (key, value) {
+                //  if (value.value >= first) {
+                output.push(
+                  '<button class="btn btn-outline-primary" onclick="search(' +
+                    value.key +
+                    ')">' +
+                    value.value +
+                    '' +
+                    '</button> &nbsp;&nbsp;'
+                );
+                //  }
+              });
+              //  console.log(output.join(''));
+              $('#pins').append(output);
+            } else {
+              console.log(status);
+            }
+          }
+        );
+      }
+    </script>
+  </body>
+</html>

@@ -38,6 +38,8 @@ export class IncomeComponent implements OnInit {
   filterdTotals = [];
   min = 0;
 
+  pins = [];
+
   displayedColumns: string[] = ['dateTime', 'idProcess'];
   dataSource = <any>[];
 
@@ -80,6 +82,20 @@ export class IncomeComponent implements OnInit {
         this.totals = data;
         this.filterByMin();
         console.log(this.totals);
+      }
+    );
+  }
+
+  totalCommitionByDateRangePIN(id) {
+    const pipe = new DatePipe('en-US');
+    const datef = pipe.transform(this.from, 'yyyy-MM-dd');
+    const datet = pipe.transform(this.to, 'yyyy-MM-dd');
+    this.api.post(
+      this.urlInvoice + 'totalCommitionByDateRangePIN',
+      { from: datef, to: datet, id: id },
+      (data) => {
+        console.log(data);
+        this.pins = data;
       }
     );
   }

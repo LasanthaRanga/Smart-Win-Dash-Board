@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smart Win Tree</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="jquery.orgchart.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style type="text/css">
+        #orgChart {
+            width: auto;
+            height: auto;
+        }
+
+        #orgChartContainer {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background: #ffffff;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <button onclick="load(1)">Send an HTTP POST request to a page and get the result back</button> -->
+
+    <br><br>
+    <a href="/" type="button" class="btn btn-primary">Back To Vertual Office</a>
+    <div id="orgChartContainer">
+        <div id="orgChart"></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jquery.orgchart.js"></script>
+    <script type="text/javascript">
+
+        let pp = true;
+        let first = 1;
+
+
+        var testData = [
+            {
+                "id": 8,
+                "name": "Achievement Fund",
+                "side": "",
+                "pointA": 112,
+                "pointB": 1,
+                "parent": 0,
+                "A": 16,
+                "B": 40,
+                "uid": 8,
+                "active": 8
+            },
+            {
+                "id": 40,
+                "name": "J. M. G. JAYASOORIYA",
+                "side": "B",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 8,
+                "A": 42,
+                "B": 41,
+                "uid": 24,
+                "active": 24
+            },
+            {
+                "id": 16,
+                "name": "W. V. M. WEERASINGHE",
+                "side": "A",
+                "pointA": 89,
+                "pointB": 22,
+                "parent": 8,
+                "A": 18,
+                "B": 17,
+                "uid": 16,
+                "active": 16
+            },
+            {
+                "id": 18,
+                "name": "W. V. M. WEERASINGHE",
+                "side": "A",
+                "pointA": 1,
+                "pointB": 0,
+                "parent": 16,
+                "A": 82,
+                "B": 85,
+                "uid": 16,
+                "active": 297
+            },
+            {
+                "id": 41,
+                "name": "J. M. G. JAYASOORIYA",
+                "side": "B",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 40,
+                "A": null,
+                "B": null,
+                "uid": 24,
+                "active": null
+            },
+            {
+                "id": 42,
+                "name": "J. M. G. JAYASOORIYA",
+                "side": "A",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 40,
+                "A": null,
+                "B": null,
+                "uid": 24,
+                "active": null
+            },
+            {
+                "id": 17,
+                "name": "W. V. M. WEERASINGHE",
+                "side": "B",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 16,
+                "A": 79,
+                "B": 218,
+                "uid": 16,
+                "active": 296
+            },
+            {
+                "id": 79,
+                "name": "S. M. K. RAMINDIKA",
+                "side": "A",
+                "pointA": 0,
+                "pointB": 20,
+                "parent": 17,
+                "A": 81,
+                "B": 80,
+                "uid": 37,
+                "active": 39
+            },
+            {
+                "id": 85,
+                "name": "K. M. NAWAS",
+                "side": "B",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 18,
+                "A": 86,
+                "B": 87,
+                "uid": 38,
+                "active": 41
+            },
+            {
+                "id": 218,
+                "name": "W. M. C. W. KUMARA ",
+                "side": "B",
+                "pointA": 0,
+                "pointB": 0,
+                "parent": 17,
+                "A": 220,
+                "B": 219,
+                "uid": 81,
+                "active": 102
+            },
+            {
+                "id": 82,
+                "name": "W. V. M. WEERASINGHE",
+                "side": "A",
+                "pointA": 87,
+                "pointB": 0,
+                "parent": 18,
+                "A": 83,
+                "B": 84,
+                "uid": 16,
+                "active": 40
+            }
+        ];
+
+
+        
+
+
+        load = function (nodId) {
+            // $.post("https://api.smartwin.lk/tree/getDownTreeLimited",
+            $.post("http://localhost:3000/tree/getDownTreeLimited",
+                {
+                    id: nodId,
+                    type: pp
+                },
+                function (data, status) {
+                    if (status === 'success') {
+                        //   console.log("Data: " + data + "\nStatus: " + status);
+                        pp = true;
+                        testData = testData;
+
+                        console.log(JSON.parse(JSON.stringify(testData)));
+
+                        $(function () {
+                            org_chart = $('#orgChart').orgChart({
+                                data: testData,
+                                showControls: true,
+                                allowEdit: true,
+                                onAddNode: function (node) {
+                                    log('Created new node on node ' + node.data.id);
+                                    console.log("NEW NODE")
+                                    //  org_chart.newNode(node.data.id);
+                                    load(node.data.id);
+
+                                },
+                                onDeleteNode: function (node) {
+                                    log('Deleted node ' + node.data.id);
+
+                                    console.log("First " + first);
+                                    console.log("ID " + node.data.id);
+                                    console.log("parent " + node.data.parent);
+
+                                    // org_chart.deleteNode(node.data.id);
+                                    console.log(node.data);
+
+                                    if (node.data.parent === 0) {
+                                        pp = false;
+                                        console.log('call 4')
+                                        if (node.data.id > first) {
+                                            load(node.data.id);
+                                        } else {
+                                            console.log("AUL");
+                                        }
+
+                                    } else {
+                                        console.log('Call 1')
+                                        load(node.data.parent);
+                                    }
+                                },
+                                onClickNode: function (node) {
+                                    log('Clicked node ' + node.data.id);
+                                    console.log("CLICK ON NODE")
+                                }
+
+                            });
+                        });
+
+
+                    } else {
+                        console.log("else")
+                    }
+
+                });
+        };
+
+        load({ id: 1, pp: true });
+
+
+        let searchParams = new URLSearchParams(window.location.search);
+        searchParams.has('data') // true
+
+        let param = JSON.parse(searchParams.get('data'));
+        first = param;
+        //   console.log(param);
+        //  load(param);
+
+
+
+
+
+        // var data = [
+        //     { id: 1, name: 'My Organization', point: 20, parent: 0 },
+        //     { id: 2, name: 'CEO Office', parent: 1 },
+        //     { id: 3, name: 'Division 1', parent: 1 },
+        //     { id: 4, name: 'Division 2', parent: 1 },
+        //     { id: 6, name: 'Division 3', parent: 1 },
+        //     { id: 7, name: 'Division 4', parent: 1 },
+        //     { id: 8, name: 'Division 5', parent: 1 },
+        //     { id: 5, name: 'Sub Division', parent: 3 },
+
+        // ];
+
+        // console.log(data);
+        //   localStorage.setItem('tree', JSON.stringify(data));
+
+        //  var treeData = JSON.parse(localStorage.getItem('treeData'));
+
+        //  console.log(treeData);
+
+
+        //    var testData = JSON.parse(localStorage.getItem('tree'));
+        //  console.log(testData);
+
+
+
+
+        function log(text) {
+            $('#consoleOutput').append('<p>' + text + '</p>')
+        }
+
+
+
+        //  $(document).ready(function () {
+
+     //   });
+
+
+    </script>
+
+</body>
+
+</html>
