@@ -16,8 +16,6 @@ export class ProcessComponent implements OnInit {
   treeUrl = environment.apiUrl + 'tree/'
   inputval
 
-  processStarted = false;
-
   displayedColumns: string[] = ['dateTime', 'idProcess'];
   dataSource = <any>[];
 
@@ -32,7 +30,6 @@ export class ProcessComponent implements OnInit {
 
 
   runProcess() {
-    this.processStarted = true;
     this.api.post(this.treeUrl + 'process', {}, data => {
       console.log(data);
     })

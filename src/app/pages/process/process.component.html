@@ -1,11 +1,8 @@
 <div class="main-content">
     <div class="container-fluid">
 
-        <button mat-raised-button type="submit" class="btn btn-success pull-right" *ngIf="!processStarted"
-            (click)="runProcess()">Run
+        <button mat-raised-button type="submit" class="btn btn-success pull-right" (click)="runProcess()">Run
             Process</button>
-
-        <h2 *ngIf="processStarted" style="clear: red;">Please Wait 30 minutes</h2>
 
     </div>
 
@@ -13,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header card-header-danger">
-                    <h4 class="card-title ">Process</h4>
+                    <h4 class="card-title ">Process</h4>                   
                 </div>
                 <div class="card-body">
 
@@ -29,8 +26,7 @@
 
                         <!-- Name Column -->
                         <ng-container matColumnDef="idProcess">
-                            <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">
-                                Process ID
+                            <mat-header-cell mat-sort-header *matHeaderCellDef style="justify-content: flex-end;">Process ID
                             </mat-header-cell>
                             <mat-cell *matCellDef="let element" style="justify-content: flex-end;">
                                 <button mat-mini-fab color="accent" (click)="selectOne(element)"

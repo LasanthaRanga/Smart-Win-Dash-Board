@@ -1,64 +1,59 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12" *ngFor="let img of value">
-        <img src="{{ img.value }}" width="100%" style="padding-bottom: 20px" />
-      </div>
+    <div class="container-fluid">
+        <div class="row">
 
-      <div class="col-md-12" *ngIf="video">
-        <div
-          style="
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-          "
-        >
-          <iframe
-            style="
-              position: absolute;
-              top: 0;
-              left: 0;
-              bottom: 0;
-              right: 0;
-              width: 100%;
-              height: 90%;
-              border: none;
-            "
-            [src]="video | youtube"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </div>
+            <div class="col-md-12" *ngIf="video">
+                <div style=" position: relative;
+                width: 100%;
+                overflow: hidden;
+                padding-top: 56.25%; /* 16:9 Aspect Ratio */">
+                    <iframe style="position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                height: 90%;
+                border: none;" [src]="video | youtube" title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
 
-      <div class="col-md-3">
-        <div class="card card-profile">
-          <!-- <div class="card-avatar">
+            <!-- <div class="col-md-12" *ngFor="let img of value">
+                <img src="{{img.value}}" width="100%" style="padding-bottom: 20px;">
+
+            </div> -->
+
+            <div class="col-md-3">
+                <div class="card card-profile">
+                    <!-- <div class="card-avatar">
                     <a href="javascript:void(0)">
                         <img class="img" src="./assets/img/profile.png" />
                     </a>
                 </div> -->
-          <div class="card-body" *ngIf="userData">
-            <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
-            <h4 class="card-title">{{ userData[0].value }}</h4>
+                    <div class="card-body" *ngIf="userData">
+                        <!-- <h6 class="card-category text-gray">CEO / Co-Founder</h6> -->
+                        <h4 class="card-title">{{userData[0].value}}</h4>
 
-            <h5>{{ userData[2].value }}</h5>
-            <h5>{{ userData[3].value }}</h5>
-            <h5>{{ userData[4].value }}</h5>
-            <h5>{{ userData[5].value }}</h5>
-            <h5>{{ userData[12].value }}</h5>
-            <h5>{{ userData[13].value }}</h5>
-            <p class="card-description"></p>
-            <!-- <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a> -->
-          </div>
+                        <h5>{{userData[2].value}}</h5>
+                        <h5>{{userData[3].value}}</h5>
+                        <h5>{{userData[4].value}}</h5>
+                        <h5>{{userData[5].value}}</h5>
+                        <h5>{{userData[12].value}}</h5>
+                        <h5>{{userData[13].value}}</h5>
+                        <p class="card-description">
+                        </p>
+                        <!-- <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a> -->
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
-      </div>
-    </div>
 
-    <!-- <div class='col-12'>
+        <!-- <div class='col-12'>
             <ngb-carousel *ngIf="images">
               
                 <ng-template ngbSlide *ngFor="let img of value">
@@ -73,8 +68,13 @@
               
             </ngb-carousel>
         </div> -->
-  </div>
+
+
+    </div>
 </div>
+
+
+
 
 <!-- style="background-image: url('../../../assets/img/motivational-wallpaper-5.jpg');  background-repeat: no-repeat;
 background-attachment: fixed; 

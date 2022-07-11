@@ -217,29 +217,6 @@
               <p>
                 SW NO : {{ item.user_id }} - Total Income :
                 {{ item.TOTAL | currency: 'LKR ' }}
-                <a
-                  style="color: blue; font-size: large"
-                  (click)="totalCommitionByDateRangePIN(item.user_id)"
-                >
-                  &nbsp;&nbsp;&nbsp; PINs</a
-                >
-              </p>
-            </div>
-          </div>
-          <div class="card-footer"></div>
-        </div>
-      </div>
-
-      <div class="col-md-4" *ngIf="pins.length > 0">
-        <div class="card">
-          <div class="card-header card-header-info">
-            <h4 class="card-title">SW Number : {{ pins[0].user_id }}</h4>
-          </div>
-          <div class="card-body">
-            <div *ngFor="let item of pins">
-              <p>
-                PIN : {{ item.tree_id }} - Total :
-                {{ item.TOTAL | currency: 'LKR ' }}
               </p>
             </div>
           </div>

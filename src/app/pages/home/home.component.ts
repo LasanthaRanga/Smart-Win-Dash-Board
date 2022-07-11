@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   getValue() {
-    this.api.post(this.url + 'getValue', { key: '  ' }, data => {
+    this.api.post(this.url + 'getValue', { key: 'homeimage' }, data => {
       this.value = data;
       console.log(this.value);
     });
