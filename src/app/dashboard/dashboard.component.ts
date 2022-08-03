@@ -152,4 +152,9 @@ export class DashboardComponent implements OnInit {
     this.startAnimationForBarChart(websiteViewsChart);
   }
 
+  scroll() {
+    console.log("click");
+    window.scroll(0, 0);
+  }
+
 }
