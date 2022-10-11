@@ -24,7 +24,7 @@ export class MyincomeComponent implements OnInit {
   inroTot = 0;
   user;
 
-  from;
+  from = "2020-10-08";
   to;
 
   selectedPin;

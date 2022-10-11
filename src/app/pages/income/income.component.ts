@@ -31,7 +31,7 @@ export class IncomeComponent implements OnInit {
 
   balance = 0;
 
-  from;
+  from ="2020-10-08";
   to;
 
   totals = [];
