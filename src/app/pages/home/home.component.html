@@ -20,10 +20,9 @@
                 </div>
             </div>
 
-            <!-- <div class="col-md-12" *ngFor="let img of value">
-                <img src="{{img.value}}" width="100%" style="padding-bottom: 20px;">
-
-            </div> -->
+            <div class="col-md-12" *ngFor="let img of value">
+                <img *ngIf="img.value" src="{{img.value}}" width="100%" style="padding-bottom: 20px;">
+            </div>
 
             <div class="col-md-3">
                 <div class="card card-profile">
